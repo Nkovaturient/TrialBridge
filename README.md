@@ -30,13 +30,7 @@
 
 ---
 
-## 🎯 Tagline
-
-> **"Pay per clinical trial match. Prove every consent. 3 seconds, not 3 weeks."**
-
----
-
-## 🏗️ Architecture (What You Actually Build in 7 Days)
+## 🏗️ Architecture Workflow
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -63,7 +57,7 @@
 
 ---
 
-## 🗂️ Data Sources (Real, Not Synthetic)
+## 🗂️ Data Sources
 
 ### India — AIKosh (https://aikosh.indiaai.gov.in)
 | Dataset | Source | Use |
@@ -148,11 +142,9 @@ PATIENT: Does NOT receive direct payment in MVP.
 - The **National Medical Products Administration (NMPA)** controls what counts as "Important Data" in life sciences — such data may be entirely prohibited from export
 - Practically: **a solo developer cannot legally transfer live Chinese patient health data across borders** — the compliance pathway requires corporate registration, government assessment, and months of process
 
-### Your Honest Answer to Mentors
+### Honest Answer
 
 > *"We deliberately scoped the MVP to avoid this problem. Our matching agents use AIKosh's publicly available Indian health datasets — downloaded locally, no live cross-border PII transfer — and CTRI's public trial registry. Patient data never leaves its source jurisdiction. China's role in our architecture is DeepSeek's open-source model weights, which we run via API — model inference, not data transfer. When we scale to live patient enrollment, we will need formal DPDP consent flows on the India side and PIPL SPI compliance on the China side. We've designed the consent logging layer on to support that audit trail in v2. We know where the legal walls are — our MVP deliberately stays on the right side of them."*
-
-This answer is honest, shows regulatory awareness, and doesn't claim compliance you don't have.
 
 ---
 
@@ -175,9 +167,7 @@ Storage        | IPFS (via nft.storage)       | Consent document hash (optional,
 ---
 
 
-## 📊 Honest Demo Metrics
-
-Replace fabricated claims with these defensible ones:
+## 📊 To-achieve Demo Metrics
 
 | Metric | Honest Claim | How to Back It |
 |---|---|---|
@@ -189,16 +179,15 @@ Replace fabricated claims with these defensible ones:
 
 ---
 
-## 🚫 Challenges & Limitations (Be Upfront)
+## 🚫 Challenges & Limitations
 
 | Challenge | Reality |
 |---|---|
 | **No live patient enrollment** | MVP uses static/anonymised dataset profiles — not real patient sign-ups |
 | **Regulatory compliance** | DPDP consent flows and PIPL SPI compliance are v2 work, not in MVP |
 | **x402 KYC/AML** | Protocol has regulatory ambiguity — B2B demo only, not live patient payments |
-| **China AI infra** | DeepSeek model via API only — no Huawei Ascend, no Baidu Ernie in 7 days |
+| **China AI infra** | DeepSeek model via API only — no Huawei Ascend, no Baidu Ernie |
 | **Match accuracy** | Depends on CTRI eligibility text quality — highly variable, often unstructured |
-| **Smart contract security** | Not audited — testnet only |
 
 
 ---
