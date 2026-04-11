@@ -1,0 +1,34 @@
+{
+  "ctri_number": "CTRI/2023/11/059302",
+  "public_title": "Randomised trial of metformin as chemoprevention in oral potentially malignant disorders (OPMDs) in tobacco users in India",
+  "scientific_title": "Phase II randomised placebo-controlled trial of metformin 500 mg BD versus placebo for 12 months in adults with oral leukoplakia or oral submucous fibrosis who use tobacco",
+  "health_condition": "Oral leukoplakia; Oral submucous fibrosis (OSMF)",
+  "icd_code": "K13.21",
+  "intervention": {
+    "type": "Drug",
+    "name": "Metformin 500 mg twice daily for 12 months",
+    "details": "Metformin hydrochloride 500 mg BID orally with meals; dose escalated to 1000 mg BID after 4 weeks if tolerated"
+  },
+  "comparator": {
+    "name": "Matched placebo twice daily for 12 months",
+    "details": "Identically appearing placebo tablets"
+  },
+  "inclusion_criteria": "Adults aged 20 to 60 years; Clinically and/or histologically confirmed oral leukoplakia or oral submucous fibrosis; Current tobacco user (smoking or smokeless) for at least 5 years; No diabetes mellitus; Fasting blood glucose <126 mg/dL; Adequate renal function (eGFR ≥60 mL/min/1.73m²); Willingness to attend monthly follow-up visits; Signed informed consent",
+  "exclusion_criteria": "Established diagnosis of diabetes mellitus or on anti-diabetic medication; Lactic acidosis risk factors (severe hepatic disease, alcoholism, CHF); Prior or current malignancy of any site; Pregnancy or breastfeeding; Use of systemic retinoids, corticosteroids, or other chemoprevention agents in last 6 months; Allergy to metformin",
+  "age_from": "20.00 Year(s)",
+  "age_to": "60.00 Year(s)",
+  "gender": "Both",
+  "phase": "Phase 2",
+  "study_design": "Randomized, Double Blind, Placebo Controlled",
+  "recruitment_status": "Recruiting",
+  "target_sample_size": 120,
+  "countries_of_recruitment": ["India"],
+  "sites": [
+    { "name": "SRIHER Chennai", "state": "Tamil Nadu" },
+    { "name": "Maulana Azad Institute of Dental Sciences", "state": "Delhi" }
+  ],
+  "primary_sponsor": "Science and Engineering Research Board (SERB)",
+  "ethics_approval": "Approved",
+  "date_of_first_enrollment": "01/01/2024",
+  "estimated_duration_months": 18
+}

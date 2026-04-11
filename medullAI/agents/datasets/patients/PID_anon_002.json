@@ -1,0 +1,32 @@
+{
+  "patient_id": "PID_anon_002",
+  "age_years": 38,
+  "gender": "female",
+  "state": "Maharashtra",
+  "primary_diagnosis": "Oral submucous fibrosis with dysplasia",
+  "icd_code": "K13.21",
+  "stage": "Oral potentially malignant disorder (OPMD)",
+  "tnm": "Not applicable",
+  "anatomical_site": "Buccal mucosa bilateral",
+  "comorbidities": ["Iron deficiency anaemia"],
+  "smoking_history": false,
+  "tobacco_use": "Betel nut + areca nut chewing for 10 years",
+  "alcohol_use": false,
+  "ecog_ps": 0,
+  "prior_treatment": [],
+  "prior_radiotherapy": false,
+  "prior_chemotherapy": false,
+  "lab_values": {
+    "hemoglobin_g_dl": 9.8,
+    "wbc_count_per_ul": 5400,
+    "platelet_count_per_ul": 210000,
+    "serum_creatinine_mg_dl": 0.8,
+    "fasting_glucose_mg_dl": 88,
+    "egfr_ml_min": 92,
+    "alt_u_l": 22
+  },
+  "current_medications": ["Ferrous sulphate 150 mg OD"],
+  "allergies": [],
+  "pd_l1_status": "unknown",
+  "data_source": "AIKosh ICMR Oral Cancer Clinical Dataset (anonymised)"
+}

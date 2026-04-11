@@ -1,0 +1,35 @@
+{
+  "ctri_number": "CTRI/2024/01/061234",
+  "public_title": "Efficacy and safety of cisplatin plus radiotherapy versus standard care in locally advanced oral squamous cell carcinoma: a randomised controlled trial",
+  "scientific_title": "Randomised controlled trial of concurrent cisplatin-based chemoradiotherapy versus radiotherapy alone in stage III/IV oral squamous cell carcinoma at tertiary cancer centres in India",
+  "health_condition": "Oral squamous cell carcinoma (OSCC)",
+  "icd_code": "C06.9",
+  "intervention": {
+    "type": "Drug + Radiation",
+    "name": "Cisplatin 40 mg/m2 weekly + External beam radiotherapy 66 Gy in 33 fractions",
+    "details": "Cisplatin administered IV weekly concurrently with definitive EBRT"
+  },
+  "comparator": {
+    "name": "External beam radiotherapy alone 66 Gy in 33 fractions",
+    "details": "Standard radiotherapy without concurrent chemotherapy"
+  },
+  "inclusion_criteria": "Histologically confirmed oral squamous cell carcinoma (OSCC); Stage III or IVA (T1-T4a, N0-N2, M0) per AJCC 8th edition; Age 18 to 70 years; ECOG performance status 0 or 1; Adequate haematological function (Hb ≥10 g/dL, ANC ≥1500/μL, platelets ≥100,000/μL); Adequate renal function (serum creatinine ≤1.5× ULN or creatinine clearance ≥50 mL/min); No prior head and neck radiotherapy; Signed informed consent",
+  "exclusion_criteria": "Prior chemotherapy or radiotherapy to head and neck region; Metastatic (M1) disease; Serious co-morbidities including uncontrolled diabetes (HbA1c >9%), active cardiac disease, uncontrolled hypertension; Pregnancy or lactation; Concurrent second primary malignancy; Hearing impairment requiring aid; Psychiatric illness precluding consent",
+  "age_from": "18.00 Year(s)",
+  "age_to": "70.00 Year(s)",
+  "gender": "Both",
+  "phase": "Phase 3",
+  "study_design": "Randomized, Parallel Group, Active Controlled Trial",
+  "recruitment_status": "Recruiting",
+  "target_sample_size": 240,
+  "countries_of_recruitment": ["India"],
+  "sites": [
+    { "name": "AIIMS New Delhi", "state": "Delhi" },
+    { "name": "Tata Memorial Hospital", "state": "Maharashtra" },
+    { "name": "RGCI New Delhi", "state": "Delhi" }
+  ],
+  "primary_sponsor": "Indian Council of Medical Research (ICMR)",
+  "ethics_approval": "Approved",
+  "date_of_first_enrollment": "01/04/2024",
+  "estimated_duration_months": 36
+}

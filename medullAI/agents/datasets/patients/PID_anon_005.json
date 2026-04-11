@@ -1,0 +1,32 @@
+{
+  "patient_id": "PID_anon_005",
+  "age_years": 29,
+  "gender": "male",
+  "state": "Odisha",
+  "primary_diagnosis": "Oral leukoplakia (homogeneous)",
+  "icd_code": "K13.21",
+  "stage": "Oral potentially malignant disorder (OPMD) — mild dysplasia on biopsy",
+  "tnm": "Not applicable",
+  "anatomical_site": "Lateral border of tongue",
+  "comorbidities": [],
+  "smoking_history": true,
+  "tobacco_use": "Bidi smoking 10 pack-years, current smoker",
+  "alcohol_use": false,
+  "ecog_ps": 0,
+  "prior_treatment": [],
+  "prior_radiotherapy": false,
+  "prior_chemotherapy": false,
+  "lab_values": {
+    "hemoglobin_g_dl": 13.4,
+    "wbc_count_per_ul": 6200,
+    "platelet_count_per_ul": 195000,
+    "serum_creatinine_mg_dl": 0.9,
+    "fasting_glucose_mg_dl": 95,
+    "egfr_ml_min": 105,
+    "alt_u_l": 18
+  },
+  "current_medications": [],
+  "allergies": [],
+  "pd_l1_status": "unknown",
+  "data_source": "AIKosh ICMR Oral Cancer Clinical Dataset (anonymised)"
+}

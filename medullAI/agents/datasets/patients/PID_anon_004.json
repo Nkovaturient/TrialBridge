@@ -1,0 +1,33 @@
+{
+  "patient_id": "PID_anon_004",
+  "age_years": 45,
+  "gender": "female",
+  "state": "Karnataka",
+  "primary_diagnosis": "Oral squamous cell carcinoma",
+  "icd_code": "C06.9",
+  "stage": "Stage IVA",
+  "tnm": "T4aN2bM0",
+  "anatomical_site": "Floor of mouth",
+  "comorbidities": [],
+  "smoking_history": false,
+  "tobacco_use": "Reverse smoking (chutta) for 15 years",
+  "alcohol_use": false,
+  "ecog_ps": 0,
+  "prior_treatment": [],
+  "prior_radiotherapy": false,
+  "prior_chemotherapy": false,
+  "lab_values": {
+    "hemoglobin_g_dl": 12.1,
+    "wbc_count_per_ul": 7600,
+    "platelet_count_per_ul": 220000,
+    "anc_per_ul": 4800,
+    "serum_creatinine_mg_dl": 0.9,
+    "creatinine_clearance_ml_min": 82,
+    "alt_u_l": 24,
+    "ast_u_l": 20
+  },
+  "current_medications": [],
+  "allergies": [],
+  "pd_l1_status": "unknown",
+  "data_source": "AIKosh ICMR Oral Cancer Clinical Dataset (anonymised)"
+}

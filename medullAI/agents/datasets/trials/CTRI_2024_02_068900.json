@@ -1,0 +1,33 @@
+{
+  "ctri_number": "CTRI/2024/02/068900",
+  "public_title": "A prospective study evaluating quality of life and functional outcomes in patients with oral cancer undergoing free flap reconstruction at a tertiary cancer centre",
+  "scientific_title": "Prospective cohort study of health-related quality of life, swallowing function, and speech outcomes following free flap reconstruction for oral cavity cancer: 12-month follow-up",
+  "health_condition": "Oral cavity cancer requiring free flap reconstruction",
+  "icd_code": "C06.9",
+  "intervention": {
+    "type": "Surgical / Observational",
+    "name": "Free flap reconstruction following oral cavity cancer resection (radial forearm, anterolateral thigh, or fibula flap)",
+    "details": "No experimental intervention; observational follow-up of patients undergoing standard-of-care free flap reconstruction; outcomes measured at baseline, 3, 6, and 12 months"
+  },
+  "comparator": {
+    "name": "None (single cohort observational)",
+    "details": "Prospective cohort; no randomisation"
+  },
+  "inclusion_criteria": "Histologically confirmed squamous cell carcinoma of the oral cavity; Stage II, III, or IVA disease; Planned free flap reconstruction as part of curative surgical management; Age 18 years or older; ECOG performance status 0 or 1; Able to complete quality of life questionnaires in English, Hindi, or Tamil; Signed informed consent",
+  "exclusion_criteria": "Stage IVB or IVC (metastatic) disease; Prior head and neck surgery or radiotherapy; Requirement of total glossectomy (too extensive for functional assessment); Cognitive impairment precluding QoL questionnaire completion; Life expectancy less than 12 months from non-cancer causes; Participation in concurrent interventional trial",
+  "age_from": "18.00 Year(s)",
+  "age_to": "80.00 Year(s)",
+  "gender": "Both",
+  "phase": "Not Applicable",
+  "study_design": "Prospective Cohort, Observational",
+  "recruitment_status": "Recruiting",
+  "target_sample_size": 80,
+  "countries_of_recruitment": ["India"],
+  "sites": [
+    { "name": "Tata Memorial Hospital", "state": "Maharashtra" }
+  ],
+  "primary_sponsor": "Tata Memorial Centre, Mumbai",
+  "ethics_approval": "Approved",
+  "date_of_first_enrollment": "01/03/2024",
+  "estimated_duration_months": 30
+}

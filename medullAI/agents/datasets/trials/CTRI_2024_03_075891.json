@@ -1,0 +1,34 @@
+{
+  "ctri_number": "CTRI/2024/03/075891",
+  "public_title": "Phase II study of immunotherapy (pembrolizumab) in recurrent or metastatic head and neck squamous cell carcinoma following platinum failure in Indian patients",
+  "scientific_title": "Single-arm phase II trial evaluating pembrolizumab monotherapy in platinum-refractory recurrent or metastatic HNSCC: PD-L1 expression and outcomes in an Indian cohort",
+  "health_condition": "Recurrent or metastatic head and neck squamous cell carcinoma (HNSCC)",
+  "icd_code": "C10.9",
+  "intervention": {
+    "type": "Biological / Immunotherapy",
+    "name": "Pembrolizumab 200 mg IV every 3 weeks",
+    "details": "Anti-PD-1 monoclonal antibody, administered until disease progression or unacceptable toxicity, maximum 35 cycles"
+  },
+  "comparator": {
+    "name": "None (single arm)",
+    "details": "No comparator; response rate compared to historical controls"
+  },
+  "inclusion_criteria": "Histologically confirmed recurrent or metastatic HNSCC of oral cavity, oropharynx, hypopharynx, or larynx; Disease progression on or after platinum-based chemotherapy; Age 18 years or older; ECOG performance status 0, 1, or 2; Measurable disease per RECIST v1.1; Adequate organ function; PD-L1 expression status assessed by IHC (any CPS score eligible); No active autoimmune disease requiring systemic treatment within past 2 years; Signed informed consent",
+  "exclusion_criteria": "Prior treatment with anti-PD-1, anti-PD-L1, or anti-CTLA-4 therapy; Active autoimmune disease; Systemic corticosteroids (>10 mg/day prednisone equivalent) within 7 days of first dose; Active infection requiring systemic therapy; HIV positive with CD4 <350 cells/μL; Pregnancy or unwillingness to use contraception; Nasopharyngeal carcinoma histology",
+  "age_from": "18.00 Year(s)",
+  "age_to": "75.00 Year(s)",
+  "gender": "Both",
+  "phase": "Phase 2",
+  "study_design": "Single Arm, Open Label",
+  "recruitment_status": "Recruiting",
+  "target_sample_size": 60,
+  "countries_of_recruitment": ["India"],
+  "sites": [
+    { "name": "Kidwai Memorial Institute of Oncology", "state": "Karnataka" },
+    { "name": "Cancer Institute (WIA) Chennai", "state": "Tamil Nadu" }
+  ],
+  "primary_sponsor": "Department of Biotechnology, Government of India",
+  "ethics_approval": "Approved",
+  "date_of_first_enrollment": "15/06/2024",
+  "estimated_duration_months": 24
+}

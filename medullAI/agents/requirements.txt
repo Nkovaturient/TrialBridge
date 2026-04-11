@@ -1,0 +1,7 @@
+langchain-deepseek
+langgraph
+langchain-core
+pydantic
+httpx
+fastapi
+uvicorn[standard]

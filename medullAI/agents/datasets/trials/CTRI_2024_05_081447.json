@@ -1,0 +1,34 @@
+{
+  "ctri_number": "CTRI/2024/05/081447",
+  "public_title": "Efficacy of curcumin nano-formulation adjunct to surgery in stage I/II oral cavity cancer: a randomised study",
+  "scientific_title": "Randomised controlled trial of nano-curcumin supplementation (2 g/day for 3 months post-surgery) versus placebo in patients with early stage oral cavity squamous cell carcinoma undergoing curative resection",
+  "health_condition": "Early stage oral cavity squamous cell carcinoma",
+  "icd_code": "C06.9",
+  "intervention": {
+    "type": "Nutraceutical / Drug",
+    "name": "Nano-curcumin 2 g/day orally for 3 months post-surgery",
+    "details": "Bioavailability-enhanced nano-curcumin capsules; two 500 mg capsules twice daily; started within 4 weeks of curative surgical resection"
+  },
+  "comparator": {
+    "name": "Matched placebo capsules for 3 months",
+    "details": "Identical placebo capsules"
+  },
+  "inclusion_criteria": "Histologically confirmed squamous cell carcinoma of the oral cavity (lip, tongue, floor of mouth, buccal mucosa, gingiva, hard palate); Stage I (T1N0M0) or Stage II (T2N0M0) per AJCC 8th edition; Underwent curative surgical resection with clear margins (R0); Age 18 to 65 years; No post-operative radiotherapy planned; ECOG performance status 0 or 1; Adequate hepatic function (ALT/AST ≤2× ULN); Consent obtained",
+  "exclusion_criteria": "Stage III or IV disease; Positive surgical margins (R1/R2 resection); Prior head and neck radiotherapy; Active systemic infection at time of enrolment; Pregnancy or lactation; Bile duct obstruction or cholelithiasis; Concurrent anti-coagulation therapy (warfarin, rivaroxaban); Concurrent participation in another interventional trial",
+  "age_from": "18.00 Year(s)",
+  "age_to": "65.00 Year(s)",
+  "gender": "Both",
+  "phase": "Phase 2",
+  "study_design": "Randomized, Double Blind, Placebo Controlled",
+  "recruitment_status": "Recruiting",
+  "target_sample_size": 100,
+  "countries_of_recruitment": ["India"],
+  "sites": [
+    { "name": "Nizam's Institute of Medical Sciences", "state": "Telangana" },
+    { "name": "Amrita Institute of Medical Sciences", "state": "Kerala" }
+  ],
+  "primary_sponsor": "Department of Science and Technology (DST), India",
+  "ethics_approval": "Approved",
+  "date_of_first_enrollment": "01/08/2024",
+  "estimated_duration_months": 24
+}
