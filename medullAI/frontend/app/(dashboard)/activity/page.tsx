@@ -30,7 +30,7 @@ export default function ActivityPage() {
       try {
         const [healthRes, countRes] = await Promise.all([
           fetch("/api/health"),
-          fetch(`${process.env.BACKBONE_URL ?? "http://127.0.0.1:4020"}/match_count`),
+          fetch(`${process.env.NEXT_PUBLIC_BACKBONE_URL ?? "http://127.0.0.1:4020"}/match_count`),
         ]);
         const healthData = await healthRes.json();
         setHealth(healthData);
@@ -44,7 +44,7 @@ export default function ActivityPage() {
           const rows: OnChainMatch[] = [];
           for (let i = total - 1; i >= last; i--) {
             const r = await fetch(
-              `${process.env.BACKBONE_URL ?? "http://127.0.0.1:4020"}/matches/${i}`,
+              `${process.env.NEXT_PUBLIC_BACKBONE_URL ?? "http://127.0.0.1:4020"}/matches/${i}`,
             );
             if (r.ok) rows.push(await r.json());
           }
