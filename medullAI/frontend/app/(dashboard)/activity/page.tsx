@@ -44,7 +44,7 @@ export default function ActivityPage() {
           const rows: OnChainMatch[] = [];
           for (let i = total - 1; i >= last; i--) {
             const r = await fetch(
-              `${process.env.NEXT_PUBLIC_BACKBONE_URL ?? "http://127.0.0.1:4020"}/matches/${i}`,
+              `${process.env.BACKBONE_URL ?? "http://127.0.0.1:4020"}/matches/${i}`,
             );
             if (r.ok) rows.push(await r.json());
           }
