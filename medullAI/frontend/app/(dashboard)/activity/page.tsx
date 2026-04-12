@@ -30,7 +30,7 @@ export default function ActivityPage() {
       try {
         const [healthRes, countRes] = await Promise.all([
           fetch("/api/health"),
-          fetch(`${process.env.NEXT_PUBLIC_BACKBONE_URL ?? "http://127.0.0.1:4020"}/match_count`),
+          fetch(`${process.env.BACKBONE_URL ?? "http://127.0.0.1:4020"}/match_count`),
         ]);
         const healthData = await healthRes.json();
         setHealth(healthData);
