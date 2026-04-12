@@ -105,16 +105,29 @@ PATIENT: Does NOT receive direct payment in MVP.
 
 ---
 
-## 📋 Revised 7-Day Build Plan
+## 📋  Diagram Flow (How CROs would pay?)
 
-| Day | Task | Deliverable |
-|---|---|---|
-| **1** | Download AIKosh health datasets + CTRI scraper | 100 real patient profiles (anonymised), 50 real trials |
-| **2** | Build Patient Agent (LangGraph + DeepSeek) | Agent reads patient profile → outputs structured eligibility JSON |
-| **3** | Build Trial Agent (LangGraph + DeepSeek) | Agent reads CTRI trial → outputs inclusion/exclusion criteria JSON |
-| **4** | Coordination layer: agents talk to each other | Match score (0–1) per patient-trial pair, logged to console |
-| **5** | x402 middleware on `/match` endpoint + Next.js dashboard | Pay → match → proof on dashboard |
-| **7** | Polish demo + pitch deck | Working live demo with 5 real match examples |
+```
+ CRO User (Browser)
+       │
+       ▼
+ Next.js Frontend (:3000)
+  ├── /match/new        → Form UI + live log panel
+  ├── /api/match        → API route (server-side)
+  │    ├── Loads org's CDP wallet
+  │    ├── Makes x402-authenticated POST /match to backbone
+  │    └── Streams SSE events back to client
+  │
+  └── /dashboard        → History, balance, analytics
+       │
+       ▼
+ Backbone Express (:4020)
+  ├── x402 middleware validates payment
+  ├── POST /run_match → Agent API (:8100)
+  │    └── LangGraph: parse → hard filter → LLM score
+  ├── logMatch() → TrialRegistry on Base Sepolia
+  └── Returns MatchResult + onChain tx
+```
 
 
 <!-- **Drop entirely from 7-day scope:**
@@ -227,4 +240,3 @@ TrialBridge/
 - Base Sepolia Explorer: https://sepolia.basescan.org
 - TrialRegistry (Base Sepolia): https://sepolia.basescan.org/address/0x40cAD144A2Dc503FdFFcbc84aBBeb0007924fc08
 - India DPDP Act 2023 + Rules 2025: https://meity.gov.in/dpdp
-- China PIPL Cross-Border Framework: CAC Certification Measures, effective 1 Jan 2026

@@ -1,0 +1,30 @@
+{
+  "name": "backbone",
+  "version": "1.0.0",
+  "description": "Backbone of DeSci Agent Swarm for Clinical Trial Matching & Curation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "dev:nodemon": "nodemon index.js"
+  },
+  "keywords": [
+    "DeSci",
+    "CTRI",
+    "AIKosh",
+    "x402",
+    "Agent Swarm",
+    "Clinical Trial Matching",
+    "Curation"
+  ],
+  "author": "Neha Kumari",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.1",
+    "express": "^5.2.1",
+    "viem": "^2.47.12",
+    "x402-express": "^1.1.0"
+  }
+}
