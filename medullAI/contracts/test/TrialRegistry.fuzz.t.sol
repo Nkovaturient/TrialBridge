@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.34;
 
-import { Test } from "forge-std/Test.sol";
-import { TrialRegistry } from "../src/TrialRegistry.sol";
+import {Test} from "forge-std/Test.sol";
+import {TrialRegistry} from "../src/TrialRegistry.sol";
 
 /// @notice Fuzz tests for TrialRegistry — exercising the full input space for
 ///         logMatch and getMatch with random bytes/strings/uint8 values.
@@ -10,28 +10,26 @@ contract TrialRegistryFuzzTest is Test {
     TrialRegistry public registry;
 
     function setUp() public {
-        registry = new TrialRegistry(address(this));
+        registry = new TrialRegistry(address(this), address(0));
     }
 
     // -------------------------------------------------------------------------
     // logMatch — valid scores store correctly for any hash and any trialId string
     // -------------------------------------------------------------------------
 
-    function testFuzz_logMatch_valid_score(
-        bytes32 patientHash,
-        string calldata trialId,
-        uint8 score
-    ) public {
+    function testFuzz_logMatch_valid_score(bytes32 patientHash, string calldata trialId, uint8 score) public {
+        vm.assume(patientHash != bytes32(0));
         vm.assume(score <= 100);
+        vm.assume(bytes(trialId).length > 0 && bytes(trialId).length <= registry.MAX_TRIAL_ID_LENGTH());
 
         registry.logMatch(patientHash, trialId, score);
 
         assertEq(registry.getMatchCount(), 1);
         TrialRegistry.Match memory m = registry.getMatch(0);
         assertEq(m.patientHash, patientHash);
-        assertEq(m.trialId,     trialId);
-        assertEq(m.score,       score);
-        assertEq(m.timestamp,   block.timestamp);
+        assertEq(m.trialId, trialId);
+        assertEq(m.score, score);
+        assertEq(m.timestamp, block.timestamp);
     }
 
     // -------------------------------------------------------------------------
@@ -56,6 +54,7 @@ contract TrialRegistryFuzzTest is Test {
     ) public {
         vm.assume(caller != address(this));
         vm.assume(score <= 100);
+        vm.assume(bytes(trialId).length > 0 && bytes(trialId).length <= registry.MAX_TRIAL_ID_LENGTH());
 
         vm.prank(caller);
         vm.expectRevert(TrialRegistry.Unauthorized.selector);
@@ -70,9 +69,7 @@ contract TrialRegistryFuzzTest is Test {
         // empty array: any index is out of bounds
         uint256 count = registry.getMatchCount();
         vm.assume(index >= count);
-        vm.expectRevert(
-            abi.encodeWithSelector(TrialRegistry.IndexOutOfBounds.selector, index, count)
-        );
+        vm.expectRevert(abi.encodeWithSelector(TrialRegistry.IndexOutOfBounds.selector, index, count));
         registry.getMatch(index);
     }
 
@@ -85,9 +82,7 @@ contract TrialRegistryFuzzTest is Test {
 
         uint256 count = registry.getMatchCount();
         vm.assume(index >= count);
-        vm.expectRevert(
-            abi.encodeWithSelector(TrialRegistry.IndexOutOfBounds.selector, index, count)
-        );
+        vm.expectRevert(abi.encodeWithSelector(TrialRegistry.IndexOutOfBounds.selector, index, count));
         registry.getMatch(index);
     }
 
@@ -95,12 +90,11 @@ contract TrialRegistryFuzzTest is Test {
     // logConsent — any non-owner must revert
     // -------------------------------------------------------------------------
 
-    function testFuzz_logConsent_reverts_any_non_owner(
-        address caller,
-        bytes32 patientHash,
-        string calldata ipfsRef
-    ) public {
+    function testFuzz_logConsent_reverts_any_non_owner(address caller, bytes32 patientHash, string calldata ipfsRef)
+        public
+    {
         vm.assume(caller != address(this));
+        vm.assume(bytes(ipfsRef).length > 0 && bytes(ipfsRef).length <= registry.MAX_IPFS_REF_LENGTH());
         vm.prank(caller);
         vm.expectRevert(TrialRegistry.Unauthorized.selector);
         registry.logConsent(patientHash, ipfsRef);
@@ -112,7 +106,7 @@ contract TrialRegistryFuzzTest is Test {
 
     function testFuzz_transferOwnership_reverts_zero(address current) public {
         vm.assume(current != address(0));
-        TrialRegistry r = new TrialRegistry(current);
+        TrialRegistry r = new TrialRegistry(current, address(0));
 
         vm.prank(current);
         vm.expectRevert(TrialRegistry.ZeroAddress.selector);

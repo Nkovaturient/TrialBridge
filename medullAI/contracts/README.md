@@ -143,7 +143,9 @@ The contract owner is the **backend server wallet** — the same address that ca
 
 ```bash
 # .env  (never commit)
-PRIVATE_KEY=0x...          # deployer / owner wallet
+PRIVATE_KEY=0x...          # deployer wallet (broadcasts the tx)
+INITIAL_OWNER=0x...        # TrialRegistry owner (often same as server wallet or a Safe)
+GUARDIAN=0x...             # optional — address(0) if omitted; may emergency-pause with owner
 BASE_SEPOLIA_RPC=https://sepolia.base.org
 BASE_MAINNET_RPC=https://mainnet.base.org
 BASESCAN_API_KEY=...       # for --verify on Base

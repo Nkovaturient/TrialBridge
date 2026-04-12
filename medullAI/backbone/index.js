@@ -1,7 +1,8 @@
+import { createHmac } from 'node:crypto';
 import cors from 'cors';
 import { config } from 'dotenv';
 import express from 'express';
-import { createPublicClient, createWalletClient, http, keccak256, toBytes } from 'viem';
+import { createPublicClient, createWalletClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { baseSepolia } from 'viem/chains';
 import { TRIAL_REGISTRY_ABI } from './TrialRegistryABI.js';
@@ -11,6 +12,7 @@ config();
 
 const {
   PRIVATE_KEY,
+  PATIENT_HASH_SECRET,
   PAY_TO_ADDRESS,
   TRIAL_REGISTRY_CONTRACT_ADDRESS,
   BASE_SEPOLIA_RPC = 'https://sepolia.base.org',
@@ -19,6 +21,7 @@ const {
 } = process.env;
 
 if (!PRIVATE_KEY)           throw new Error('PRIVATE_KEY is required');
+if (!PATIENT_HASH_SECRET)  throw new Error('PATIENT_HASH_SECRET is required');
 if (!PAY_TO_ADDRESS)        throw new Error('PAY_TO_ADDRESS is required');
 if (!TRIAL_REGISTRY_CONTRACT_ADDRESS) throw new Error('TRIAL_REGISTRY_CONTRACT_ADDR is required');
 
@@ -28,9 +31,10 @@ const publicClient = createPublicClient({ chain: baseSepolia, transport });
 const walletClient = createWalletClient({ account, chain: baseSepolia, transport });
 
 
-/** keccak256 hash of a UTF-8 patient ID string */
+/** HMAC-SHA256(secret, patient_id) as 0x-prefixed 32-byte hex*/
 function hashPatientId(patientId) {
-  return keccak256(toBytes(patientId));
+  const digest = createHmac('sha256', PATIENT_HASH_SECRET).update(patientId, 'utf8').digest();
+  return `0x${digest.toString('hex')}`;
 }
 
 async function logMatchOnChain(patientId, trialId, score) {
