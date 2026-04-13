@@ -74,7 +74,7 @@ const app = express();
 app.use(cors({ exposedHeaders: ['X-PAYMENT-RESPONSE'] }));
 app.use(express.json());
 
-// x402 gate — only POST /match requires payment
+// x402 gate — POST /match ($0.10) and POST /batch_match_parsed ($2.00)
 app.use(
   paymentMiddleware(
     PAY_TO_ADDRESS,
@@ -83,6 +83,11 @@ app.use(
         price: '$0.10',
         network: 'base-sepolia',
         config: { description: 'Patient-trial eligibility match (TrialBridge)' },
+      },
+      'POST /batch_match_parsed': {
+        price: '$2.00',
+        network: 'base-sepolia',
+        config: { description: 'Batch patient-trial ranking (TrialBridge)' },
       },
     },
     { url: 'https://facilitator.xpay.sh' },
@@ -158,6 +163,37 @@ app.post('/match', async (req, res) => {
         { name: 'x402_payment', status: 'settled' },
         { name: 'agent_run_match', ms: agentMs },
         { name: 'onchain_logMatch', ms: chainMs, txHash },
+      ],
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * POST /batch_match_parsed
+ * Batch scoring: TrialCriteria + PatientProfile[] → ranked MatchResult[].
+ * Gated by x402 ($2.00 USDC on Base Sepolia). No per-row on-chain logging.
+ *
+ * Body: { trial_criteria: TrialCriteria, patient_profiles: PatientProfile[], top_k?: number }
+ * Response: agent payload { trial_id, results, stats } plus pipeline (payment + agent timing).
+ */
+app.post('/batch_match_parsed', async (req, res) => {
+  try {
+    const { trial_criteria, patient_profiles, top_k } = req.body;
+    if (!trial_criteria || !Array.isArray(patient_profiles)) {
+      return res.status(400).json({ error: 'trial_criteria and patient_profiles[] are required' });
+    }
+
+    const t0 = Date.now();
+    const result = await callAgent('/batch_match_parsed', { trial_criteria, patient_profiles, top_k });
+    const agentMs = Date.now() - t0;
+
+    res.json({
+      ...result,
+      pipeline: [
+        { name: 'x402_payment', status: 'settled' },
+        { name: 'agent_batch_match_parsed', ms: agentMs },
       ],
     });
   } catch (err) {
