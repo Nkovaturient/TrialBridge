@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   title: "TrialBridge — Clinical Trial Matching",
   description:
     "AI-powered, x402-gated clinical trial eligibility matching for CRO and Pharma teams. Powered by DeSci agents on Base Sepolia.",
+  icons: {
+    icon: "/banner-TB.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

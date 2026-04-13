@@ -2,6 +2,9 @@
 
 > **"India's patients. AI matching. Blockchain proof. 10x faster clinical trials."**
 
+<img width="1785" height="964" alt="banner-TB (1)" src="https://github.com/user-attachments/assets/6680947c-dd22-4aa4-aba0-d4870617ec5f" />
+
+
 > Autonomous matching. On-chain proof. Zero middlemen.
 
 - the LangGraph agent coordination, decentralized audit log, and the x402 pay-per-use model displacing CRO intermediaries.
