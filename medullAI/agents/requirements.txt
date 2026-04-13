@@ -4,6 +4,7 @@ langchain-core
 pydantic
 httpx
 fastapi
+python-multipart
 uvicorn[standard]
 python-dotenv
 pandas
