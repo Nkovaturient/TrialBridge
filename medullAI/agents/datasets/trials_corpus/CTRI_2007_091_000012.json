@@ -1,0 +1,23 @@
+{
+  "ctri_number": "CTRI/2007/091/000012",
+  "enc_hid": 11,
+  "title": "A clinical trial to study the effect of N-acetyl cysteine (NAC)in patients with pulmonary tuberculosis",
+  "phase": "Phase 2/ Phase 3",
+  "recruitment_status": "Open to Recruitment",
+  "is_open": true,
+  "condition": "Newly detected sputum positive pulmonary tuberculosis,",
+  "interventions": [
+    "N-acetyl cysteine",
+    "Placebo"
+  ],
+  "inclusion_criteria": "Adult males or females who completed 18 years,detected to have sputum positive pulmonary tuberculosis, willing to take Anti tuberculous treatment under RNTCP - DOTS strategy",
+  "exclusion_criteria": "1) Co-existing chronic lung disease, 2) Pregnancy, 3) Patients not willing to enroll in DOTS, 4) Anemia other than nutritional anemia.",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "CHAD Tb Unit, Dept. of Community Medicine, CMC-Bagayam, Vellore"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=MTE=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:18:35.858744+00:00"
+}

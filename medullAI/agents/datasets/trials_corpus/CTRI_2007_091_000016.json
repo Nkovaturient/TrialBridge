@@ -1,0 +1,28 @@
+{
+  "ctri_number": "CTRI/2007/091/000016",
+  "enc_hid": 15,
+  "title": "A clinical trial to evaluate the effects of lipid modification with rosuvastatin and of blood pressure lowering with candesartan/hydrocholorothiazide(HCT) and their combination in a wide range of middle aged people who are at average risk of vascular events",
+  "phase": "Phase 3/ Phase 4",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Health Type Condition",
+  "interventions": [
+    "CANDESARAN AND HYDROCHLOROTHIAZIDE COMBINATION",
+    "PLACEBO",
+    "Rosuvastatin"
+  ],
+  "inclusion_criteria": "Women aged > 65 years and men > 55 years \r\nOne additional CV risk factor including: \r\nWaist/hip ratio &#8805; 0.90 in men and &#8805; 0.85 in women; \r\nHistory of current or recent smoking (regular tobacco use within 5 years) \r\nLow HDL cholesterol \r\nDysglycemia \r\nRenal dysfunction \r\nFamily history of premature CHD in first degree relatives",
+  "exclusion_criteria": "Documented clinically manifest atherothrombotic CVD \r\nClear indication or contraindication for statin and/or ARB or ACE inhibitor and/or thiazide diuretic therapy \r\nSymptomatic hypotension \r\nChronic liver disease \r\nInflammatory muscle disease \r\nSevere renal impairment \r\nConcurrent treatment with cyclosporine or a condition likely to result in organ transplantation and the need for cyclosporine \r\nConcurrent treatment with a statin, fibrate, angiotensin receptor blocker, ACE inhibitor, or a thiazide diuretic \r\nOther serious medical illness likely to interfere with study participation or with the ability to complete the trial \r\nSignificant psychiatric illness, senility, dementia, alcohol or substance abuse, which could impair the ability to provide informed consent and to adhere to the trial procedures \r\nConcurrent use of an experimental pharmacological agent",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Aditya Nursing Home",
+    "Baby Memorial Hospital Calicut",
+    "Belgaum Diabetes Centre",
+    "Bethesda Hospital",
+    "Christian Medical College"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=MTU=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:18:39.995385+00:00"
+}

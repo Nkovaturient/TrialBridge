@@ -1,0 +1,27 @@
+{
+  "ctri_number": "CTRI/2008/091/000047",
+  "enc_hid": 89,
+  "title": "A clinical trial to study the effects of 2 Ayurvedic formulations, containing Ashwagandha, Brahmi and Amalaki on the physical and emotional well-being of elderly subjects.",
+  "phase": "Phase 2",
+  "recruitment_status": "Not Yet Recruiting",
+  "is_open": true,
+  "condition": "Quality of Life in elderly subjects ,",
+  "interventions": [
+    "Tablet containing Hydro-alcoholic extract of Withania somnifera 150 mg and Bacopa monniera 50mg",
+    "Tablet PHP- Ageing containing hydro-alcoholic extracts of Withania somnifera 150mg and Phyllanthus emblica 200 mg",
+    "Tablet Placebo"
+  ],
+  "inclusion_criteria": "Individuals satisfying all the following criteria will be included in the study\r\n1.\tIndividuals between the age group of 65 - 75years of either sex \r\n2.\tThose who fit into either Grades 1 or 2 on the Objective physical health scale (as described below) \r\nObjective physical health:  \r\nGrade 1: without any irreversible illness\r\nGrade 2: minor irreversible illness that is neither life shortening nor disabling (e.g., treatable glaucoma, controlled primary hypertension, non-crippling arthritis, controlled diabetes on oral anti-diabetic agents)\r\nGrade 3: irreversible life-threatening illness (e.g., coronary thrombosis or diabetic patients on insulin)\r\nGrade 4: irreversible illness with significant disability (e.g. multiple sclerosis, chronic congestive heart failure).1\r\n3.\tIndividuals ready to abide by trial procedures and to give informed consent.",
+  "exclusion_criteria": "Individuals suffering from any of the following conditions will be excluded from the study.\r\n1.\tHistory of intake of ANY Ayurvedic/herbal/homeopathic/ dietary supplements (including Vitamin E) or any alternative therapies in the last one month.\r\n2.\tLiver, kidney and/or bone marrow disorders\r\n3.\tAcute medical/surgical complications which require hospitalization \r\n4.\tHistory of cardiac rhythm disorders with or without pacemakers.\r\n5.\tHistory of alcohol abuse, excessive smoking (more than 10 cigarettes/day)\r\n6.\tEstablished/ diagnosed neurological or psychiatric disorders",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Deccan College of Medical Sciences & Allied hospitals,Kanchanbhag Santoshnagar,Hyderabad-500058",
+    "Seth G.S. Medical College & KEM Hospital, Parel, Mumbai 400 012",
+    "TNMC & BYL Nair Hospital, Mumbai Central, Mumbai 400 008",
+    "Vydehi Institute of Medical Science and Research Centre, 82, EPIP area, Whitefield. Bangalore-560006"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=ODk=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:49.811633+00:00"
+}

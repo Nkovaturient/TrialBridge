@@ -1,0 +1,27 @@
+{
+  "ctri_number": "CTRI/2007/091/000040",
+  "enc_hid": 36,
+  "title": "Venous Thromboembolic Event (VTE) Prophylaxis in medically III Patient (Magellan)",
+  "phase": "Phase 3",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Venous Thromboembolism\r\n,",
+  "interventions": [
+    "enoxaparin",
+    "Rivaroxaban (BAY 59-7939)"
+  ],
+  "inclusion_criteria": "Inclusion Criteria:\r\n- Male and female patients aged 40 years or more\r\n- Patients at risk of venous thromboembolic events being hospitalized for acute medical conditions as follows:\r\n-Heart failure, NYHA class III or IV\r\n-Active cancer\r\n-Acute ischemic stroke\r\n-Acute infectious and inflammatory diseases, including acute rheumatic diseases\r\n-Acute respiratory insufficiency\r\n- Additional risk factor for VTE, including reduced mobility",
+  "exclusion_criteria": "Exclusion Criteria:\r\n- Conditions that contraindicate the use of antithrombotic therapy with the LMWH enoxaparin \r\n- Conditions that may increase the risk of bleeding, including intracranial hemorrhage\r\n- Required drugs or procedures which may interfere with the study treatment\r\n- Concomitant conditions or diseases which may increase the risk of study subjects or interfere with the study outcome\r\n- General conditions in which subjects are not suitable to participate in the study",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Apollo Hospital",
+    "Baby Memorial Hospital",
+    "Bhagawan Mahaveer Jain Heart Centre",
+    "Care Hospital",
+    "Dayanand Medical College and Hospital,"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=MzY=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:18:59.103317+00:00"
+}

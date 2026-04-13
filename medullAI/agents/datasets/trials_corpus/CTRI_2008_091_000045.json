@@ -1,0 +1,23 @@
+{
+  "ctri_number": "CTRI/2008/091/000045",
+  "enc_hid": 87,
+  "title": "To compare two advanced high-precision radiotherapy techniques in head and neck cancers.",
+  "phase": "Phase 2",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Squamous Cell Carcinoma of the Head & Neck (HNSCC),",
+  "interventions": [
+    "3D conformal radiation therapy",
+    "Intensity modulated radiation therapy"
+  ],
+  "inclusion_criteria": "1)Age > 18 and < 65\r\n2)Biopsy proven squamous cell carcinoma of the oropharynx.\r\n3)AJCC stage T1-3, N0-N2b, M0 patients with pre-treatment tumor measurements clinically as well as on CT/MRI scans.\r\n4)Surgery of the primary tumor limited to excisional or incisional biopsy.\r\n5)No form of neck dissection for nodal metastases.\r\n6)KPS >=60\r\n7)No prior history of therapeutic irradiation\r\n8)Patient willing and reliable for follow-up\r\n9)Patients nutritional & physical condition compatible with planned therapy\r\n10)Signed study specific consent form",
+  "exclusion_criteria": "1)Evidence of distant metastasis\r\n2)Previous therapeutic irradiation for head & neck cancer or any other invasive cancer other than squamous or basal cell carcinoma of the skin\r\n3)History of prior malignancy\r\n4)Prophylactic use of amifostine or pilocarpine\r\n5)Active untreated infection like tuberculosis, which preclude the use of systemic chemotherapy or wound interfere with completion of the treatment\r\n6)Any histopathology other than squamous carcinoma\r\n7)Primary nasopharyngeal carcinoma\r\n8)Age <18 or > 65 years\r\n9)Pregnancy or lactating",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Dept. of Radiation Oncology"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=ODc=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:48.006497+00:00"
+}

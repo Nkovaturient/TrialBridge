@@ -1,0 +1,27 @@
+{
+  "ctri_number": "CTRI/2007/091/000031",
+  "enc_hid": 28,
+  "title": "A clinical trial to study the effects of combination of two drugs, arterolane (RBx 11160) maleate and piperaquine phosphate given together and Coartem® in patients with  acute uncomplicated Plasmodium falciparum malaria.",
+  "phase": "Phase 2",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "acute uncomplicated Plasmodium falciparum malaria,",
+  "interventions": [
+    "Arterolane (RBx 11160) maleate 150 mg (3 x 50 mg tablets) and piperaquine phosphate 750 mg of Ranbaxy Laboratories Limited, India.",
+    "Coartem tablets (containing fixed dose combination of artemether 20 mg and lumefantrine 120 mg) of Novartis South Africa (Pvt.) Ltd."
+  ],
+  "inclusion_criteria": "1.\tMale or female patients aged > 12 to 65 years, inclusive.\r\n2.\tWeight of the patients must be > 35 kg at screening.\r\n3.\tMinimum Hemoglobin (Hb) level of > 8 gm/dl.\r\n4.\tPresence of acute symptomatic uncomplicated malaria with a diagnosis confirmed by a positive blood smear with asexual forms of P. falciparum parasites only.\r\n5.\tInitial parasite densities appropriate for inclusion will be between 1000 and 100,000 asexual parasites/µL blood (both inclusive).\r\n6.\tPresence of fever (axillary temperature &#8805; 37.5 °C or oral &#8805; 38 °C).\r\n7.\tFemale patients, if of child-bearing potential must be non-lactating and willing to use contraceptive methods during the study period.\r\n8.\tWritten informed consent, provided by patient in accordance with local practice. If a patient is unable to provide informed consent in writing, a thumbprint to indicate consent in the presence of at least one witness is acceptable. For adolescents written informed consent, in accordance with local practice, provided by parent/guardian.  If the parent/guardian is unable to write, thumb print witnessed consent is permitted. Wherever feasible, assent will also be obtained ( for patients < 18 yrs)\r\n9.\tWillingness and ability to comply with the study protocol for the duration of the study.\r\n10.\tPatient resides within a reasonable distance of the investigational site, so that attendance of all study visits and follow-up by medical staff are logistically feasible.",
+  "exclusion_criteria": "1.\tPatients presenting with a mixed infection (i.e., malaria due to more than one causative parasite).\r\n2.\tPatients with severe malaria as per WHO criteria 2000.\r\n3.\tAny antimalarial treatment during 1 month prior to screening, as assessed by medical history.\r\n4.\tHistory of hypersensitivity to artemisinins, lumefantrine, piperaquine or any other related compounds.\r\n5.\tPatients who have been treated with arterolane (RBx 11160) maleate or piperaquine phosphate in any study in the past 6 months.\r\n6.\tParticipation in any investigational drug study during the 30 days prior to screening.\r\n7.\tElectrocardiogram (ECG) abnormalities with clinical significance or relevance that require urgent management. These abnormalities include QTc interval > 450 msec at screening and cardiac conduction disorders, with the exception of right bundle branch block.\r\n8.\tA female patient who is lactating or pregnant at screening.\r\n9.\tGastrointestinal dysfunction that could alter absorption or motility (e.g., diarrhea defined as > 3 episodes of watery stools in the previous 24 hours or patients who have had 3 episodes of vomiting within 24 hours prior to screening).\r\n10.\tPatients with known significant renal or hepatic impairment indicated by the following laboratory evaluations at screening:\r\nSerum creatinine &#8805; 1.5 × upper limit of normal (ULN).\r\nAspartate transaminase > 2.5 × ULN.\r\nAlanine transaminase > 2.5 × ULN.\r\nSerum bilirubin > 3 mg/dl. \r\n11.\tPatients who have had a splenectomy.\r\n12.\tPatients with known history of human immunodeficiency virus (HIV) infection or other immunosuppressive disorders\r\n13.\tEvidence of clinically significant cardiovascular, pulmonary, metabolic, gastrointestinal, neurological, psychiatric (e.g., depression, anxiety, psychosis, or schizophrenia) or endocrine diseases, malignancy, or other abnormalities (other than the indication being studied). \r\n14.\tPatients who have epilepsy or a history of convulsions.",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Downtown Hospital, G. S. Road, Dispur, Guwahati-781006 (Assam), India",
+    "Faculty of Tropical Medicine,",
+    "Ispat General Hospital, Rourkela â€“ 769 002 (Orissa), India",
+    "Mahadevi Birla Hospital & Research Center, Mahilong, Tatisilwai, Ranchi, Jharkhand-835103, India",
+    "Tata Main Hospital, Department of Medicine, Jamshedpur, Jharkhand 831001, India"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=Mjg=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:18:51.396381+00:00"
+}

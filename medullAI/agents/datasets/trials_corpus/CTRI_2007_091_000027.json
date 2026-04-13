@@ -1,0 +1,23 @@
+{
+  "ctri_number": "CTRI/2007/091/000027",
+  "enc_hid": 25,
+  "title": "To study the effects of Zoledronic acid on bone mineral density in Osteoporotic chronic spinal cord injury patients.",
+  "phase": "Phase 3",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Osteoporosis in adults of age group 18- 60 years who are more than 12 months after traumatic spinal cord injury,",
+  "interventions": [
+    "Normal saline",
+    "Zoledronic acid"
+  ],
+  "inclusion_criteria": "Adult males or females of age group 18-60 yrs more than 12 mths post traumatic spinal cord injury who have osteoporosis. Osteoporosis being defined as bone mneral density less than 2.5 standard deviations mean.",
+  "exclusion_criteria": "Features of non traumatic spinal cord injury, renal failure, heterotrophic ossification,  pressure sores with osteomyelitis or history of  treatment for osteoporosis",
+  "age_min_years": 18,
+  "age_max_years": 60,
+  "gender": "both",
+  "locations": [
+    "Dept of PMR"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=MjU=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:18:49.424623+00:00"
+}

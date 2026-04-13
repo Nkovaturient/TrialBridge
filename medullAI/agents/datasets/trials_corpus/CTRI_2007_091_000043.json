@@ -1,0 +1,27 @@
+{
+  "ctri_number": "CTRI/2007/091/000043",
+  "enc_hid": 39,
+  "title": "A study to determine the safety and activity of a novel oral agent, AV-951, in patients with kidney cancer To determine the safety and efficacy of AV-951 for the treatment in patients with Renal cell carcinoma.",
+  "phase": "Phase 2",
+  "recruitment_status": "Open to Recruitment",
+  "is_open": true,
+  "condition": "Patients with Renal Cell Carcinoma.\r\nCancer Patients.,",
+  "interventions": [
+    "AV-951",
+    "Placebo"
+  ],
+  "inclusion_criteria": "Note: No upper age limit for this clinical trial, (indicated as 18 years and above) 1.â‰¥ 18 year old males or females 2.Patients with recurrent or metastatic renal cell carcinoma (RCC) or primary RCC that is not amendable to surgical intervention 3.Histologically or cytologically confirmed renal cell carcinoma 4.Measurable disease 5.No more than one prior systemic treatment (chemotherapy or immunotherapy) for RCC. 6.No active brain metastases 7.Karnofsky performance status â‰¥ 70%, life expectancy â‰¥ 3 months. 8.No childbearing potential, or use of effective contraception during the study and for 4 weeks after the last dose of study drug 9.Archival paraffin embedded tumor tissue, if available. 10.Ability to give written informed consent",
+  "exclusion_criteria": "1.Pregnant or lactating women 2.Primary CNS malignancies; active CNS metastases 3.Hematologic malignancies (includes: leukemia, any form; lymphoma; and multiple myeloma) 4.Any of the following hematologic abnormalities: ?Hemoglobin ≤ 9.0 g/dL ?ANC  1500 per mm3 ?Platelet count  100,000 per mm3 5.Any of the following serum chemistry abnormalities: ?Total bilirubin  1.5 Ã— the ULN ?AST or ALT ≥ 2.5 Ã— the ULN ?Serum albumin  3.0 g/Dl ?Creatinine  1.7 Ã— ULN (or calculated CLCR 50 mL/min/1.73 m2) ?Proteinuria  2.5 g/24 hours or 4+ with urine dipstick 6.Significant cardiovascular disease, including: ?Active clinically symptomatic left ventricular failure ?Active HTN (diastolic blood pressure  100 mmHg). Patients with a history of hypertension must have been on stable doses of anti-hypertensive drugs for ≥ 4 weeks ?Uncontrolled hypertension: Blood pressure 140/90 mmHg on more than 2 antihypertensive medications. ?Myocardial infarction within 3 months prior to administration of first study dose 7.Unhealed wounds (including active gastric ulcers) 8.Serious/active infection; infection requiring parenteral antibiotics 9.Inadequate recovery from prior antineoplastic therapy 10.Inadequate recovery from any prior surgical procedure; major surgical procedure within 4 weeks prior to study entry 11.Life-threatening illness or organ system dysfunction compromising safety evaluation 12.Psychiatric disorder, altered mental status precluding informed consent or necessary testing 13.Inability to comply with protocol requirements",
+  "age_min_years": 18,
+  "age_max_years": 99,
+  "gender": "both",
+  "locations": [
+    "Christian Medical College, Department of oncology",
+    "Dept. of Oncology, Tata Memorial Hospital",
+    "Jaslok Hospital & Research Centre",
+    "Orchid Nursing Home",
+    "Rajiv Gandhi Cancer Institute & Research Centre"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=Mzk=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:01.667366+00:00"
+}

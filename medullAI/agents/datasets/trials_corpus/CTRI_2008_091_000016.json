@@ -1,0 +1,23 @@
+{
+  "ctri_number": "CTRI/2008/091/000016",
+  "enc_hid": 59,
+  "title": "Phase III Randomized Trial of Maintenance Pegylated Liposomal Doxorubicin (PLD) / Carboplatin versus without in Patients with Advanced Ovarian Cancer",
+  "phase": "Phase 3",
+  "recruitment_status": "Open to Recruitment",
+  "is_open": true,
+  "condition": "Gynecology Oncology, Ovarian Cancer maintainence therapy after Surgery and full course first line chemotherapy,",
+  "interventions": [
+    "Lipodox",
+    "No treatment"
+  ],
+  "inclusion_criteria": "a.\thistologically proven ovarian cancer of FIGO stage III/IV\r\nb.\ttreatment with five to six cycles of Paclitaxel / Platinum regimen\r\nc.\tattainment of a clinical defined complete response (ie, no cancer-related symptom ; normal physical examination, CT scan of the abdominal/pelvis and chest x-ray ; CA-125 level &#61603; 35 U/mL) \r\nd.\tperformance status of ECOG 0, 1, 2 \r\ne.\tadequate hematopoietic function is defined as below:\r\n&#61656;\tANC &#61619; 1,500/uL\r\n&#61656;\tPlatelets &#61619; 100,000/uL\r\nf.\tadequate organ function is defined as below:\r\n&#61656;\tTotal bilirubin &#61603; 1.5 &#61620; ULN\r\n&#61656;\tALT / AST &#61603; 1.5 &#61620; ULN (&#61603;5.0 x ULN if hepatic metastasis) \r\n&#61656;\tSerum creatinine &#8806; 1.5 × ULN\r\ng.\tage 20-75 years old\r\nh.\tlife expectancy equal or longer than 3 months\r\ni.\tability to understand and willingness to sign a written informed consent document",
+  "exclusion_criteria": "a.\tpresence of CNS metastases (including clinical suspicion)\r\nb.\tother malignancy with exception of curative treated non-melanoma skin cancer or cervical carcinoma in situ within 5 years prior to entering the study\r\nc.\tpresence of other serious concomitant illness which can affect or elevate the value of CA-125, e.g.;\r\n&#61656;\tAutoimmune disease\r\n&#61656;\tSarcoidosis\r\n&#61656;\tChronic active hepatitis\r\n&#61656;\tPericarditis\r\n&#61656;\tCirrhosis of liver\r\n&#61656;\tAbdominal tuberculosis\r\n&#61656;\tPancratitis\r\nd.\tpresence of other serious concomitant illness which might be aggravated by study medication:\r\n&#61656;\tUncontrolled infection (active serious infections that are not controlled by antibiotics)\r\n&#61656;\tActive cardiac disease e.g. decompensate myocardial infarction within the 6-month period preceding entry into the study.\r\n&#61656;\tHistory of ventricular arrhythmia or congestive heart failure.\r\ne.\tsurgery within 2 weeks prior to entering the study\r\nf.\tradiotherapy within 4 weeks prior to entering the study\r\ng.\tconcurrent chemotherapy, radiotherapy, or other investigational drug except non-disease related conditions (e.g. insulin for diabetes) during study period\r\nh.\tmental status is not fit for clinical trial\r\ni.\tpregnant or breast feeding women\r\nj.\tpotential child-bearing women unless using a reliable and appropriate contraceptive method.",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "St. John's Medical College & Hospital"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=NTk=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:19.999259+00:00"
+}

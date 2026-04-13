@@ -1,0 +1,23 @@
+{
+  "ctri_number": "CTRI/2007/091/000032",
+  "enc_hid": 29,
+  "title": "A study to see if colonoscopic decompression [a special tube fitted with camera which will be inserted through the anus ]can help you to reduce the abdominal high pressure",
+  "phase": "Phase 2/ Phase 3",
+  "recruitment_status": "Not Yet Recruiting",
+  "is_open": true,
+  "condition": "1.Intra abdominal hypertension [IAH]\r\n2.colonoscopic decompression and its effect on Gastro intestinal mucosal  pH \r\n3.The effect of IAH  on various serum markers\r\n,",
+  "interventions": [
+    "colonoscopy",
+    "routine treatment"
+  ],
+  "inclusion_criteria": "1.\tAll patients in the Surgical ICU who have had an emergency laparotomy\r\na.\t for trauma or \r\nb.\tintra-abdominal sepsis \r\n\r\n2.\tPancreatitis patients in the Surgical ICU",
+  "exclusion_criteria": "â€¢\tAge < 15years \r\nâ€¢\tRectal,  colonic  and perianal  surgeries\r\nâ€¢\tTrauma with perianal lacerations\r\nâ€¢\tProximal diversion ileostomy\r\nâ€¢\tHard impacted stool at the time of colonoscopy.\r\nâ€¢\tBladder surgeries\r\nâ€¢\tPatients with abdominal wound dehiscence \r\nâ€¢\tDecompressive laprotomy and primary  abdominal closure using  mesh",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "sicu"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=Mjk=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:18:52.170801+00:00"
+}

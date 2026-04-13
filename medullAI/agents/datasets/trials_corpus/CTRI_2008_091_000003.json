@@ -1,0 +1,23 @@
+{
+  "ctri_number": "CTRI/2008/091/000003",
+  "enc_hid": 46,
+  "title": "A randomized controlled trial to study  the effect of  intravenous hydration on the course of labor",
+  "phase": "Phase 3",
+  "recruitment_status": "Open to Recruitment",
+  "is_open": true,
+  "condition": "Effect of adequate hydration on duration of active labor,",
+  "interventions": [
+    "Intravenous Ringer lactate",
+    "Oral hydration alone"
+  ],
+  "inclusion_criteria": "1) Primigravida \r\n2) Uncomplicated  Pregnancies\r\n3) Spontaneous onset of labour\r\n4) Singleton gestation\r\n5) Cephalic presentation\r\n6) In active labour with cervical dilation 3 cms  \r\n7) Pregnancy duration more than  or equal to 37 weeks",
+  "exclusion_criteria": "NonVertex presentation\r\nHigh risk pregnancy\r\nPrevious LSCS\r\nInduction of  labour                                                                                                                                                                                                                                                                                                                                                                                                                                            \r\nTwins\r\nChorioamnionitis\r\nRenal/cardiac disease or pre eclampsia",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Department of Obstetrics & Gynaecology,Christian Medical College and Hospital"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=NDY=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:07.743335+00:00"
+}

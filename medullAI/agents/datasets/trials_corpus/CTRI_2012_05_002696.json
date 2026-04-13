@@ -1,0 +1,26 @@
+{
+  "ctri_number": "CTRI/2012/05/002696",
+  "enc_hid": 45,
+  "title": "Uniform treatment regimen for all types of leprosy patients",
+  "phase": "Phase 3",
+  "recruitment_status": "Not Applicable",
+  "is_open": false,
+  "condition": "Leprosy,",
+  "interventions": [
+    "Rifampicin, Clofazimine and Dapsone"
+  ],
+  "inclusion_criteria": "All the newly detected and treatment-naive leprosy patients will be eligible for inclusion. It is suggested the following categories of patients may be included in the study: easily accessible to the clinic, available for long-term follow-up and for receiving supervised dose of drug.",
+  "exclusion_criteria": "Newly detected pure neuritic patients, old patients, who are already receiving PB or MB-MDT, returned defaulters, and those who relapse subsequent to the earlier therapy will not be eligible for inclusion for this study.",
+  "age_min_years": 7,
+  "age_max_years": 55,
+  "gender": "both",
+  "locations": [
+    "Gaya, India",
+    "Kanpur, India",
+    "Pune, India",
+    "Rohtas, India",
+    "Tiruvannamalai, India"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=NDU=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:06.867282+00:00"
+}

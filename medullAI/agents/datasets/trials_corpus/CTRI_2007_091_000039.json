@@ -1,0 +1,29 @@
+{
+  "ctri_number": "CTRI/2007/091/000039",
+  "enc_hid": 35,
+  "title": "Phase II Study for Previously Untreated Subjects With Non Small Cell Lung Cancer (NSCLC) or Small Cell Lung Cancer (SCLC)",
+  "phase": "Phase 2",
+  "recruitment_status": "Open to Recruitment",
+  "is_open": true,
+  "condition": "Lung Cancer\r\nSmall Cell Lung Cancer\r\nCarcinoma, Non-Small-Cell Lung,",
+  "interventions": [
+    "A:EXPERIMENTAL",
+    "B:EXPERIMENTAL",
+    "C: Active COMPARATOR",
+    "ipilimumab, paclitaxel, carboplatin"
+  ],
+  "inclusion_criteria": "Documented NSCLC or SCLC\r\n\r\nECOG of 0 or 1",
+  "exclusion_criteria": "&#56256;&#56442; Brain metastases\r\n&#56256;&#56442; Autoimmune disease\r\n&#56256;&#56442; Known HIV, Hep B or Hep C infection\r\n&#56256;&#56442; Peripheral neuropathy &#8805; grade 2",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Department of Medical Oncology   Nizam's Institute of Medical Sciences",
+    "Dept. of Medical Oncology                Shirdi Sai Baba Cancer Hospital    KMC, Manipal",
+    "Dept. of Medical Oncology Christian Medical College              Vellore",
+    "GI and Lung Cancer Division          Regional Cancer Institute",
+    "Haemato-Oncology Clinic"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=MzU=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:18:58.192766+00:00"
+}

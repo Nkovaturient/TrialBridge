@@ -1,0 +1,26 @@
+{
+  "ctri_number": "CTRI/2008/091/000054",
+  "enc_hid": 95,
+  "title": "A clinical trial to study safety and activity of Ayurvedic formulation containing Ashwagandha and Haridra in patients with Type 2 Diabetes mellitus receiving oral anti-diabetic agents",
+  "phase": "Phase 2",
+  "recruitment_status": "Not Yet Recruiting",
+  "is_open": true,
+  "condition": "Type 2 Diabetes mellitus on oral anti-diabetic agents,",
+  "interventions": [
+    "Tablet PHP-Diabetes containing hydro-alcoholic extracts of Withania somnifera 150mg and Curcuma longa 250 mg",
+    "Tablet Placebo"
+  ],
+  "inclusion_criteria": "Patients satisfying all the following criteria are included in the study:\r\n1. Patients of either sex between the age group 18 to 60 years (both inclusive). \r\n2. Patients with type 2 diabetes mellitus (with duration of diabetes at least 2 years) on sulfonylurea (SU) (half of the maximum prescribed dose) and/or Metformin (1500mg/day) for at least one month prior to enrolling the patient in the study \r\n3. Patients with fasting blood glucose more than 126mg % and /or with post-prandial blood glucose (after a standard meal) more than 162mg. %.\r\n4.  Patients with HbA1c between 7.0-9.5 %.\r\n5. Patients ready to abide by trial procedures and to give informed consent.",
+  "exclusion_criteria": "A.1. Patients suffering from any of the following conditions will be excluded from the study:\r\na.\tType 1 diabetes mellitus\r\nb.\tPatients with severe hyperglycemia (FBS >234 mg% or PPBS > 360 mg%)\r\nc.\tPatients with fasting serum cholesterol >260mg% and serum Triglycerides>300 mg%.\r\nd.\tPatients with HbA1c >9.5 %.\r\ne.\tPatients with ASAT and ALT levels greater than 2.5 times than upper normal limits\r\nf.\tSevere renal, hepatic or respiratory disorder. \r\ng.\tPatients with psychiatric disorder.\r\nh.\tPatients with haematological disorders \r\ni.\tHistory of smoking (more than 10 cigarettes/day) or alcohol abuse \r\nj.\tComplications of diabetes such as \r\nâ€¢\tProliferative type retinopathy\r\nâ€¢\tNephropathy with laboratory values greater than 1.5 times the upper normal limits\r\nâ€¢\tPresence of ketone bodies in urine analysis\r\nâ€¢\tIschemic heart disease with any cardiac event in last 6 months \r\nâ€¢\tFasting serum cholesterol >260mg. % and serum Triglycerides >300 mg%.\r\n\r\n2.\tPatients with BMI >35 kg/m2\r\n3.\tPatients who are likely to undergo surgery during the study period.\r\n4.\tPatients who have participated in any investigational study in the last 4 weeks. \r\n5.\tPatients having known hypersensitivity to the study drugs.\r\n6.\tPatients with any severe infection\r\n7.\tPatients with a history of intake of ANY Ayurvedic/herbal/homeopathic/dietary supplements (including Vitamin E) or any alternative therapies in the last one month \r\n8.\tPatient should not be receiving on any other anti-diabetic medications except Metformin and those belonging to the Sulfonylurea group.\r\n\r\nB. Pregnant or lactating females and women in child bearing age refusing to use contraceptives.",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Deccan College of Medical Sciences & Allied hospitals,Kanchanbhag Santoshnagar,Hyderabad-500058",
+    "Seth G.S. Medical College & KEM Hospital, Parel, Mumbai 400 012",
+    "TNMC & BYL Nair Hospital, Mumbai Central, Mumbai 400 008",
+    "Vydehi Institute of Medical Science and Research Centre, 82, EPIP area, Whitefield. Bangalore-560 00"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=OTU=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:54.692325+00:00"
+}

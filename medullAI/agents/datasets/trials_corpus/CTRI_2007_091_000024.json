@@ -1,0 +1,27 @@
+{
+  "ctri_number": "CTRI/2007/091/000024",
+  "enc_hid": 22,
+  "title": "Oral Direct Factor Xa Inhibitor Rivaroxaban in Patients With Acute Symptomatic Deep-Vein Thrombosis or Pulmonary Embolism",
+  "phase": "Phase 3",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "deep-vein thrombosis or pulmonary embolism\r\n\r\n,",
+  "interventions": [
+    "Enoxaparin followed by VKE",
+    "Rivaroxaban (BAY59-7939)"
+  ],
+  "inclusion_criteria": "Inclusion Criteria:\r\n- Confirmed acute symptomatic proximal DVT without symptomatic PE OR Confirmed acute symptomatic PE with or without symptomatic DVT",
+  "exclusion_criteria": "Legal lower age limitations (country specific)\r\n- Thrombectomy, insertion of a caval filter, or use of a fibrinolytic agent to treat the current episode of DVT and/or PE\r\n- Other indication for VKA than DVT and/or PE",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Amrita Institute of medical Science  and Research Centre",
+    "Christian Medical College",
+    "Nizam Institute of Medical Sciences",
+    "PD Hinduja National Hospital and Research Center",
+    "Ruby Hall Clinic"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=MjI=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:18:46.519751+00:00"
+}

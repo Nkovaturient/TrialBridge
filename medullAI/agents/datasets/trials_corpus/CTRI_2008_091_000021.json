@@ -1,0 +1,23 @@
+{
+  "ctri_number": "CTRI/2008/091/000021",
+  "enc_hid": 64,
+  "title": "Siddha medicine for HIV",
+  "phase": "Phase 1/ Phase 2",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "HIV/AIDS,",
+  "interventions": [
+    "Anti-retroviral therapy",
+    "HIVS2004"
+  ],
+  "inclusion_criteria": "Seropositive for HIV-1 by three different ELISAs or one ELISA and Western blot confirmation. CD4 clount 200-250 cells per ml. Drug-naive. Both genders. Age above 18 years.",
+  "exclusion_criteria": "Presence of opportunistic infections and complications such as Dementia. Signs of acute systemic Illness (CVS, CNS, RS, GU, Liver etc.). Prior-antiretroviral treatment.",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Seva Free Clinic"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=NjQ=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:24.545337+00:00"
+}

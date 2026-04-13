@@ -1,0 +1,27 @@
+{
+  "ctri_number": "CTRI/2008/091/000060",
+  "enc_hid": 100,
+  "title": "A clinical trial to study the safety and efficacy of combination drug, vancomycin and ceftriaxone compared to vancomycin in mild to severe bacterial infections",
+  "phase": "Phase 3",
+  "recruitment_status": "Open to Recruitment",
+  "is_open": true,
+  "condition": "Mild to severe Bacterial infections( in Lower Respiratory Tract infection, Endocarditis, Skin infection, Meningitis, Bone infection.),",
+  "interventions": [
+    "VANCOMYCIN",
+    "Vancomycin and Ceftriaxone combined"
+  ],
+  "inclusion_criteria": "All subjects aged between 18 and 70 years.\r\nDiagnosed subjects of infectious disease (on clinical evaluation). \r\nSubjects willing to give informed consent.\r\nSubject suffering from any of the following infections- Lower respiratory tract infections, skin and skin structure infections, endocarditic, bacterial meningitis and bone infection.",
+  "exclusion_criteria": "History of hypersensitivity reaction or any specific contraindication to penicillin group of drugs or Ceftriaxone or Vancomycin. \r\nPresence of hepatic or renal disorder\r\nPregnancy&/or lactation\r\nAlcoholics",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "AIIMS",
+    "Dr. Hedgewar Arogya Sansthan",
+    "Kempegowda Institute of Medical Sciences",
+    "Lokmanya Tilak Medical College",
+    "S.P. Medical College"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=MTAw&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:20:00.047753+00:00"
+}

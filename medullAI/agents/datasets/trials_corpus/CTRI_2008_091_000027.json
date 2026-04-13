@@ -1,0 +1,24 @@
+{
+  "ctri_number": "CTRI/2008/091/000027",
+  "enc_hid": 71,
+  "title": "To determine the effect of instillation of lignocaine down the endotracheal tube in attenuating airway and circulatory response to extubation",
+  "phase": "Phase 4",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Extubation response in neurosurgical patients and the effects of lignocaine in attenuating extubation response.,",
+  "interventions": [
+    "lignocaine",
+    "normal saline",
+    "normal saline 0.9%"
+  ],
+  "inclusion_criteria": "Patients undergoing craniotomies with GCS 15/15.\r\nAge 18-65 years inclusive.\r\nASA grade 1 & 2.(American Society of Anaesthesiologists grade)",
+  "exclusion_criteria": "Patients with\r\n1.Sore throat/Active U.R.I\r\n2.Requirement for postop ventilation.\r\n3.History of laryngeal/ tracheal pathology/ surgery.\r\n4.History of asthma/ COPD.",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Department of Anaesthesia, CMCH, vellore."
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=NzE=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:31.786464+00:00"
+}

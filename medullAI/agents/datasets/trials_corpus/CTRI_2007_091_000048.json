@@ -1,0 +1,23 @@
+{
+  "ctri_number": "CTRI/2007/091/000048",
+  "enc_hid": 43,
+  "title": "A clinical trial to study the efficacy of aromatase inhibitors as an ovulation inducing drug in clomiphene resistant cases.",
+  "phase": "Phase 4",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Clomiphene resistant women,",
+  "interventions": [
+    "letrozole(aromatase inhibitor)",
+    "placebo"
+  ],
+  "inclusion_criteria": "1.Anovulatory women with clomiphene resistance\r\n2.Normal male factor\r\n3.Normal hormonal profile-FSH/TSH/Prolactin\r\n4.Women available for follow up",
+  "exclusion_criteria": "1.Ovulatory cycle\r\n2.Abnormal semen analysis",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Reproductive medicine unit, CMCH"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=NDM=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:05.051036+00:00"
+}

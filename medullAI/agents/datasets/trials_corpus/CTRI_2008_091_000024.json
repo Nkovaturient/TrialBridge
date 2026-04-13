@@ -1,0 +1,26 @@
+{
+  "ctri_number": "CTRI/2008/091/000024",
+  "enc_hid": 68,
+  "title": "A clinical trial to study the effectiveness and safety of 3- and 4-month regimens as compared to the standard 6-month regimen for the treatment of infectious pulmonary tuberculosis patients",
+  "phase": "Phase 3",
+  "recruitment_status": "Open to Recruitment",
+  "is_open": true,
+  "condition": "Pulmonary Tuberculosis,",
+  "interventions": [
+    "2 RHZE thrice weekly/ 4 RH thrice weekly",
+    "3 RHZEM, 2 RHZEM/2 RHM, 2 RHZEM/2 RHM thrice weekly, 2 RHZEM/2 RHEM thrice weekly",
+    "Control arm",
+    "Moxifloxacin arm"
+  ],
+  "inclusion_criteria": "a. Age 18 years to 60 years b. Residing in or around Chennai or Madurai c. No previous anti-TB treatment d. At least two sputum smears should be positive for tubercle bacilli by fluorescent microscopy at enrollment e. Willing to attend the treatment centre for supervised treatment f.  Willing for home visits by the staff of the center. g. Willing to give written informed consent.",
+  "exclusion_criteria": "a. Body weight less than 30 kg\r\nb. Hepatic or renal disease as evidenced by clinical or biochemical abnormalities\r\nc. Diabetes mellitus\r\nd. History of seizure or loss of consciousness\r\ne. Psychiatric illness\r\nf.  Abnormal electrocardiogram or anti-arrhythmic medication  \r\ng. Those in a moribund state\r\nh. Sero-positive for HIV antibodies\r\ni.   Pregnancy or lactation\r\nj.   Visual disorders other than refractory error",
+  "age_min_years": 18,
+  "age_max_years": 60,
+  "gender": "both",
+  "locations": [
+    "Chennai",
+    "Madurai"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=Njg=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:28.780368+00:00"
+}

@@ -1,0 +1,23 @@
+{
+  "ctri_number": "CTRI/2014/10/005135",
+  "enc_hid": 92,
+  "title": "comparison of daily and weekly iron effect during pregnancy",
+  "phase": "Phase 4",
+  "recruitment_status": "Not Applicable",
+  "is_open": false,
+  "condition": "Health Type Condition Healthy Human Volunteers pregnancy and oral iron in daily versus weekly dose",
+  "interventions": [
+    "100 mg iron folic acid tabs daily",
+    "200 mg iron and folic acid tablet once weekly"
+  ],
+  "inclusion_criteria": "Age 20-30 years Hemoglobin is above 11 gm/dl Middle socio-economic income group",
+  "exclusion_criteria": "History of chronic ailment Taking any iron preparation already at the time of enrollment.",
+  "age_min_years": 20,
+  "age_max_years": 30,
+  "gender": "female",
+  "locations": [
+    "HRRC AIIMS"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=OTI=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:52.492876+00:00"
+}

@@ -1,0 +1,27 @@
+{
+  "ctri_number": "CTRI/2008/091/000008",
+  "enc_hid": 51,
+  "title": "AP23573-07-302: A clinical trial to determine the safety and efficacy of an anti-cancer drug AP23573 when given as maintenace therapy in patients with having soft-tissue or Bone cancer after they have received planned therapy",
+  "phase": "Phase 3",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Metastatic Soft-Tissue Sarcomas\r\nMetastatic Bone Sarcomas\r\n,",
+  "interventions": [
+    "Drug: deforolimus (AP23573, MK-8669)",
+    "Drug: Placebo"
+  ],
+  "inclusion_criteria": "1. Confirmed diagnosis of metastatic soft-tissue or bone sarcoma \r\n2. Ongoing favorable outcome after a minimum of 4 cycles of prior chemotherapy for metastatic disease \r\n3. ECOG performance status of 0 or 1 \r\n4. Age &#8805;13 years \r\n5. Adequate organ and bone marrow function \r\n6. Completed prior chemotherapy with last dose received at least 3 and up to 8 weeks prior to randomization",
+  "exclusion_criteria": "1. Women who are pregnant or lactating\r\n2. Presence of known or active brain or CNS metastases\r\n3. Prior therapy with rapamycin or rapamycin analogs, including AP23573 \r\n4. Concomitant treatment with medications that induce or inhibit CYP3A",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Apollo Speciality Hospital",
+    "Chistian Medical College",
+    "DR B R A Institue Rotary Cancer Hospital",
+    "Jehangir Hospital",
+    "Krishna Institute of Medical Science"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=NTE=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:12.382061+00:00"
+}

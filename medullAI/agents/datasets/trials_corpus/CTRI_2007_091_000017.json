@@ -1,0 +1,28 @@
+{
+  "ctri_number": "CTRI/2007/091/000017",
+  "enc_hid": 16,
+  "title": "A clinical trial to compare and study the effect of a new experimental drug AMG 706 or Bevacizumab in combination with Paclitaxel and Carboplatin in patients with Advanced Non-Squamous Non-Small Cell Lung Cancer.",
+  "phase": "Phase 2",
+  "recruitment_status": "Not Yet Recruiting",
+  "is_open": true,
+  "condition": "Advanced Non-Squamous Non Small Cell Lung Cancer,",
+  "interventions": [
+    "AMG 706",
+    "AMG 706",
+    "Bevacizumab"
+  ],
+  "inclusion_criteria": "Men or women 18 years or older with histologically or cytologically confirmed advanced non-squamous NSCLC (unresectable stage IIIB with pericardial or pleural effusion or stage IV/recurrent)\r\n \r\nMeasureable disease per RECIST criteria modified \r\n\r\nECOG performance status of 0 or 1 \r\n\r\nAbility to take oral medications \r\n\r\nCompetent to give written informed consent",
+  "exclusion_criteria": "Current or prior history of CNS metastases \r\n\r\nAny prior chemotherapy for advanced NSCLC \r\n\r\nHistory of pulmonary hemorrhage or gross hemoptysis within 6 months prior to randomization \r\n\r\nPrior targeted therapies \r\n\r\nKnown history of allergy or hypersensitivity to paclitaxel or carboplatin\r\n \r\nHistory of arterial or venous thrombosis within 52 weeks prior to randomization\r\n\r\nHistory of bleeding diathesis or non-pulmonary bleeding within 14 days prior to randomization\r\n \r\nPeripheral neuropathy > grade 1 per CTCAE Version 3.0\r\n \r\nMyocardial infarction, cerebrovascular accident, grade 2 or greater peripheral vascular disease, transient ischemic attack, congestive heart failure, percutaneous transluminal coronary angioplasty/stent, ongoing arrythmias requiring medication or unstable angina within 52 weeks prior to randomization\r\n \r\nAny kind of disorder that compromises the ability of the subject to comply with the study procedures\r\n \r\nUncontrolled hypertension as defined by resting blood pressure > 150/90 mm Hg. Anti-hypertensive medications are allowed if hypertension is stably controlled at the time of randomization\r\n\r\nParticipation in therapeutic clinical trials or currently receiving other investigational treatment(s) within 30 days prior to randomization\r\n \r\nPregnant or breast feeding women\r\n \r\nKnown to be HIV, hepatitis B surface antigen, or hepatitis C positive",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Apollo Speciality Hospitals",
+    "Batra Hospital & Medical Research Centre",
+    "Cancer Care Clinic",
+    "Christian Medical College",
+    "Kasturba Hospital"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=MTY=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:18:41.182624+00:00"
+}

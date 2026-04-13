@@ -1,0 +1,26 @@
+{
+  "ctri_number": "CTRI/2008/091/000053",
+  "enc_hid": 94,
+  "title": "A clinical trial to study activity and safety of Ayurvedic formulation containing Ashwagadha and Haridra in patients freshly diagnosed with Type 2 Diabetes mellitus",
+  "phase": "Phase 2",
+  "recruitment_status": "Not Yet Recruiting",
+  "is_open": true,
+  "condition": "Freshly diagnosed Type 2 Diabetes mellitus ,",
+  "interventions": [
+    "Tablet PHP-Diabetes containing hydro-alcoholic extracts of Withania somnifera 150mg and Curcuma longa 250 mg",
+    "Tablet Placebo"
+  ],
+  "inclusion_criteria": "Patients satisfying all the following criteria are included in the study:\r\n1.\tPatients of either sex between the age group 18 to 60 years (both inclusive). \r\n2.\tPatients who are freshly diagnosed as suffering from Type 2 Diabetes mellitus not on any oral hypoglycemic agent.\r\n3.\tPatients with HbA1c between 7.0-9.5 %.\r\n4.\tPatients ready to abide by trial procedures and to give informed consent.",
+  "exclusion_criteria": "A.1. Patients suffering from any of the following conditions will be excluded from the study:\r\na.\tType 1 diabetes mellitus\r\nb.\tPatients with severe hyperglycemia (FBS >234 mg% or PPBS > 360 mg%)\r\nc.\tPatients with fasting serum cholesterol >260mg% and serum Triglycerides>300 mg%.\r\nd.\tPatients with HbA1c more than 9.5 %.\r\ne.\tPatients with ASAT and ALT levels greater than 2.5 times the upper normal limits\r\nf.\tSevere renal, hepatic or respiratory disorder. \r\ng.\tPatients with psychiatric disorder.\r\nh.\tPatients with haematological disorders \r\ni.\tHistory of smoking (more than 10 cigarettes/day) or alcohol intake > 20 gm/day.\r\nj.\tComplications of diabetes such as \r\nâ€¢\tProliferative type retinopathy\r\nâ€¢\tNephropathy with laboratory values greater than 1.5 times the upper normal limits\r\nâ€¢\tPresence of ketone bodies in urine analysis\r\nâ€¢\tIschemic heart disease with any cardiac event in last 6 months \r\nâ€¢\tFasting serum cholesterol >260mg. % and serum Triglycerides >300 mg%.\r\n\r\n2.\tPatients with BMI >35 kg/m2\r\n3.\tPatients who are likely to undergo surgery during the study period.\r\n4.\tPatients who have participated in any investigational study in the last 4 weeks. \r\n5.\tPatients having known hypersensitivity to the study drugs.\r\n6.\tPatients with any severe infection\r\n7.\tPatients with a history of intake of ANY Ayurvedic/herbal/homeopathic/dietary supplements (including Vitamin E) or any alternative therapies in the last one month \r\n\r\nB. Pregnant or lactating females and women in child bearing age refusing to use contraceptives.",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Deccan College of Medical Sciences & Allied hospitals,Kanchanbhag Santoshnagar,Hyderabad-500058",
+    "Seth G.S. Medical College & KEM Hospital, Parel, Mumbai 400 012",
+    "TNMC & BYL Nair Hospital, Mumbai Central, Mumbai 400 008",
+    "Vydehi Institute of Medical Science and Research Centre, 82, EPIP area, Whitefield. Bangalore-560006"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=OTQ=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:54.083922+00:00"
+}

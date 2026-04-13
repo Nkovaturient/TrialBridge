@@ -1,0 +1,23 @@
+{
+  "ctri_number": "CTRI/2008/091/000043",
+  "enc_hid": 85,
+  "title": "Effect of Praneem polyherbal formulations against Infection of HPV in Uterine cervix.",
+  "phase": "Phase 2",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "The study is conducted in women with \r\n\r\n1) HPV infection with inflammatory lesions and LSIL. \r\n\r\n2) HPV positive lesions (both cytologically and molecularly or only molecularly).\r\n,",
+  "interventions": [
+    "â€˜Placeboâ€™ (no active ingredients)",
+    "Praneem polyherbal tablet"
+  ],
+  "inclusion_criteria": "Adult females in reproductive age group of 30 years or more with HPV infection or inflammatory lesions.",
+  "exclusion_criteria": "1) Pregnant Women\r\n2) Patient with menstrual irregularities and any tumor or other concomitant therapies.",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Cancer Clinic, Department of Obstetrics & Gynae"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=ODU=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:45.937529+00:00"
+}

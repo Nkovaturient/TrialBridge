@@ -1,0 +1,27 @@
+{
+  "ctri_number": "CTRI/2007/091/000044",
+  "enc_hid": 40,
+  "title": "SNX-1012-CLN2: A clinical trial to study the effect of a new drug SNX-1012 on mouth ulcers in Patients Receiving Cancer Treatment when compared to a placebo",
+  "phase": "Phase 2",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Ulcerative Oral Mucositis in Cancer patients receiving Cytotoxic Chemotherapy,",
+  "interventions": [
+    "Placebo",
+    "SNX-1012 (30 mg QID)"
+  ],
+  "inclusion_criteria": "?\tPatients with breast or lung cancer who will get these regimens of CT:\r\n?\tdoxorubicin, cyclophosphamide, plus or minus taxane (for breast cancer), \r\n?\tEpirubicin, cyclophosphamide, plus or minus taxane (for breast cancer), \r\n?\tPlatinum or anthracyclines for lung cancer\r\n?\tNaive to focal radiation therapy to head for cancer prior to CT Cycle 1 ? OR - prior stomatotoxic response to chemotherapy\r\n?\tHistological /FNAC confirmed diagnosis of lung or breast carcinoma\r\n?\tBronchoalveolar cell carcinoma is not allowed\r\n?\tSubjects will receive the same dose of CT in Cycle 1 and Cycle 2\r\n?\tKarnofsky performance score ³ 60\r\n?\tScreening laboratory assessments:\r\n?\tHemoglobin (Hgb) level ³ 9 g/dL\r\n?\tAbsolute neutrophil count (ANC) ³ 1.5 x 109/L\r\n?\tPlatelet count ³ 100 x 109/L \r\n?\tSerum bilirubin level £ 1.5 times institutional upper limit of normal (ULN)\r\n?\tSerum aspartate aminotransferase (AST) and/or alanine aminotransferase (ALT) level £ 2 times above ULN",
+  "exclusion_criteria": "?\tPresence of active or history of chronic oral mucosal disease\r\n?\tDiagnosis of bronchoalveolar cell carcinoma\r\n?\tCurrently receiving an investigational agent, planning to receive an investigational agent during the study period, or received an investigational agent within 30 days of the first dose of SNX-1012\r\n?\tUnwilling/unable to receive periodic oral assessments by a study evaluator or unable to complete the daily self-reported outcome questionnaire\r\n?\tUnable to receive Cycle 2/3 chemotherapy at the same dosage as Cycle 1/2 chemotherapy\r\n?\t Prior history of oral mucositis with previous\r\n\tchemotherapy treatment\r\n?\t Previous treatment with an anthracycline\r\n\tagent (other than low-dose neoadjuvant\r\n\ttherapy)\r\n?\tPrior or planned focal radiation therapy in the\r\n\thead or neck regions for the treatment of cancer\r\n\t(prior radiation to areas other than the head\r\n\tand neck is permitted)",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Apollo Hospitals",
+    "Apollo Speciality Hospital",
+    "Bhagwan Mahavir Cancer Hospital and Research Centre",
+    "Chistian Medical College",
+    "Chittaranjan National Cancer Institute"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=NDA=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:02.912504+00:00"
+}

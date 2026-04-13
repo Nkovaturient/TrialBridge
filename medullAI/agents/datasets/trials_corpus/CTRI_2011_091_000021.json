@@ -1,0 +1,29 @@
+{
+  "ctri_number": "CTRI/2011/091/000021",
+  "enc_hid": 19,
+  "title": "This is a Neoadjuvant Study of AC Followed by Ixabepilone or Paclitaxel in Early Stage Breast Cancer That is HER-2 Negative and Estrogen Receptors Negative",
+  "phase": "Phase 2",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Early Breast Cancer,",
+  "interventions": [
+    "A: Experimental",
+    "B: Active",
+    "Ixabepilone,Paclitaxel, Doxorubicin, Cyclophosphamide",
+    "NIL"
+  ],
+  "inclusion_criteria": "Eligible women must have adenocarcinoma of breast that is &#8805;2 cm, T2-3, N0-3 and M0\r\n&#56256;&#56442; Histologically confirmed primary invasive adenocarcinoma of the breast\r\n&#56256;&#56442; Breast cancer must be ER and HER-2/neu negative\r\n&#56256;&#56442; No prior treatment for breast cancer excluding therapy for DCIS\r\n&#56256;&#56442; Karnofsky performance status of 80-100 LVEF &#8805;50% by echocardiogram or MUGA\r\n&#56256;&#56442; Adequate hematologic, hepatic and renal function",
+  "exclusion_criteria": "WOCBP unwilling or unable to use an acceptable method to avoid pregnancy during and up to 8 weeks after the last dose of the investigational drug\r\n&#56256;&#56442; Women who are pregnant or breastfeeding\r\n&#56256;&#56442; Inflammatory or metastatic breast cancer\r\n&#56256;&#56442; Unfit for breast and/or axillary surgery\r\n&#56256;&#56442; Evidence of baseline sensory or motor neuropathy\r\n&#56256;&#56442; Significant history of cardiovascular disease, serious intercurrent illness or infections\r\nincluding known HIV infection\r\n&#56256;&#56442; History of prior anthracycline therapy\r\n&#56256;&#56442; Allergies to any study medication or Cremophor® EL",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Delhi State Cancer Institute, Dilshad Garden, New Delhi-110095",
+    "Department of Medical Oncology, Christian Medical College",
+    "Department of Medical Oncology, Jindal Block, Kidwai Memorial Hospital, Dr. M. H. Marigoeda Road, Ho",
+    "Department of Medical Oncology, Shridi Sai Baba Cancer Hospital, Manipal-576104",
+    "Department of Medical Oncology, Tata Memorial Hospital, Dr. E Borges Road, Parel, Mumbai-400012"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=MTk=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:18:43.624598+00:00"
+}

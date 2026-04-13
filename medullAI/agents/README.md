@@ -15,8 +15,10 @@ AI agent swarm that matches anonymised patient profiles against Indian clinical 
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
-│  POST /run_match   (raw CTRI JSON + raw AIKosh patient JSON)      │
-│  POST /run_match_parsed  (pre-parsed TrialCriteria + Patient)     │
+│  POST /run_match           raw CTRI + raw patient → parse → score │
+│  POST /run_match_parsed    TrialCriteria + PatientProfile → score  │
+│  POST /ingest_patients_csv multipart CSV/XLSX → PatientProfile[]   │
+│  POST /batch_match_parsed  TrialCriteria + PatientProfile[] → rank │
 │  GET  /health                                                     │
 │                      FastAPI  :8100                               │
 └────────────────────────────┬─────────────────────────────────────┘
@@ -57,10 +59,22 @@ __start__ ──► parse_trial  ──┐
 
 | Layer | Source | Files |
 |---|---|---|
-| Trials | CTRI (ctri.nic.in) — 5 realistic records | `datasets/trials/*.json` |
-| Patients | AIKosh ICMR oral cancer dataset (anonymised) — 5 profiles | `datasets/patients/*.json` |
+| Trials (seeds) | CTRI-shaped demo records | `datasets/trials/*.json` |
+| Trials (corpus) | CTRI detail pages scraped to JSON (EncHid crawl + manifest) | `datasets/trials_corpus/*.json`, `index.jsonl` |
+| Patients (seeds) | AIKosh ICMR oral cancer (anonymised) | `datasets/patients/*.json` |
+| Patients (batch demos) | Columnar CSV for dashboard batch rank | `datasets/patient_batch_rank_sample_5.csv`, `patient_batch_rank_sample_10_split_4_3_3.csv` |
 
-All seed data is realistic but fictional. Fields mirror real CTRI record structure and AIKosh oral cancer clinical dataset column shapes.
+All seed data is realistic but fictional. The HMIS-style aggregate CSV in the plan is **not** patient-level; do not use it for per-patient matching.
+
+### Tabular ingest (`ingest/`)
+
+- **`ingest/tabular.py`** — CSV/XLSX → row dicts (2 MB / 500-row caps).
+- **`ingest/mappers.py`** — `aikosh_oral_cancer` and `generic` column→field maps before `normalise_patient()`.
+
+### CTRI corpus scripts (`scripts/`)
+
+- **`ctri_ingest.py`** — Enumerate `pmaindet2.php?EncHid=…`, parse Phase II/III/IV trials, write `datasets/trials_corpus/` + checkpoint.
+- **`ctri_parse_corpus.py`** — Optional: run `trial_agent.parse_trial` over corpus files into `trials_corpus_parsed/`.
 
 ---
 
@@ -243,8 +257,12 @@ Expected: parses trial 1 × patient 1 via DeepSeek, prints `MatchResult` JSON wi
 | `GET` | `/health` | Liveness check |
 | `POST` | `/run_match` | Full pipeline — raw CTRI + raw AIKosh JSON → LLM parse → score |
 | `POST` | `/run_match_parsed` | Direct scoring — pre-parsed `TrialCriteria` + `PatientProfile` → score |
+| `POST` | `/ingest_patients_csv` | Multipart `file` + form `mapper` → normalised `PatientProfile[]` (bounded concurrency) |
+| `POST` | `/batch_match_parsed` | One `TrialCriteria` + `patient_profiles[]` → ranked `MatchResult[]` + stats (no per-row on-chain log) |
 
 Interactive docs: `http://localhost:8100/docs`
+
+**Pricing note:** x402 is enforced in the **Express backbone** (`POST /match` = $0.10, `POST /batch_match_parsed` = $2.00), not in this FastAPI process.
 
 ---
 
@@ -254,12 +272,15 @@ Interactive docs: `http://localhost:8100/docs`
 agents/
 ├── schemas.py          — Pydantic models (shared contract)
 ├── trial_agent.py      — CTRI parser node (ChatDeepSeek → TrialCriteria)
-├── patient_agent.py    — Patient normaliser node (ChatDeepSeek → PatientProfile)
+├── patient_agent.py    — Patient normaliser + normalise_patient() for ingest
 ├── coordinator.py      — LangGraph StateGraph + score_match + CLI entry-point
 ├── server.py           — FastAPI wrapper (:8100)
+├── ingest/             — tabular CSV/XLSX + mapper profiles
+├── scripts/            — ctri_ingest.py, ctri_parse_corpus.py
 ├── requirements.txt
 ├── .env.example
 └── datasets/
-    ├── trials/         — 5 CTRI-shaped JSON files
-    └── patients/       — 5 AIKosh-shaped JSON files
+    ├── trials/         — CTRI-shaped JSON seeds
+    ├── trials_corpus/  — scraped CTRI JSON + index.jsonl (optional)
+    └── patients/       — AIKosh-shaped JSON seeds
 ```

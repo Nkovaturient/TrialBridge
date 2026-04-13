@@ -1,0 +1,28 @@
+{
+  "ctri_number": "CTRI/2007/091/000028",
+  "enc_hid": 26,
+  "title": "A double blind clinical trial to study the multiple dose effect of the study drug on safety, effectiveness and blood levels of the drug in patients with Ulcerative colitis who are non responsive to steroids.",
+  "phase": "Phase 2",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Ulcerative Colitis,",
+  "interventions": [
+    "20 mg basiliximab",
+    "40 mg basiliximab",
+    "Placebo"
+  ],
+  "inclusion_criteria": "1.\tMale or female subjects, age greater or equal to 18 years and & less than or equal to 75 years 2.\tWeight of 40 kg or greater 3.\tSigned a current IRB/IEC-approved informed consent form 4.\tDiagnosis of ulcerative colitis confirmed through screening endoscopy.  A rectal biopsy will be obtained and reviewed by a local pathologist.  Histopathology must be compatible with the diagnosis. 5.\tExtent of disease must involve at least the left colon (i.e., greater than 15 cm beyond the anal verge as the endoscope is withdrawn) 6.\tModerate to severe disease, defined as a total Mayo score of 6 points or greater, including an endoscopic subscore of 2 points or greater.  Systemic features of tachycardia, fever, and/or significant anemia should not be present 7.\tSteroid-refractory disease, defined as moderate to severe disease, without systemic features, despite treatment with prednisone 40 ? 50 mg/day (or other oral steroid at equivalent dose) orally for a minimum of 14 days immediately preceding study entry 8.\tConcomitant azathioprine or 6-mercaptopurine treatment is permitted during the study if initiated at least 12 weeks before study entry, and if the dose has not been changed or stopped for at least 8 weeks before study entry. 9.\tConcomitant oral aminosalicylate treatment is permitted during the study if initiated at least 4 weeks before study entry, and if the dose has not been changed or stopped during this time. 10.\tFemales of childbearing potential must use an effective birth control method, and be willing to continue birth control during the study, and for 4 months after the last dose of study drug. 11.\tFemales of non-childbearing potential should be surgically sterile (bilateral tubal ligation with surgery at least 6 months before study entry, hysterectomy, or bilateral oophorectomy at least 2 months before study entry) or post-menopausal for at least 2 years.",
+  "exclusion_criteria": "1.\tPrior treatment with basiliximab or daclizumab at any time\r\n2.\tPrior treatment with cyclosporine, tacrolimus, methotrexate, or any anti-TNF agent within 3 months before study entry\r\n3.\tPrior treatment with parenteral corticosteroids within 14 days before study entry\r\n4.\tInitiation of azathioprine or 6-mercaptopurine treatment less than 12 weeks before  study entry, or discontinuation or change of dose less than 8 weeks before study entry \r\n5.\tInitiation of oral aminosalicylate treatment, or change of dose, or discontinuation less than 4 weeks before study entry \r\n6.\tRectally administered medications containing corticosteroids or aminosalicylates within 2 weeks before screening endoscopy\r\n7.\tIf currently taking a nonsteroidal anti-inflammatory agent (NSAID), the inability to discontinue NSAID use during study participation\r\n8.\tIntolerance or inability to continue oral corticosteroids during the trial\r\n9.\tStool studies that show presence of ova and parasites, significant bacterial pathogens, or C. difficile toxin \r\n10.\tColitis that is indeterminate, suggestive of Crohn?s disease, or isolated to the rectum, based on endoscopic and/or biopsy findings\r\n11.\tPresence of toxic megacolon\r\n12.\tSeverely ill patients as evidenced by greater than 6 episodes of loose stools, all of them bloody, during a 24-hour period within the screening window, concurrent with any of the following systemic features:\r\n?\tHeart rate >90 beats/min at rest\r\n?\tTemperature >37.8 degrees C\r\n?\tHemoglobin <10.5 g/dL\r\n13.\tLaboratory values as follows:\r\n?\tHemoglobin <8.5 g/dL\r\n?\tWBC <3.0 x 109 /L\r\n?\tNeutrophils <1.5 x 109 /L\r\n?\tLymphocytes <0.5 x 109 /L\r\n?\tPlatelets <100 x 109 /L\r\n?\tAST (SGOT) >3 times upper limit of normal\r\n?\tALT (SGPT) >3 times upper limit of normal\r\n14.\tPregnant or breast-feeding female patients\r\n15.\tChest radiograph abnormalities consistent with an infectious process\r\n16.\tKnown HIV, or viral Hepatitis B or C infection\r\n17.\tHistory of or exposure to tuberculosis within 6 months before study entry\r\n18.\tHistory of central nervous system demyelinating disorder\r\n19.\tHistory of colonic dysplasia\r\n20.\tHistory of malignancy during the previous 5 years or current malignancy, with exception of adequately treated non-melanoma skin cancer or in situ carcinoma of the cervix\r\n21.\tHistory of varicella, herpes zoster, or severe viral infection within 6 weeks before study entry, exposure to varicella within 21 days before study entry, or vaccination with live virus within 4 weeks before study entry\r\n22.\tAny ECG abnormalities not approved by the Medical Monitor \r\n23.\tTreatment with an investigational drug or device within 30 days before study entry\r\n24.\tTreatment with an investigational biologic within 6 months before study entry",
+  "age_min_years": 18,
+  "age_max_years": 75,
+  "gender": "both",
+  "locations": [
+    "Amrita Institute of Medical Sciences and Research Centre",
+    "Andhra Medical College",
+    "Apollo Hospital",
+    "Calicut Medical College",
+    "Christian Medical college"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=MjY=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:18:50.020117+00:00"
+}

@@ -1,0 +1,25 @@
+{
+  "ctri_number": "CTRI/2008/091/000052",
+  "enc_hid": 93,
+  "title": "A clinical trial to study the effects of Ayurvedic formulation containing Ashwagandha and Guduchi in improving the quality of life in patients of breast cancer receiving chemotherapy as treatment",
+  "phase": "Phase 2",
+  "recruitment_status": "Not Yet Recruiting",
+  "is_open": true,
+  "condition": "Breast cancer receiving chemotherapy ,",
+  "interventions": [
+    "Tablet PHP-Cancer containing hydro-alcoholic extracts of Withania somnifera 150mg and Tinospora cordifolia 200 mg",
+    "Tablet Placebo"
+  ],
+  "inclusion_criteria": "1.\tFemale patients in age group of 18 to 60 years (irrespective of menopausal status) with a life expectancy of at least 6 months\r\n2.\tPatients with breast cancer scheduled to receive chemotherapy \r\n3.\tPatients ready to consent and to abide by trial related procedures",
+  "exclusion_criteria": "1.\tPatients likely to receive radiation therapy; alone or in combination with chemotherapy during the study period\r\n2.\tPatients scheduled to receive palliative chemotherapy   \r\n3.\tPatients with mental condition that would interfere with completion of questionnaires\r\n4.\tPatients receiving prophylactic G-CSF therapy\r\n5.\tHistory of intake of ANY Ayurvedic/herbal/homeopathic/ dietary supplements (including Vitamin E) or any alternative therapies for the last one month.\r\n6.\tLiver, kidney and/or bone marrow disorders\r\n7.\tAcute medical/surgical complications which require hospitalization",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Seth G.S. Medical College & KEM Hospital, Parel, Mumbai 400 012",
+    "TNMC & BYL Nair Hospital, Mumbai Central, Mumbai 400 008",
+    "Vydehi Institute of Medical Science and Research Centre, 82, EPIP area, Whitefield. Bangalore-560 00"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=OTM=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:53.484577+00:00"
+}

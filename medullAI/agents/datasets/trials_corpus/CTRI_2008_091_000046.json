@@ -1,0 +1,27 @@
+{
+  "ctri_number": "CTRI/2008/091/000046",
+  "enc_hid": 88,
+  "title": "Stem cells therapy for patients with acute ischemic stroke.",
+  "phase": "Phase 2",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Acute ischemic stroke in MCA/ACA territory,",
+  "interventions": [
+    "intravenous injection of bone marrow mononuclear /stem cells",
+    "Standard treatment"
+  ],
+  "inclusion_criteria": "1. Sudden onset of focal neurologic deficit or impairment of consciousness,\r\n\r\n2. Computerized tomographic or MRI scan of the head showing no haematoma, and relevant lesions within the MCA and ACA territory. \r\n\r\n3. Age between 18 and 70 years\r\n\r\n4. Seven days or more but less than 30 days has passed since the onset of the qualifying event,\r\n\r\n5. Glasgow Coma Scale score of above 8 at the time of randomization (Appendix 15), in aphasic Eye and Motor score of more than 6, \r\n\r\n6. Modified Barthel index score of 50 or less at the time of randomization (Appendix 8).\r\n\r\n7. NIHSS score of 7 or more points and inability to walk unaided or raise upper limb by 900 (Appendix 17)\r\n\r\n8. Patient is stable: A patient will be defined as stable when he has normal respiration, is afebrile, has BP less than mean arterial pressure of 125mm Hg (but no hypotension defined as systolic BP <90mmHg), has fasting venous blood sugar level less than 200mg% and normal urea/electrolytes for at least 48 hours.",
+  "exclusion_criteria": "1. Lacunar syndrome\r\n\r\n2. Intubation\r\n\r\n3. Posterior Circulation Stroke\r\n\r\n4. Co-morbidity likely to limit survival to less than three years e.g. malignant diseases, hepatic or renal failure\r\n\r\n5. Pre-stroke disability leading to dependence on others for activities of daily living,\r\n\r\n6. Inaccessibility for follow-up\r\n\r\n7. Allergy to local anaesthetic\r\n\r\n8. Unwillingness to provide written informed consent by self or assent by next of kin.\r\n\r\n9. Symptom of Acute myocardial infarction or acute involvement of any other organ.\r\n\r\n10. Pregnancy\r\n\r\n11. HIV positive.\r\n\r\n12. Patient is a part of any other trial.",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "All India Institute of Medical Sciences, New Delhi",
+    "Armed Forces Medical College Hospital, Pune",
+    "Army Hospital (Research & Referral), New Delhi",
+    "Post Graduate Institute of Medical Education and Research",
+    "Sanjay Gandhi Post Graduate Institute of Medical Sciences"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=ODg=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:48.765177+00:00"
+}

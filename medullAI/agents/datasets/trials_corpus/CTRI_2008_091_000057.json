@@ -1,0 +1,23 @@
+{
+  "ctri_number": "CTRI/2008/091/000057",
+  "enc_hid": 98,
+  "title": "A clinical trial to study whether  zinc decreases the frequency of disease relapses in patients with frequently relapsing nephrotic syndrome",
+  "phase": "Phase 3",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Frequently relapsing nephrotic syndrome,",
+  "interventions": [
+    "placebo",
+    "zinc sulfate"
+  ],
+  "inclusion_criteria": "?Patients with steroid responsive nephrotic syndrome with frequent relapses or steroid dependence in the preceding six months ?Prednisolone requirement at <1 mg/kg on alternate day to maintain remission ?No zinc supplements in the preceding 3 months ?Parents willing to give informed written consent.",
+  "exclusion_criteria": "?Grade IV protein energy malnutrition (Indian Academy of Pediatrics Classification)\r\n?Body mass index >30, height less than -2 SD of that expected (NCHS)\r\n?Patients with known secondary nephrotic syndrome (e.g., systemic lupus, infection with hepatitis B or C virus, amyloidosis)\r\n?Receiving immunosuppressive treatment other than oral prednisolone and levamisole (i.e., pulse dexamethasone or methylprednisolone,  cyclophosphamide,  cyclosporine, tacrolimus, azathioprine or mycophenolate mofetil) or having received such treatment during the previous six months\r\n?Known to have chronic infections e.g., tuberculosis, HIV, kala azar, hepatitis B or C or malignancy\r\n?More than one episode of a life threatening complication in the past 6 months, e.g., meningitis, sepsis, peritonitis, thrombosis or hypovolemic shock\r\n?Estimated glomerular filtration rate less than 60 ml/min/1.73 m2\r\n?Residing more than 100 km from the Institute or unwilling to come for regular follow-up.",
+  "age_min_years": 2,
+  "age_max_years": 16,
+  "gender": "both",
+  "locations": [
+    "All India Institute of Medical Sciences"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=OTg=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:57.726472+00:00"
+}

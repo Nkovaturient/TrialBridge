@@ -1,0 +1,6 @@
+patient_id,age_years,gender,state,primary_diagnosis,icd_code,stage,comorbidities,prior_treatment,smoking_history,tobacco_use,alcohol_use,ecog_ps,hemoglobin_g_dl,wbc_count_per_ul,platelet_count_per_ul,serum_creatinine_mg_dl,alt_u_l,hba1c_percent,fasting_glucose_mg_dl,egfr_ml_min
+PID_BR_001,42,male,Tamil Nadu,Oral leukoplakia,K13.21,OPMD,"Hypertension","Oral prophylaxis;Biopsy",yes,Smokeless tobacco (gutka) 10 years,no,1,12.4,7200,210000,0.9,24,5.6,94,102
+PID_BR_002,29,female,Maharashtra,Oral submucous fibrosis with dysplasia,K13.79,OPMD,"Iron deficiency anaemia","None",no,Areca nut chewing 8 years,no,0,10.8,6100,195000,0.8,22,5.3,89,110
+PID_BR_003,58,male,Karnataka,Oral leukoplakia,K13.21,OPMD,"Type 2 Diabetes Mellitus;Hypertension","Excision of lesion",yes,Smoking 20 pack-years,yes,1,11.6,6800,205000,1.0,30,8.1,168,78
+PID_BR_004,67,male,Delhi,Oral submucous fibrosis,K13.79,Advanced OPMD,"COPD","None",yes,Betel quid chewing 25 years,yes,2,12.0,7400,220000,1.2,27,5.9,101,82
+PID_BR_005,35,female,West Bengal,Lichen planus oral lesion,L43.8,OPMD-like lesion,"Hypothyroidism","Topical steroid trial",no,None,no,0,13.1,5900,230000,0.7,19,5.1,86,115

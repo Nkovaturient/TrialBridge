@@ -1,0 +1,27 @@
+{
+  "ctri_number": "CTRI/2011/091/000025",
+  "enc_hid": 69,
+  "title": "A clinical trial to study the effect of chemotherapy (FOLFIRI) with or without Sunitinib Malate in patients with metastatic cancer of colon/rectum.",
+  "phase": "Phase 3",
+  "recruitment_status": "Other (Terminated)",
+  "is_open": false,
+  "condition": "Metastatic Colorectal Cancer,",
+  "interventions": [
+    "Sunitinib + Folfiri",
+    "Plcabo + Folfiri"
+  ],
+  "inclusion_criteria": "?\tConfirmed (histologically or cytologically) colorectal adenocarcinoma with metastatic disease. ?\tNot received previous therapy for metastatic colorectal disease but for whom FOLFIRI treatment is clinically indicated. ?\tAdequate organ function defined by blood test.",
+  "exclusion_criteria": "?\tHistory of another primary cancer in the last 3 years. \r\n?\tPrevious full field radiotherapy within the last 4 weeks or limited field radiotherapy within 2 weeks of enrolling into the study. Or previous radiation treatment of more that 30% of the bone marrow. \r\n?\tHistory of presence of brain metastasis, spinal cord compression carcinomatous meningitis or leptomeningeal disease.",
+  "age_min_years": 18,
+  "age_max_years": 99,
+  "gender": "both",
+  "locations": [
+    "Christian Medical College",
+    "Department of Medical Oncology",
+    "Jaslok Hospital & Research Centre,",
+    "Rajlakshami Multispeciality Hospital,",
+    "Seth Ramdas Shah Memorial Hospital & Research Centre"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=Njk=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:29.494823+00:00"
+}

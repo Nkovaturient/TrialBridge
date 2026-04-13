@@ -1,0 +1,26 @@
+{
+  "ctri_number": "CTRI/2007/091/000008",
+  "enc_hid": 7,
+  "title": "A clinical trial to study the effect of the addition of Vitamin D to conventional treatment in new pulmonary tuberculosis patients",
+  "phase": "Phase 3",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "The study will be conducted in Newly Diagnosed Sputum Positive Pulmonary Tuberculosis patients.,",
+  "interventions": [
+    "Migliol oil containing Cholecalciferol",
+    "Migliol Oil without Cholecalciferol"
+  ],
+  "inclusion_criteria": "1.\tNewly diagnosed smear positive pulmonary tuberculosis, including previously treated\r\n2.\tAge between 18 to 75 years\r\n3.\tNo pre-existing liver or renal disease\r\n4.\tConsent given for HIV testing\r\n5.\tAvailable for return visits as outlined in the trial protocol\r\n6.                A firm Home address",
+  "exclusion_criteria": "1.\tExtra-pulmonary or smear negative tuberculosis \r\n2.\tPatients receiving steroids, cytotoxic drugs, post transplant or metastatic malignancy, or not expected to survive for the duration of ATT \r\n3.HIV infection\r\n\r\n4.Pregnant or lactating women \r\n\r\n5. Active diarrhoea, indicating possible fat-soluble vitamin   malabsorption.  \r\n6.Baseline Hypercalcemia (>10.5 mg/dl)",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Bedestha Hospital",
+    "CMC DOTS Centres",
+    "CMC-CHAD Hospital",
+    "TB Clinics Around Vellore"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=Nw==&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:18:32.675940+00:00"
+}

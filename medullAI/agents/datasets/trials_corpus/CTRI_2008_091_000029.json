@@ -1,0 +1,23 @@
+{
+  "ctri_number": "CTRI/2008/091/000029",
+  "enc_hid": 73,
+  "title": "A study to assess the effect of two chemotherapy drugs (paclitaxel and Cisplatin) along with radiation in treating cancer of the uterine cervix",
+  "phase": "Phase 2",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Carcinoma of the Uterine Cervix FIGO Stage IB2 to IIIB,",
+  "interventions": [
+    "Not Applicable",
+    "Radiation Therapy, Paclitaxel, Cisplatinum"
+  ],
+  "inclusion_criteria": "? Women with previously untreated squamous cell carcinoma of cervix , stages IB2 ? III B\r\n? Performance score ECOG 0, 1, 2",
+  "exclusion_criteria": "? Previous treatment for carcinoma cervix\r\n? Hepatic/renal dysfunction\r\n? Cardiac co morbidities (active cardiac disease like MI in the last 6 months,  uncontrolled arrhythmias, Left ventricular dysfunction, cardiac failure)\r\n? Pre existing Peripheral neuropathy\r\n? Age > 70 years and < 18 years\r\n? Para aortic lymph node involvement\r\n? Pregnant women\r\n? Synchronous malignancies\r\n? S. creatinine >1.4, Creatinine clearance <50\r\n? SGOT, SGPT and ALP > x 2.5 normal \r\n? Hb<8.0g/dl, TC <3000/cmm, ANC <1000 /cmm, platelet count <1,00,000/cmm",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Department of Radiation Oncology Unit I,CHRISTIAN MEDICAL COLLEGE VELLORE"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=NzM=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:19:34.039125+00:00"
+}

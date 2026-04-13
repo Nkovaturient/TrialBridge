@@ -1,0 +1,28 @@
+{
+  "ctri_number": "CTRI/2007/091/000023",
+  "enc_hid": 21,
+  "title": "A Phase III Study of Dasatinib vs. Imatinib in Patients With Newly Diagnosed Chronic Phase CML",
+  "phase": "Phase 3",
+  "recruitment_status": "Completed",
+  "is_open": false,
+  "condition": "Myeloid Leukemia, Chronic,",
+  "interventions": [
+    "A: Experimental",
+    "B: Active",
+    "Dasatinib"
+  ],
+  "inclusion_criteria": "&#56256;&#56442; Male & Female &#8805;18 years\r\n&#56256;&#56442; CP Ph+ CML\r\n&#56256;&#56442; ECOG PS 0-2",
+  "exclusion_criteria": "&#56256;&#56442; Pleural Effusion\r\n&#56256;&#56442; Uncontrolled CV disease\r\n&#56256;&#56442; Significant bleeding disorder unrelated to CML\r\n&#56256;&#56442; Prior treatment with interferon/imatinib/dasatinib/anti-CML systemic treatments except anagrelide/hydroxyurea",
+  "age_min_years": null,
+  "age_max_years": null,
+  "gender": "both",
+  "locations": [
+    "Christian Medical College",
+    "Hematology Centre",
+    "Lakeshore Hospital & Research Centre Ltd.",
+    "Regional cancer Center",
+    "Tata Memorial Hospital"
+  ],
+  "source_url": "https://ctri.nic.in/Clinicaltrials/pmaindet2.php?EncHid=MjE=&Enc=&userName=",
+  "scraped_at": "2026-04-13T12:18:45.347822+00:00"
+}

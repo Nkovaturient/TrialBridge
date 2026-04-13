@@ -49,3 +49,8 @@ def parse_patient(state: CoordinatorState) -> dict:
     raw = state["raw_patient"]
     result: PatientProfile = _get_chain().invoke({"raw_patient": json.dumps(raw, indent=2)})
     return {"patient_profile": result}
+
+
+def normalise_patient(raw: dict) -> PatientProfile:
+    """Direct call (outside LangGraph): parse raw AIKosh dict → PatientProfile."""
+    return _get_chain().invoke({"raw_patient": json.dumps(raw, indent=2)})
