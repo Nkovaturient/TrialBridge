@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { x402Fetch } from "@/lib/cdp-wallet";
+import { enrichX402Payment } from "@/lib/x402-settlement";
 import type { MatchResult } from "@/lib/types";
 
 const MatchRequestSchema = z.object({
@@ -39,13 +40,16 @@ export async function POST(req: NextRequest) {
     const result = data as MatchResult;
 
     // Augment with sanitized payment metadata for the UI
+    const x402 = enrichX402Payment(paymentResponse);
+    const { settlementNetwork, ...x402Rest } = x402;
     const response = {
       ...result,
       payment: {
         settled: true,
-        network: "base-sepolia",
+        network: settlementNetwork ?? "base-sepolia",
         amount: "$0.10 USDC",
         paymentResponse: paymentResponse ?? undefined,
+        ...x402Rest,
       },
     };
 

@@ -2,6 +2,7 @@
 
 import type { MatchResult } from "@/lib/types";
 import PipelineLog from "./PipelineLog";
+import X402PaymentReceipt from "./X402PaymentReceipt";
 
 interface Props {
   result: MatchResult;
@@ -115,7 +116,7 @@ export default function ResultPanel({ result }: Props) {
           </p>
           <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
             <span style={{ color: "var(--text-secondary)" }}>Block</span>
-            <span style={{ color: "var(--text-primary)", fontFamily: "var(--font-geist-mono)" }}>
+            <span style={{ color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
               {onChain.blockNumber}
             </span>
             <span style={{ color: "var(--text-secondary)" }}>Tx Hash</span>
@@ -124,7 +125,7 @@ export default function ResultPanel({ result }: Props) {
               target="_blank"
               rel="noopener noreferrer"
               className="underline truncate"
-              style={{ color: "var(--accent)", fontFamily: "var(--font-geist-mono)" }}
+              style={{ color: "var(--accent)", fontFamily: "var(--font-mono)" }}
             >
               {onChain.txHash.slice(0, 18)}…
             </a>
@@ -134,32 +135,14 @@ export default function ResultPanel({ result }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-xs mt-1 px-3 py-1.5 rounded-lg"
-            style={{ background: "rgba(37,99,235,0.1)", color: "var(--accent)", border: "1px solid rgba(37,99,235,0.2)" }}
+            style={{ background: "var(--accent-dim)", color: "var(--accent)", border: "1px solid var(--accent-border)" }}
           >
             View on BaseScan ↗
           </a>
         </div>
       )}
 
-      {/* Payment info */}
-      {payment?.settled && (
-        <div
-          className="rounded-xl p-4"
-          style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
-        >
-          <p className="text-xs font-semibold mb-2" style={{ color: "var(--text-secondary)" }}>
-            x402 Payment
-          </p>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
-            <span style={{ color: "var(--text-secondary)" }}>Status</span>
-            <span style={{ color: "var(--success)" }}>✓ Settled</span>
-            <span style={{ color: "var(--text-secondary)" }}>Amount</span>
-            <span style={{ color: "var(--text-primary)" }}>{payment.amount}</span>
-            <span style={{ color: "var(--text-secondary)" }}>Network</span>
-            <span style={{ color: "var(--text-primary)" }}>{payment.network}</span>
-          </div>
-        </div>
-      )}
+      {payment?.settled && <X402PaymentReceipt payment={payment} />}
 
       {/* Pipeline trace */}
       {pipeline?.length > 0 && (

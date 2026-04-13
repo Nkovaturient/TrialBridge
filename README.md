@@ -39,10 +39,11 @@
 └────────────────────┬────────────────────────────────┘
                      │ HTTP
         ┌────────────▼────────────┐
-        │   Backbone (Express)    │  ← x402 gate: POST /match → $0.10 USDC
-        │   backbone/index.js     │     Base Sepolia network
+        │   Backbone (Express)    │  x402 on Base Sepolia:
+        │   backbone/index.js     │  POST /match → $0.10 USDC;
+        │                         │  POST /batch_match_parsed → $2.00 USDC
         └────┬────────────────┬───┘
-             │ /run_match_parsed   │ logMatch()
+             │ proxy to agents │ logMatch() (single match only)
    ┌─────────▼──────────┐  ┌──────▼──────────────────┐
    │  Agent Layer        │  │  TrialRegistry.sol       │
    │  (FastAPI :8100)    │  │  Base Sepolia            │
@@ -88,7 +89,7 @@
 PAYER:  Pharma company / CRO / researcher  ──────► pays USDC per match request
                                                      via x402 HTTP 402 response
 RECEIVER: Your TrialBridge API endpoint
-AMOUNT: $0.10–$0.50 per verified match (vs $5 CRO baseline)
+AMOUNT: **$0.10** per single match, **$2.00** per batch patient rank (dashboard CSV flow); compare to ~$5 CRO baseline per manual lead
 
 PATIENT: Does NOT receive direct payment in MVP.
          In v2: patient consent = on-chain event → future token reward
@@ -112,21 +113,20 @@ PATIENT: Does NOT receive direct payment in MVP.
        │
        ▼
  Next.js Frontend (:3000)
-  ├── /match/new        → Form UI + live log panel
-  ├── /api/match        → API route (server-side)
-  │    ├── Loads org's CDP wallet
-  │    ├── Makes x402-authenticated POST /match to backbone
-  │    └── Streams SSE events back to client
+  ├── /match            → Single JSON match + batch CSV rank UI
+  ├── /api/match        → x402 POST /match ($0.10) → agents
+  ├── /api/ingest_csv   → agents /ingest_patients_csv (no x402 on agents)
+  ├── /api/batch_match  → x402 POST /batch_match_parsed ($2) → agents
+  │    └── Payment receipt: tx hash + BaseScan link when settled
   │
   └── /dashboard        → History, balance, analytics
        │
        ▼
  Backbone Express (:4020)
-  ├── x402 middleware validates payment
-  ├── POST /run_match → Agent API (:8100)
-  │    └── LangGraph: parse → hard filter → LLM score
-  ├── logMatch() → TrialRegistry on Base Sepolia
-  └── Returns MatchResult + onChain tx
+  ├── x402 middleware validates payment (per route amount)
+  ├── POST /match → Agent /run_match (or parsed path) + logMatch() on registry
+  ├── POST /batch_match_parsed → Agent /batch_match_parsed (ranked list; no per-row logMatch)
+  └── Returns JSON + pipeline timings + X-PAYMENT-RESPONSE
 ```
 
 
@@ -209,22 +209,11 @@ Storage        | IPFS (via nft.storage)       | Consent document hash (optional,
 
 ```
 TrialBridge/
-├── agents/
-│   ├── patient_agent.py       # LangGraph patient eligibility agent
-│   ├── trial_agent.py         # LangGraph trial criteria parser
-│   └── coordinator.py         # Orchestration + match scoring
-├── contracts/
-│   └── TrialRegistry.sol      # Polygon Amoy contract
-├── data/
-│   ├── patients/              # AIKosh-derived anonymised profiles
-│   └── trials/                # CTRI scraped trial data (JSON)
-├── api/
-│   └── server.js              # Express + x402 middleware
-├── frontend/
-│   └── (Next.js app)
-├── scripts/
-│   ├── scrape_ctri.py
-│   └── deploy.js              # Foundry deploy script
+├── medullAI/
+│   ├── agents/                # FastAPI :8100 — see medullAI/agents/README.md
+│   ├── backbone/              # Express :4020 — x402 + agent proxy
+│   ├── contracts/             # TrialRegistry.sol (Foundry)
+│   └── frontend/              # Next.js — see medullAI/frontend/README.md
 └── README.md
 ```
 

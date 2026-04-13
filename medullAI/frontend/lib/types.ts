@@ -5,6 +5,15 @@ export interface PipelinePhase {
   txHash?: string;
 }
 
+export interface X402PaymentInfo {
+  settled: boolean;
+  network: string;
+  amount: string;
+  paymentResponse?: string;
+  txHash?: string;
+  explorerUrl?: string;
+}
+
 export interface OnChainInfo {
   txHash: string;
   blockNumber: number;
@@ -21,15 +30,29 @@ export interface MatchResult {
   disqualifying_criteria: string[];
   onChain: OnChainInfo;
   pipeline: PipelinePhase[];
-  payment?: {
-    settled: boolean;
-    network: string;
-    amount: string;
-    paymentResponse?: string;
-  };
+  payment?: X402PaymentInfo;
 }
 
 export interface MatchRequest {
   raw_trial: Record<string, unknown>;
   raw_patient: Record<string, unknown>;
+}
+
+export interface BatchMatchStats {
+  total: number;
+  llm_calls: number;
+  hard_filtered: number;
+}
+
+export interface BatchMatchResult extends Omit<MatchResult, "onChain" | "pipeline" | "payment"> {
+  onChain?: OnChainInfo;
+  pipeline?: PipelinePhase[];
+}
+
+export interface BatchMatchResponse {
+  trial_id: string;
+  results: BatchMatchResult[];
+  stats: BatchMatchStats;
+  pipeline?: PipelinePhase[];
+  payment?: X402PaymentInfo;
 }

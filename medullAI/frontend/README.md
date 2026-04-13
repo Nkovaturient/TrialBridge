@@ -28,6 +28,8 @@ sequenceDiagram
   Next-->>User: Match, payment summary, BaseScan link
 ```
 
+**Batch rank (same dashboard `/match`):** upload a patient CSV → `POST /api/ingest_csv` (agents) → pick trial JSON → `POST /api/batch_match` with **`x402Fetch`** → backbone **`POST /batch_match_parsed`** (**$2.00 USDC** x402; no per-row `logMatch`). The response includes **`pipeline`** timings and **`payment`** (decoded **`X-PAYMENT-RESPONSE`** → `txHash` + BaseScan `explorerUrl` on Base Sepolia / Base via `lib/x402-settlement.ts`).
+
 **Core principle:** CDP credentials and the **payer wallet** live only in **Next.js Route Handlers** (`app/api/*`). The client never receives private keys or API secrets.
 
 ---
@@ -46,7 +48,7 @@ sequenceDiagram
 
 | Piece | What it is in this stack |
 |-------|----------------------------|
-| **Coinbase Onramp** | **Fiat → USDC** into the **org payer address** on **Base Sepolia** (hosted checkout; session minted on the **server** in `POST /api/onramp/session`). It is a **funding rail** so the CDP payer can cover **$0.10 USDC per match** via x402—not a replacement for chain configuration elsewhere. |
+| **Coinbase Onramp** | **Fiat → USDC** into the **org payer address** on **Base Sepolia** (hosted checkout; session minted on the **server** in `POST /api/onramp/session`). It is a **funding rail** so the CDP payer can cover **$0.10 USDC per single match** and **$2.00 USDC per batch rank** via x402—not a replacement for chain configuration elsewhere. |
 | **x402 payment** | Paid in **USDC** (EIP-3009 style flow through the x402 facilitator on **Base Sepolia**). This is separate from ETH **gas** for unrelated txs. |
 | **Registry writes (`logMatch`)** | Executed by the **backbone** deployer wallet (see `medullAI/backbone/.env`); that wallet pays **ETH gas** on Base Sepolia today. |
 
@@ -64,7 +66,7 @@ Coinbase documents Paymaster / bundler usage with CDP; you typically use a **pro
 **Target (production):**
 
 1. **Per org (pharma / CRO)**:  **one CDP project** with **per-tenant** metadata and **separate EVM accounts** via `getOrCreateAccount({ name: orgId })` so usage and balances are isolated.
-2. **Billing:** Meter **$0.10 / match** (x402) against that org’s payer USDC balance; optional **prepaid top-up** via Onramp to the org’s payer address.
+2. **Billing:** Meter **$0.10 / single match** and **$2.00 / batch rank** (x402) against that org’s payer USDC balance; optional **prepaid top-up** via Onramp to the org’s payer address.
 3. **Base mainnet:** Point **network** to **Base** (`eip155:8453` / `base` in product configs), use **mainnet USDC** and **mainnet** `PAY_TO` / facilitator settings on the **seller** side, and fund the org payer with mainnet USDC. Keep **testnet** and **mainnet** envs split (e.g. `BACKBONE_URL`, CDP project, payer account names).
 
 ---
@@ -74,7 +76,7 @@ Coinbase documents Paymaster / bundler usage with CDP; you typically use a **pro
 | Decision | Rationale |
 |----------|-------------|
 | **Single org CDP Server Wallet (env)** | One named EVM account (`TrialBridgePayer` via `getOrCreateAccount`) pays x402 for all dashboard users in v1—fast to ship and demo; multi-tenant wallets are a later step. |
-| **x402 buyer on the server** | Uses `x402`’s `createPaymentHeader` with the CDP EVM account (EIP-3009 USDC on Base Sepolia). First `POST /match` may return **402**; the server builds `X-PAYMENT`, retries, then returns the match JSON. |
+| **x402 buyer on the server** | Uses `x402`’s `createPaymentHeader` with the CDP EVM account (EIP-3009 USDC on Base Sepolia). First `POST /match` or `POST /batch_match_parsed` may return **402**; `x402Fetch` builds `X-PAYMENT`, retries, then returns JSON. |
 | **Facilitator alignment** | Backbone (`x402-express`) and the public x402 stack use the same facilitator semantics as the buyer client; network is **`base-sepolia`**. If you change facilitator URLs on the seller, update buyer/seller together. |
 | **Onramp behind optional secret** | `POST /api/onramp/session` can require `MATCH_API_SECRET` (header `x-api-secret`) so session tokens are not minted anonymously—per [Onramp security requirements](https://docs.cdp.coinbase.com/onramp/security-requirements). |
 | **Hard-filter copy in the UI** | Agents run **parse trial + parse patient before** `score_match`. When `hard_filter_passed === false`, the UI describes **skipping eligibility scoring LLM**, not “saved all LLM cost”—parsers may still have run. |
@@ -85,13 +87,17 @@ Coinbase documents Paymaster / bundler usage with CDP; you typically use a **pro
 
 | Area | What it does |
 |------|----------------|
-| **`/match`** | JSON editors for CTRI-shaped trial + AIKosh-shaped patient; calls **`POST /api/match`**; shows animated pipeline phases and results (score, rationale, disqualifiers, BaseScan). |
+| **`/match`** | Single: JSON editors → **`POST /api/match`** ($0.10). Batch: CSV upload → **`POST /api/ingest_csv`** → ranked table via **`POST /api/batch_match`** ($2). Shows pipeline, **`X402PaymentReceipt`** (tx + explorer when settled), rationale toggle. |
 | **`/activity`** | Proxied backbone health (`/api/health`) and optional direct reads to backbone **`/match_count`** and **`/matches/:index`** (set `NEXT_PUBLIC_BACKBONE_URL` if the browser cannot reach `127.0.0.1:4020`). |
 | **`/funding`** | Read-only payer address + Base Sepolia **USDC** contract info; Coinbase Onramp button (session from server); manual transfer / faucet copy for regions where Onramp is limited. |
-| **`lib/cdp-wallet.ts`** | `CdpClient`, `getOrCreateAccount`, **`x402Fetch`** (402 → sign → retry). |
-| **`app/api/match/route.ts`** | Zod validation → `x402Fetch(BACKBONE_URL/match)` → attach sanitized **`payment`** block for the UI. |
+| **`lib/cdp-wallet.ts`** | `CdpClient`, `getOrCreateAccount`, **`x402Fetch`** (402 → sign → retry) for match and batch. |
+| **`lib/x402-settlement.ts`** | Decode **`X-PAYMENT-RESPONSE`** → `txHash`, `explorerUrl` (Base Sepolia / Base). |
+| **`app/api/match/route.ts`** | Zod → `x402Fetch` → backbone `/match` → **`enrichX402Payment`** → UI **`payment`**. |
+| **`app/api/ingest_csv/route.ts`** | Proxies multipart CSV to agents **`/ingest_patients_csv`**. |
+| **`app/api/batch_match/route.ts`** | Normalises raw CTRI corpus JSON to **`TrialCriteria`** → `x402Fetch` → backbone **`/batch_match_parsed`** → pipeline + payment. |
+| **`components/X402PaymentReceipt.tsx`** | Renders settled x402 receipt (tx link) for single and batch results. |
 | **`app/api/onramp/session/route.ts`** | `GET`: payer + USDC contract on Base Sepolia (for funding the **payer**, not `TrialRegistry`). `POST`: JWT to CDP → hosted onramp URL (optional auth). |
-| **`next.config.ts`** | CORS for API routes via `ALLOWED_ORIGIN`; `serverExternalPackages` includes `@coinbase/cdp-sdk`. |
+| **`next.config.ts`** | CORS for `/api/match`, `/api/batch_match`, `/api/ingest_csv`, `/api/onramp/*` via `ALLOWED_ORIGIN`; `serverExternalPackages` includes `@coinbase/cdp-sdk`. |
 
 **Packages:** `@coinbase/cdp-sdk`, `x402`, `viem`, `zod` (see `package.json`).
 
@@ -119,7 +125,7 @@ Copy **`.env.example`** to `.env.local` and fill values.
 ## Local development
 
 1. **Agents** (port `8100`) and **backbone** (port `4020`) must be running with valid `.env` files.
-2. Fund the **CDP payer** with Base Sepolia **USDC** (each match costs **$0.10** via x402).
+2. Fund the **CDP payer** with Base Sepolia **USDC** (**$0.10** per single match, **$2.00** per batch rank via x402).
 3. Start the dashboard:
 
 ```bash

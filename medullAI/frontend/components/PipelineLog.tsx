@@ -6,6 +6,7 @@ const PHASE_META: Record<string, { label: string; icon: string }> = {
   x402_payment:         { label: "x402 Payment",          icon: "💳" },
   agent_run_match:      { label: "Agent: LLM Parse + Score", icon: "🤖" },
   agent_run_match_parsed: { label: "Agent: Score",         icon: "🤖" },
+  agent_batch_match_parsed: { label: "Agent: Batch rank",  icon: "🤖" },
   onchain_logMatch:     { label: "On-chain Log",           icon: "⛓️" },
 };
 

@@ -18,8 +18,15 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Match API: same-origin only in prod; localhost allowed in dev
         source: "/api/match",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: origin },
+          { key: "Access-Control-Allow-Methods", value: "POST, OPTIONS" },
+          { key: "Access-Control-Allow-Headers", value: "Content-Type" },
+        ],
+      },
+      {
+        source: "/api/batch_match",
         headers: [
           { key: "Access-Control-Allow-Origin", value: origin },
           { key: "Access-Control-Allow-Methods", value: "POST, OPTIONS" },

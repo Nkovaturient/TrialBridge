@@ -129,7 +129,7 @@ export default function ActivityPage() {
       >
         <div
           className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-xl font-bold"
-          style={{ background: "rgba(37,99,235,0.1)", color: "var(--accent)" }}
+          style={{ background: "var(--accent-dim)", color: "var(--accent)" }}
         >
           {loading ? "…" : (count ?? 0)}
         </div>

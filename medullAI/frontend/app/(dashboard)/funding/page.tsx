@@ -77,7 +77,7 @@ export default function FundingPage() {
                 style={{
                   background: "var(--surface-2)",
                   color: "var(--text-primary)",
-                  fontFamily: "var(--font-geist-mono)",
+                  fontFamily: "var(--font-mono)",
                   border: "1px solid var(--border)",
                 }}
               >
@@ -141,7 +141,7 @@ export default function FundingPage() {
               onClick={handleOnramp}
               disabled={onrampLoading || loading}
               className="shrink-0 px-4 py-2 rounded-lg text-xs font-semibold transition-all disabled:opacity-50"
-              style={{ background: "var(--accent)", color: "#fff" }}
+              style={{ background: "var(--accent)", color: "var(--background)" }}
             >
               {onrampLoading ? "Opening…" : "Open Onramp ↗"}
             </button>
@@ -171,9 +171,9 @@ export default function FundingPage() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 rounded-lg text-xs"
             style={{
-              background: "rgba(37,99,235,0.1)",
+              background: "var(--accent-dim)",
               color: "var(--accent)",
-              border: "1px solid rgba(37,99,235,0.2)",
+              border: "1px solid var(--accent-border)",
             }}
           >
             Base Sepolia USDC Faucet ↗
