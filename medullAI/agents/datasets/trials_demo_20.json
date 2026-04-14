@@ -1,0 +1,462 @@
+[
+  {
+    "ctri_number": "CTRI/2024/01/01000",
+    "title": "Clinical Trial 1: Immunotherapy in Cancer",
+    "condition": "Breast Cancer",
+    "intervention": "Nivolumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "22.00 Year(s)",
+    "max_age": "74.00 Year(s)",
+    "gender": "Female",
+    "phase": "Phase 1",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/02/02000",
+    "title": "Clinical Trial 2: Immunotherapy in Cancer",
+    "condition": "Non-Small Cell Lung Cancer",
+    "intervention": "Bevacizumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "24.00 Year(s)",
+    "max_age": "79.00 Year(s)",
+    "gender": "Female",
+    "phase": "Phase 3",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/03/03000",
+    "title": "Clinical Trial 3: Immunotherapy in Cancer",
+    "condition": "Colorectal Cancer",
+    "intervention": "Chemotherapy",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "24.00 Year(s)",
+    "max_age": "66.00 Year(s)",
+    "gender": "Male",
+    "phase": "Phase 1",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/04/04000",
+    "title": "Clinical Trial 4: Immunotherapy in Cancer",
+    "condition": "Prostate Cancer",
+    "intervention": "Atezolizumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "18.00 Year(s)",
+    "max_age": "71.00 Year(s)",
+    "gender": "Female",
+    "phase": "Phase 2",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/05/05000",
+    "title": "Clinical Trial 5: Immunotherapy in Cancer",
+    "condition": "Non-Small Cell Lung Cancer",
+    "intervention": "Rituximab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "22.00 Year(s)",
+    "max_age": "70.00 Year(s)",
+    "gender": "Male",
+    "phase": "Phase 1",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/06/06000",
+    "title": "Clinical Trial 6: Immunotherapy in Cancer",
+    "condition": "Non-Small Cell Lung Cancer",
+    "intervention": "Radiation Therapy",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "24.00 Year(s)",
+    "max_age": "74.00 Year(s)",
+    "gender": "Female",
+    "phase": "Phase 2",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/07/07000",
+    "title": "Clinical Trial 7: Immunotherapy in Cancer",
+    "condition": "Oral Squamous Cell Carcinoma",
+    "intervention": "Rituximab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "22.00 Year(s)",
+    "max_age": "75.00 Year(s)",
+    "gender": "Male",
+    "phase": "Phase 1",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/08/08000",
+    "title": "Clinical Trial 8: Immunotherapy in Cancer",
+    "condition": "Prostate Cancer",
+    "intervention": "Bevacizumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "24.00 Year(s)",
+    "max_age": "66.00 Year(s)",
+    "gender": "Both",
+    "phase": "Phase 3",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/09/09000",
+    "title": "Clinical Trial 9: Immunotherapy in Cancer",
+    "condition": "Oral Squamous Cell Carcinoma",
+    "intervention": "Atezolizumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "25.00 Year(s)",
+    "max_age": "71.00 Year(s)",
+    "gender": "Male",
+    "phase": "Phase 4",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/10/10000",
+    "title": "Clinical Trial 10: Immunotherapy in Cancer",
+    "condition": "Oral Squamous Cell Carcinoma",
+    "intervention": "Pembrolizumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "21.00 Year(s)",
+    "max_age": "70.00 Year(s)",
+    "gender": "Male",
+    "phase": "Phase 2",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/11/11000",
+    "title": "Clinical Trial 11: Immunotherapy in Cancer",
+    "condition": "Colorectal Cancer",
+    "intervention": "Nivolumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "18.00 Year(s)",
+    "max_age": "79.00 Year(s)",
+    "gender": "Both",
+    "phase": "Phase 4",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/12/12000",
+    "title": "Clinical Trial 12: Immunotherapy in Cancer",
+    "condition": "Prostate Cancer",
+    "intervention": "Atezolizumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "22.00 Year(s)",
+    "max_age": "69.00 Year(s)",
+    "gender": "Female",
+    "phase": "Phase 3",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/13/13000",
+    "title": "Clinical Trial 13: Immunotherapy in Cancer",
+    "condition": "Prostate Cancer",
+    "intervention": "Atezolizumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "24.00 Year(s)",
+    "max_age": "74.00 Year(s)",
+    "gender": "Male",
+    "phase": "Phase 3",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/14/14000",
+    "title": "Clinical Trial 14: Immunotherapy in Cancer",
+    "condition": "Prostate Cancer",
+    "intervention": "Trastuzumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "18.00 Year(s)",
+    "max_age": "67.00 Year(s)",
+    "gender": "Both",
+    "phase": "Phase 1",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/15/15000",
+    "title": "Clinical Trial 15: Immunotherapy in Cancer",
+    "condition": "Oral Squamous Cell Carcinoma",
+    "intervention": "Bevacizumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "20.00 Year(s)",
+    "max_age": "67.00 Year(s)",
+    "gender": "Male",
+    "phase": "Phase 1",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/16/16000",
+    "title": "Clinical Trial 16: Immunotherapy in Cancer",
+    "condition": "Colorectal Cancer",
+    "intervention": "Pembrolizumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "24.00 Year(s)",
+    "max_age": "67.00 Year(s)",
+    "gender": "Both",
+    "phase": "Phase 2",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/17/17000",
+    "title": "Clinical Trial 17: Immunotherapy in Cancer",
+    "condition": "Colorectal Cancer",
+    "intervention": "Radiation Therapy",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "18.00 Year(s)",
+    "max_age": "68.00 Year(s)",
+    "gender": "Male",
+    "phase": "Phase 4",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/18/18000",
+    "title": "Clinical Trial 18: Immunotherapy in Cancer",
+    "condition": "Breast Cancer",
+    "intervention": "Nivolumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "24.00 Year(s)",
+    "max_age": "78.00 Year(s)",
+    "gender": "Male",
+    "phase": "Phase 4",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/19/19000",
+    "title": "Clinical Trial 19: Immunotherapy in Cancer",
+    "condition": "Breast Cancer",
+    "intervention": "Pembrolizumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "21.00 Year(s)",
+    "max_age": "79.00 Year(s)",
+    "gender": "Both",
+    "phase": "Phase 2",
+    "recruitment_status": "Recruiting"
+  },
+  {
+    "ctri_number": "CTRI/2024/20/20000",
+    "title": "Clinical Trial 20: Immunotherapy in Cancer",
+    "condition": "Colorectal Cancer",
+    "intervention": "Pembrolizumab",
+    "inclusion_criteria": [
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment"
+    ],
+    "exclusion_criteria": [
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
+      "Pregnant or lactating women",
+      "Significant cardiac disease per investigator"
+    ],
+    "min_age": "25.00 Year(s)",
+    "max_age": "69.00 Year(s)",
+    "gender": "Both",
+    "phase": "Phase 4",
+    "recruitment_status": "Recruiting"
+  }
+]

@@ -1,0 +1,101 @@
+patient_id,age_years,gender,state,primary_diagnosis,icd_code,stage,comorbidities,prior_treatment,smoking_history,alcohol_use,ecog_ps,hemoglobin_g_dl,wbc_count_per_ul,platelet_count_per_ul,serum_creatinine_mg_dl,alt_u_l,hba1c_percent,fasting_glucose_mg_dl,egfr_ml_min,data_source
+P00001,62,male,Gujarat,Non-Small Cell Lung Cancer,C34.1,II,,Immunotherapy,true,false,2,13.1,6371,289138,0.78,20,5.3,98,108,demo_synthetic
+P00002,50,male,Kerala,Buccal Mucosa Carcinoma,C06.9,I,Hypertension;Hypothyroidism;Asthma,Chemotherapy,true,false,1,12.4,8788,234025,0.88,13,4.0,97,103,demo_synthetic
+P00003,50,male,Delhi,Prostate Cancer,C61.0,III,HIV,,false,false,1,10.1,4806,269440,0.97,20,6.6,96,92,demo_synthetic
+P00004,68,male,Tamil Nadu,Tongue Cancer,C02.9,II,Hypertension,,false,true,2,14.2,6053,244864,1.04,26,,116,108,demo_synthetic
+P00005,77,female,Maharashtra,Triple-Negative Breast Cancer,C50.9,III,COPD,,false,false,0,13.3,8697,235991,0.98,17,6.0,100,96,demo_synthetic
+P00006,67,male,Uttar Pradesh,Oral Squamous Cell Carcinoma,C06.9,II,Asthma,,true,false,1,10.6,6464,218009,1.07,24,6.9,117,100,demo_synthetic
+P00007,54,male,Odisha,Large Cell Neuroendocrine Carcinoma,C34.2,II,COPD,,false,false,2,11.4,8797,255898,0.84,38,6.3,117,88,demo_synthetic
+P00008,71,female,Odisha,Invasive Ductal Carcinoma,C50.1,II,Hypertension;Hepatitis C,,false,true,0,,8220,385933,0.83,25,4.7,101,98,demo_synthetic
+P00009,49,male,Gujarat,Metastatic Prostate Cancer,C61.9,II,HIV;Hypertension;Hepatitis B,,false,false,2,16.6,,316977,,28,7.4,96,91,demo_synthetic
+P00010,63,male,Uttar Pradesh,Small Cell Lung Cancer,C34.0,I,,,true,false,1,,6956,116020,0.91,31,5.0,107,,demo_synthetic
+P00011,67,female,Haryana,Gingival Carcinoma,C03.9,IV,,,true,true,1,11.2,4080,209600,1.08,32,6.9,115,119,demo_synthetic
+P00012,69,male,Madhya Pradesh,Tongue Cancer,C02.9,III,Hypertension,,false,false,0,9.9,7256,355558,0.99,24,7.4,98,99,demo_synthetic
+P00013,69,female,Uttar Pradesh,Small Cell Lung Cancer,C34.9,II,,Radiation,false,false,1,9.6,7902,186163,0.82,14,8.2,98,121,demo_synthetic
+P00014,68,female,Kerala,Triple-Negative Breast Cancer,C50.9,IV,,,true,false,1,9.7,5722,275688,1.24,46,5.3,98,82,demo_synthetic
+P00015,66,male,Odisha,Prostate Cancer,C61.9,IV,Asthma,,true,false,0,11.6,8287,326657,1.26,27,4.8,114,103,demo_synthetic
+P00016,68,female,Karnataka,Buccal Mucosa Carcinoma,C14.8,III,,,true,true,1,12.2,6022,276776,0.82,14,5.7,83,102,demo_synthetic
+P00017,72,female,Karnataka,Tongue Cancer,C14.8,II,Hepatitis B,,true,true,1,12.6,5885,225659,0.84,38,6.1,98,88,demo_synthetic
+P00018,47,male,Karnataka,Castrate-Resistant Prostate Cancer,C61.0,I,,,false,false,1,10.0,,306965,0.92,,8.6,90,100,demo_synthetic
+P00019,53,male,Telangana,Metastatic Prostate Cancer,C61.9,III,,,false,false,0,10.2,7032,203620,0.96,23,6.3,81,74,demo_synthetic
+P00020,47,male,Odisha,Gingival Carcinoma,C02.9,II,,Chemotherapy;Targeted Therapy,true,false,1,13.8,6801,214137,0.98,23,6.3,111,83,demo_synthetic
+P00021,67,female,Tamil Nadu,Oral Squamous Cell Carcinoma,C06.9,II,,,true,false,1,12.5,8221,218004,0.88,45,5.3,103,90,demo_synthetic
+P00022,54,female,Kerala,Invasive Lobular Carcinoma,C50.3,II,,,true,false,2,11.8,7827,315003,1.04,43,4.8,80,83,demo_synthetic
+P00023,41,female,Uttar Pradesh,Buccal Mucosa Carcinoma,C06.9,III,,,true,false,1,10.6,6240,284268,1.12,9,8.3,91,63,demo_synthetic
+P00024,85,male,Odisha,Castrate-Resistant Prostate Cancer,C61,IV,COPD;Hypothyroidism;HIV,,false,true,1,10.1,6181,217288,0.94,32,6.6,98,113,demo_synthetic
+P00025,50,female,Gujarat,Invasive Lobular Carcinoma,C50.3,IV,Diabetes Mellitus,,false,false,0,9.7,6195,314829,0.99,35,6.0,84,92,demo_synthetic
+P00026,55,female,Odisha,Floor of Mouth Cancer,C02.9,III,COPD;Hypothyroidism,Chemotherapy;Immunotherapy,true,true,0,12.2,8540,258213,1.45,35,6.5,90,85,demo_synthetic
+P00027,71,female,Gujarat,Non-Small Cell Lung Cancer,C34.0,I,,,true,true,2,10.6,6573,273820,0.97,40,5.5,110,94,demo_synthetic
+P00028,64,female,Delhi,ER+/PR+ Breast Cancer,C50.2,III,Asthma;COPD,,false,true,2,11.6,8163,207970,1.3,29,4.4,91,117,demo_synthetic
+P00029,54,female,Gujarat,Gingival Carcinoma,C14.8,IV,,,true,true,0,9.9,6015,133168,0.67,19,5.6,132,74,demo_synthetic
+P00030,62,male,Karnataka,Prostate Cancer,C61.0,III,Asthma,,false,true,2,10.2,5907,301807,0.78,51,5.9,109,71,demo_synthetic
+P00031,62,male,Rajasthan,Squamous Cell Lung Cancer,C34.3,I,,,false,false,1,16.0,6822,321988,0.56,25,6.4,88,120,demo_synthetic
+P00032,59,male,Rajasthan,Adenocarcinoma of Prostate,C61.0,II,,Surgery;Immunotherapy,true,false,1,14.5,4333,206170,0.9,25,6.9,124,89,demo_synthetic
+P00033,64,female,Maharashtra,Invasive Ductal Carcinoma,C50.1,II,,,true,false,1,11.5,7402,306915,0.84,36,5.7,96,92,demo_synthetic
+P00034,71,female,Maharashtra,Invasive Lobular Carcinoma,C50.1,II,,Immunotherapy,true,true,0,11.5,7820,198782,0.78,28,5.4,114,70,demo_synthetic
+P00035,63,female,Madhya Pradesh,Triple-Negative Breast Cancer,C50.2,IV,Hypertension,,true,false,2,10.0,6995,228556,1.16,29,4.9,70,108,demo_synthetic
+P00036,81,male,West Bengal,Tongue Cancer,C04.9,II,,,false,true,1,13.0,8395,241236,0.98,26,5.3,106,84,demo_synthetic
+P00037,67,female,Rajasthan,Invasive Lobular Carcinoma,C50.4,III,HIV;Hepatitis C;Hypertension,,true,true,2,9.0,5143,306304,0.5,37,7.7,106,78,demo_synthetic
+P00038,63,female,Delhi,Floor of Mouth Cancer,C14.8,III,Asthma;HIV,Targeted Therapy;Radiation,true,true,1,10.3,5251,279542,1.06,28,5.8,78,91,demo_synthetic
+P00039,54,female,Delhi,Buccal Mucosa Carcinoma,C02.9,IV,Hepatitis C,,false,true,1,10.3,5498,209107,1.21,42,4.0,82,118,demo_synthetic
+P00040,72,male,Rajasthan,Adenocarcinoma of Lung,C34.3,IV,Ischemic Heart Disease;Asthma;COPD,,true,true,0,11.3,3875,288869,0.78,39,4.6,105,66,demo_synthetic
+P00041,73,female,Telangana,Triple-Negative Breast Cancer,C50.4,II,Diabetes Mellitus;COPD,,false,true,1,11.5,5926,266159,1.14,31,7.8,99,88,demo_synthetic
+P00042,85,female,Rajasthan,ER+/PR+ Breast Cancer,C50.1,II,Hypothyroidism;Hypertension,,true,true,0,11.6,5241,198637,0.97,21,6.5,89,75,demo_synthetic
+P00043,56,male,Tamil Nadu,Adenocarcinoma of Prostate,C61.9,IV,Hypertension,Immunotherapy,false,true,1,13.1,9882,340194,0.92,29,6.7,91,96,demo_synthetic
+P00044,61,female,Uttar Pradesh,Sigmoid Colon Cancer,C18.2,II,,,false,false,0,13.2,4448,215112,1.08,24,5.0,85,64,demo_synthetic
+P00045,64,male,Punjab,Non-Small Cell Lung Cancer,C34.9,II,Hepatitis C;Hepatitis B,,false,false,1,11.2,7251,137831,0.64,30,6.7,87,80,demo_synthetic
+P00046,71,male,Karnataka,Non-Small Cell Lung Cancer,C34.3,II,,,true,true,2,13.3,8922,277453,0.73,19,6.2,114,86,demo_synthetic
+P00047,81,male,Andhra Pradesh,Colorectal Carcinoma,C18.9,I,Diabetes Mellitus,Immunotherapy;Surgery,false,false,1,11.1,6971,190787,1.41,28,4.5,107,112,demo_synthetic
+P00048,47,female,Andhra Pradesh,Gingival Carcinoma,C03.9,IV,Diabetes Mellitus,,true,false,0,10.5,8511,180770,0.75,33,8.3,123,80,demo_synthetic
+P00049,70,female,Kerala,Triple-Negative Breast Cancer,C50.1,I,Hepatitis C,Surgery,false,false,0,12.0,6590,214020,1.12,43,5.4,108,101,demo_synthetic
+P00050,33,female,West Bengal,Triple-Negative Breast Cancer,C50.1,III,,Chemotherapy;Radiation,true,false,2,11.9,5440,290384,1.24,26,7.4,111,90,demo_synthetic
+P00051,38,male,Odisha,Tongue Cancer,C06.9,II,,,false,true,1,13.5,7535,194208,1.13,29,8.7,70,66,demo_synthetic
+P00052,48,female,Odisha,Squamous Cell Lung Cancer,C34.0,III,,Targeted Therapy,true,true,1,12.6,8005,167567,1.34,28,6.6,70,92,demo_synthetic
+P00053,76,female,Tamil Nadu,Tongue Cancer,C06.9,IV,Hepatitis C,Chemotherapy,true,false,0,12.0,6270,243523,0.65,30,5.7,70,80,demo_synthetic
+P00054,44,female,Haryana,Invasive Lobular Carcinoma,C50.3,II,Asthma,,false,false,2,13.1,7714,306402,1.2,26,5.2,97,102,demo_synthetic
+P00055,50,male,West Bengal,Rectal Adenocarcinoma,C18.9,III,,,false,true,0,12.4,9451,233313,0.83,25,,106,,demo_synthetic
+P00056,50,female,Rajasthan,Invasive Ductal Carcinoma,C50.9,III,Hepatitis B,,true,false,2,13.2,9219,296732,0.72,21,5.4,91,63,demo_synthetic
+P00057,45,female,Kerala,Sigmoid Colon Cancer,C20,III,,,false,false,2,10.1,9936,241158,1.01,46,5.0,113,101,demo_synthetic
+P00058,65,male,Madhya Pradesh,Oral Squamous Cell Carcinoma,C03.9,IV,Hypertension,,true,false,1,11.8,8405,241123,0.77,41,8.0,79,80,demo_synthetic
+P00059,54,male,Gujarat,Buccal Mucosa Carcinoma,C04.9,II,,Immunotherapy,true,true,1,11.7,8082,272814,1.01,26,7.2,108,70,demo_synthetic
+P00060,41,female,Karnataka,Gingival Carcinoma,C03.9,II,Chronic Kidney Disease;Hepatitis C,Surgery;Immunotherapy,false,false,0,12.2,5037,298154,0.93,20,7.1,86,88,demo_synthetic
+P00061,74,male,West Bengal,Prostate Cancer,C61,III,COPD;Hepatitis B,Targeted Therapy;Chemotherapy,false,true,0,12.5,7323,311409,1.12,15,5.4,103,,demo_synthetic
+P00062,60,female,Kerala,Ascending Colon Cancer,C18.9,III,Diabetes Mellitus;Asthma,,true,false,0,11.3,7032,,0.87,24,,86,91,demo_synthetic
+P00063,50,female,Kerala,Gingival Carcinoma,C14.8,I,Diabetes Mellitus,Radiation,false,false,0,10.8,5198,320237,0.73,42,6.0,113,98,demo_synthetic
+P00064,66,female,Gujarat,Buccal Mucosa Carcinoma,C03.9,IV,COPD;Chronic Kidney Disease,,false,false,1,12.9,6692,276435,1.19,21,4.3,108,94,demo_synthetic
+P00065,53,female,Odisha,Invasive Ductal Carcinoma,C50.2,IV,Hypertension,Targeted Therapy,true,false,1,13.0,5622,325522,0.5,35,7.6,107,97,demo_synthetic
+P00066,84,female,Haryana,HER2+ Breast Cancer,C50.2,II,Hepatitis B;Hypertension,,true,false,0,13.3,8936,274178,0.64,30,7.3,77,107,demo_synthetic
+P00067,64,female,Haryana,Invasive Ductal Carcinoma,C50.9,III,Hypothyroidism;Asthma;COPD,,false,false,2,9.1,,,0.95,21,6.5,99,111,demo_synthetic
+P00068,47,male,Andhra Pradesh,Colorectal Carcinoma,C19,IV,COPD,,false,false,1,9.4,6649,264455,0.78,18,6.1,112,90,demo_synthetic
+P00069,56,male,Karnataka,Buccal Mucosa Carcinoma,C14.8,IV,,,false,false,2,9.7,6274,349842,0.94,36,5.8,106,,demo_synthetic
+P00070,65,female,Haryana,Buccal Mucosa Carcinoma,C06.9,IV,,,false,false,1,11.8,6951,327567,0.92,23,6.9,124,101,demo_synthetic
+P00071,50,female,Maharashtra,Colon Adenocarcinoma,C18.9,II,Asthma;Diabetes Mellitus,,false,true,0,12.9,6612,270534,1.19,24,4.0,105,85,demo_synthetic
+P00072,76,female,Gujarat,Large Cell Neuroendocrine Carcinoma,C34.0,I,Chronic Kidney Disease,,true,false,1,13.6,7443,277335,1.16,33,6.1,125,109,demo_synthetic
+P00073,33,female,Uttar Pradesh,Gingival Carcinoma,C14.8,I,Hepatitis C;Chronic Kidney Disease;Ischemic Heart Disease,,false,true,0,11.9,4920,162353,0.77,38,5.5,105,78,demo_synthetic
+P00074,52,female,Maharashtra,Invasive Lobular Carcinoma,C50.2,I,Chronic Kidney Disease,,true,false,2,11.7,6525,296120,0.9,35,5.5,81,102,demo_synthetic
+P00075,36,female,Karnataka,Oral Squamous Cell Carcinoma,C04.9,I,,Radiation;Surgery,false,false,1,12.0,7924,107707,1.24,26,6.5,98,113,demo_synthetic
+P00076,52,female,Karnataka,Colon Adenocarcinoma,C18.7,II,,,true,false,1,11.6,5542,217213,1.12,38,5.8,83,92,demo_synthetic
+P00077,60,female,Tamil Nadu,Buccal Mucosa Carcinoma,C02.9,III,Ischemic Heart Disease;HIV;Hepatitis C,,false,true,0,11.6,6677,284132,0.98,34,7.8,103,92,demo_synthetic
+P00078,64,male,Telangana,Colon Adenocarcinoma,C18.7,III,Chronic Kidney Disease,,true,true,1,13.4,10088,222506,1.22,35,5.7,102,72,demo_synthetic
+P00079,60,male,Kerala,Metastatic Prostate Cancer,C61.9,IV,Hypothyroidism,,true,true,2,12.0,7855,327259,0.74,31,5.0,108,65,demo_synthetic
+P00080,79,female,Madhya Pradesh,Invasive Ductal Carcinoma,C50.9,II,,Radiation,true,false,1,12.5,5933,294817,0.71,38,7.4,107,112,demo_synthetic
+P00081,62,male,Gujarat,Adenocarcinoma of Lung,C34.3,II,,,false,false,2,13.7,6158,240519,1.06,30,6.5,143,80,demo_synthetic
+P00082,49,female,Delhi,Invasive Ductal Carcinoma,C50.9,III,HIV,,false,false,2,12.0,6880,340992,1.1,24,,122,54,demo_synthetic
+P00083,52,male,Madhya Pradesh,Buccal Mucosa Carcinoma,C04.9,III,Ischemic Heart Disease,,false,true,0,7.8,7594,239964,1.16,38,6.3,108,88,demo_synthetic
+P00084,36,female,West Bengal,Colon Adenocarcinoma,C20,II,,,false,false,1,11.9,8839,313610,1.02,22,5.5,92,98,demo_synthetic
+P00085,37,male,Odisha,Large Cell Neuroendocrine Carcinoma,C34.2,IV,Hepatitis C;HIV,Surgery,false,false,0,14.5,7433,366489,0.92,35,7.5,105,115,demo_synthetic
+P00086,57,female,Madhya Pradesh,Invasive Lobular Carcinoma,C50.4,III,,,true,false,1,,3444,363755,0.53,34,4.5,102,104,demo_synthetic
+P00087,55,male,Odisha,Oral Squamous Cell Carcinoma,C06.9,IV,Hypertension;Ischemic Heart Disease;Hepatitis B,Chemotherapy;Immunotherapy,true,false,1,12.8,8425,300693,1.04,39,6.6,108,71,demo_synthetic
+P00088,53,female,Delhi,Rectal Adenocarcinoma,C19,III,Hepatitis C;Hypothyroidism;Chronic Kidney Disease,,false,false,1,10.4,9253,211853,0.86,,6.6,92,80,demo_synthetic
+P00089,55,male,Punjab,Prostate Cancer,C61.0,II,Ischemic Heart Disease,Chemotherapy,false,false,1,12.5,7392,226393,1.0,29,4.8,113,67,demo_synthetic
+P00090,57,male,Rajasthan,Tongue Cancer,C02.9,III,Ischemic Heart Disease;Chronic Kidney Disease,Surgery,true,false,1,11.5,7516,305297,1.09,13,6.2,73,114,demo_synthetic
+P00091,76,male,Uttar Pradesh,Adenocarcinoma of Prostate,C61.9,III,Chronic Kidney Disease,,false,true,0,11.8,9549,262905,0.8,34,6.1,99,126,demo_synthetic
+P00092,68,female,Telangana,HER2+ Breast Cancer,C50.1,I,,,false,false,0,12.1,5263,180102,0.85,15,6.3,115,82,demo_synthetic
+P00093,53,male,Rajasthan,Non-Small Cell Lung Cancer,C34.9,IV,HIV,,false,false,0,8.2,5976,335779,0.83,25,6.3,122,104,demo_synthetic
+P00094,85,female,Rajasthan,Adenocarcinoma of Lung,C34.9,I,Hypertension,,true,true,2,14.1,3586,306440,0.93,32,6.3,99,101,demo_synthetic
+P00095,81,female,Rajasthan,Floor of Mouth Cancer,C06.9,III,Hypothyroidism,,false,false,1,10.1,8009,331528,1.07,20,5.3,124,89,demo_synthetic
+P00096,54,female,Haryana,Invasive Lobular Carcinoma,C50.4,II,Hepatitis B;Diabetes Mellitus,Radiation,true,false,2,12.9,8446,288755,0.95,39,5.6,108,93,demo_synthetic
+P00097,71,female,Karnataka,Triple-Negative Breast Cancer,C50.1,III,Hypertension;Diabetes Mellitus,Chemotherapy,false,true,1,10.3,6252,414045,1.02,34,6.4,125,78,demo_synthetic
+P00098,38,male,Punjab,Large Cell Neuroendocrine Carcinoma,C34.3,III,Hypertension,,false,false,0,11.5,5008,220281,0.9,29,7.2,102,90,demo_synthetic
+P00099,64,female,Punjab,Small Cell Lung Cancer,C34.9,II,Hypothyroidism,,false,true,0,14.2,8710,179599,1.27,14,6.0,88,78,demo_synthetic
+P00100,65,female,Rajasthan,Adenocarcinoma of Lung,C34.9,II,,,false,false,1,13.1,5839,262755,1.14,31,6.3,94,99,demo_synthetic
