@@ -19,6 +19,7 @@ const {
   AGENT_API_URL = 'http://localhost:8100',
   PORT = '4020',
 } = process.env;
+const AGENT_TIMEOUT_MS = Number.parseInt(process.env.AGENT_TIMEOUT_MS ?? '180000', 10);
 
 if (!PRIVATE_KEY)           throw new Error('PRIVATE_KEY is required');
 if (!PATIENT_HASH_SECRET)  throw new Error('PATIENT_HASH_SECRET is required');
@@ -51,7 +52,7 @@ async function logMatchOnChain(patientId, trialId, score) {
 
 async function callAgent(path, body) {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 30_000);
+  const timeout = setTimeout(() => controller.abort(), AGENT_TIMEOUT_MS);
   try {
     const res = await fetch(`${AGENT_API_URL}${path}`, {
       method: 'POST',
@@ -75,24 +76,42 @@ app.use(cors({ exposedHeaders: ['X-PAYMENT-RESPONSE'] }));
 app.use(express.json());
 
 // x402 gate — POST /match ($0.10) and POST /batch_match_parsed ($2.00)
-app.use(
-  paymentMiddleware(
-    PAY_TO_ADDRESS,
-    {
-      'POST /match': {
-        price: '$0.10',
-        network: 'base-sepolia',
-        config: { description: 'Patient-trial eligibility match (TrialBridge)' },
-      },
-      'POST /batch_match_parsed': {
-        price: '$2.00',
-        network: 'base-sepolia',
-        config: { description: 'Batch patient-trial ranking (TrialBridge)' },
+// Add a short delay on paid retries to reduce transient facilitator timing races.
+// x402-express settles payment *after* the route handler completes.
+// EIP-3009 validBefore defaults to ~now + maxTimeoutSeconds (default 60s). Single /run_match often
+// exceeds 60s, so settlement failed with invalid_exact_evm_payload_authorization_valid_before while
+// batch_rank usually finishes under 60s. Raise the window so settle() runs before auth expires.
+const rawPaymentMiddleware = paymentMiddleware(
+  PAY_TO_ADDRESS,
+  {
+    'POST /match': {
+      price: '$0.10',
+      network: 'base-sepolia',
+      config: {
+        description: 'Patient-trial eligibility match (TrialBridge)',
+        maxTimeoutSeconds: 3600,
       },
     },
-    { url: 'https://facilitator.xpay.sh' },
-  ),
+    'POST /batch_match_parsed': {
+      price: '$2.00',
+      network: 'base-sepolia',
+      config: {
+        description: 'Batch patient-trial ranking (TrialBridge)',
+        maxTimeoutSeconds: 7200,
+      },
+    },
+  },
+  { url: 'https://facilitator.xpay.sh' },
 );
+
+app.use((req, res, next) => {
+  const hasPaymentHeader = Boolean(req.headers['x-payment'] || req.headers.payment);
+  if (hasPaymentHeader) {
+    setTimeout(() => rawPaymentMiddleware(req, res, next), 1200);
+    return;
+  }
+  rawPaymentMiddleware(req, res, next);
+});
 
 // ---------------------------------------------------------------------------
 // Routes
