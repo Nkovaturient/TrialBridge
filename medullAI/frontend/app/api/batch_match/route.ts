@@ -58,7 +58,33 @@ function asNumber(value: unknown): number | null {
   return typeof value === "number" ? value : null;
 }
 
+function parseAgeMonths(value: unknown): number | null {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return Math.round(value * 12);
+  }
+  if (typeof value !== "string") return null;
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+  const match = trimmed.match(/(\d+(?:\.\d+)?)/);
+  if (!match) return null;
+  const years = Number.parseFloat(match[1]);
+  if (!Number.isFinite(years)) return null;
+  return Math.round(years * 12);
+}
+
+function normalizeGender(value: unknown): "male" | "female" | "both" | undefined {
+  if (typeof value !== "string") return undefined;
+  const g = value.trim().toLowerCase();
+  if (g === "male" || g === "m") return "male";
+  if (g === "female" || g === "f") return "female";
+  if (g === "both" || g === "all" || g === "any") return "both";
+  return undefined;
+}
+
 function normalizeTrialCriteria(input: unknown): unknown {
+  if (Array.isArray(input)) {
+    return normalizeTrialCriteria(input[0] ?? null);
+  }
   if (!input || typeof input !== "object") return input;
   const t = input as Record<string, unknown>;
 
@@ -69,11 +95,15 @@ function normalizeTrialCriteria(input: unknown): unknown {
   const age_min_months =
     asNumber(t.age_min_months) ??
     (asNumber(t.min_age_years) !== null ? asNumber(t.min_age_years)! * 12 : null) ??
-    (asNumber(t.age_min_years) !== null ? asNumber(t.age_min_years)! * 12 : null);
+    (asNumber(t.age_min_years) !== null ? asNumber(t.age_min_years)! * 12 : null) ??
+    parseAgeMonths(t.min_age) ??
+    parseAgeMonths(t.minimum_age);
   const age_max_months =
     asNumber(t.age_max_months) ??
     (asNumber(t.max_age_years) !== null ? asNumber(t.max_age_years)! * 12 : null) ??
-    (asNumber(t.age_max_years) !== null ? asNumber(t.age_max_years)! * 12 : null);
+    (asNumber(t.age_max_years) !== null ? asNumber(t.age_max_years)! * 12 : null) ??
+    parseAgeMonths(t.max_age) ??
+    parseAgeMonths(t.maximum_age);
 
   const intervention =
     typeof t.intervention === "string"
@@ -96,7 +126,7 @@ function normalizeTrialCriteria(input: unknown): unknown {
     exclusion,
     age_min_months,
     age_max_months,
-    gender: t.gender,
+    gender: normalizeGender(t.gender),
     phase: t.phase ?? null,
     status,
   };

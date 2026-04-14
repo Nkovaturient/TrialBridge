@@ -30,6 +30,8 @@ sequenceDiagram
 
 **Batch rank (same dashboard `/match`):** upload a patient CSV → `POST /api/ingest_csv` (agents) → pick trial JSON → `POST /api/batch_match` with **`x402Fetch`** → backbone **`POST /batch_match_parsed`** (**$2.00 USDC** x402; no per-row `logMatch`). The response includes **`pipeline`** timings and **`payment`** (decoded **`X-PAYMENT-RESPONSE`** → `txHash` + BaseScan `explorerUrl` on Base Sepolia / Base via `lib/x402-settlement.ts`).
 
+**Rough wall-clock (typical local demo):** batch rank often lands around **~24s** (~**0.4 min**); single match is slower, often **~72s** (~**1.2 min**)—sit back, one song, you’re back. Big CSV ingest can run minutes; *that’s* when the coffee makes sense.
+
 **Core principle:** CDP credentials and the **payer wallet** live only in **Next.js Route Handlers** (`app/api/*`). The client never receives private keys or API secrets.
 
 ---

@@ -56,8 +56,12 @@ type BatchStep = "idle" | "ingesting" | "matching" | "done" | "error";
 type Tab = "single" | "batch";
 
 const MAPPERS = [
+  { value: "auto", label: "🔍 Auto-Detect EDC Format" },
+  { value: "medidata_rave", label: "Medidata Rave" },
+  { value: "veeva_vault", label: "Veeva Vault CDMS" },
+  { value: "redcap", label: "REDCap" },
   { value: "aikosh_oral_cancer", label: "AIKosh Oral Cancer (ICMR)" },
-  { value: "generic", label: "Generic patient export" },
+  { value: "generic", label: "Generic Patient Export" },
 ];
 
 
@@ -284,7 +288,7 @@ function SingleMatchTab() {
 
 function BatchMatchTab() {
   const [trialJson, setTrialJson] = useState(DEFAULT_TRIAL);
-  const [mapper, setMapper] = useState("aikosh_oral_cancer");
+  const [mapper, setMapper] = useState("auto");
   const [file, setFile] = useState<File | null>(null);
   const [step, setStep] = useState<BatchStep>("idle");
   const [ingestWarnings, setIngestWarnings] = useState<string[]>([]);
@@ -294,6 +298,10 @@ function BatchMatchTab() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [expandedRow, setExpandedRow] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+
+  // Phase II-III: Format detection state
+  const [detectedFormat, setDetectedFormat] = useState<{ format: string; confidence: number } | null>(null);
+  const [dedupInfo, setDedupInfo] = useState<{ input_count: number; duplicates_found: number; unique_count: number } | null>(null);
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const f = e.target.files?.[0] ?? null;
@@ -318,6 +326,8 @@ function BatchMatchTab() {
     setPatientProfiles([]);
     setPatientCount(null);
     setBatchResult(null);
+    setDetectedFormat(null);
+    setDedupInfo(null);
 
     const fd = new FormData();
     fd.append("file", file);
@@ -330,6 +340,16 @@ function BatchMatchTab() {
       setPatientProfiles(data.patients ?? []);
       setPatientCount(data.parsed_rows ?? 0);
       setIngestWarnings(data.warnings ?? []);
+      // Phase II-III: Capture format detection and deduplication info
+      if (data.detected_format) {
+        setDetectedFormat({
+          format: data.detected_format,
+          confidence: data.format_confidence ?? 0,
+        });
+      }
+      if (data.deduplication) {
+        setDedupInfo(data.deduplication);
+      }
       setStep("idle");
     } catch (err) {
       setErrorMsg(err instanceof Error ? err.message : "Ingest failed");
@@ -457,6 +477,27 @@ function BatchMatchTab() {
             </div>
           </div>
 
+          {/* Phase II-III: Format detection + dedup info */}
+          {(detectedFormat || dedupInfo) && (
+            <div
+              className="rounded-xl p-3 text-xs"
+              style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.3)" }}
+            >
+              {detectedFormat && (
+                <p style={{ color: "var(--success)" }}>
+                  ✓ Detected format: {" "}
+                  <span className="font-semibold">{detectedFormat.format}</span>
+                  {" "}(confidence: {(detectedFormat.confidence * 100).toFixed(0)}%)
+                </p>
+              )}
+              {dedupInfo && dedupInfo.duplicates_found > 0 && (
+                <p className="mt-1" style={{ color: "var(--warning)" }}>
+                  ⚠ Deduplication: {dedupInfo.duplicates_found} duplicates merged from {dedupInfo.input_count} records → {dedupInfo.unique_count} unique patients
+                </p>
+              )}
+            </div>
+          )}
+
           {/* Step buttons */}
           <div className="flex gap-3">
             <button
@@ -547,6 +588,7 @@ function BatchMatchTab() {
                   <X402PaymentReceipt payment={batchResult.payment} />
                 </div>
               )}
+              {/* Phase II-III: Confidence distribution stats */}
               <div className="grid grid-cols-3 gap-3 mb-4">
                 {[
                   { label: "Total", value: batchResult.stats.total },
@@ -560,12 +602,80 @@ function BatchMatchTab() {
                 ))}
               </div>
 
+              {/* Phase II-III: Confidence distribution */}
+              {(batchResult.stats.high_confidence_matches !== undefined || batchResult.stats.requiring_review !== undefined) && (
+                <div
+                  className="rounded-xl p-4 mb-4"
+                  style={{ background: "var(--surface-2)", border: "1px solid var(--border)" }}
+                >
+                  <p className="text-xs font-semibold mb-3" style={{ color: "var(--text-secondary)" }}>Confidence Distribution</p>
+                  <div className="space-y-2">
+                    {batchResult.stats.high_confidence_matches !== undefined && (
+                      <div className="flex items-center gap-3">
+                        <span className="text-xs w-12" style={{ color: "var(--text-secondary)" }}>High</span>
+                        <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "var(--surface)" }}>
+                          <div
+                            className="h-full rounded-full"
+                            style={{
+                              width: `${(batchResult.stats.high_confidence_matches / batchResult.stats.total) * 100}%`,
+                              background: "var(--success)",
+                            }}
+                          />
+                        </div>
+                        <span className="text-xs w-16 text-right" style={{ color: "var(--text-primary)" }}>
+                          {batchResult.stats.high_confidence_matches}
+                        </span>
+                      </div>
+                    )}
+                    {batchResult.stats.medium_confidence_matches !== undefined && (
+                      <div className="flex items-center gap-3">
+                        <span className="text-xs w-12" style={{ color: "var(--text-secondary)" }}>Med</span>
+                        <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "var(--surface)" }}>
+                          <div
+                            className="h-full rounded-full"
+                            style={{
+                              width: `${(batchResult.stats.medium_confidence_matches / batchResult.stats.total) * 100}%`,
+                              background: "var(--warning)",
+                            }}
+                          />
+                        </div>
+                        <span className="text-xs w-16 text-right" style={{ color: "var(--text-primary)" }}>
+                          {batchResult.stats.medium_confidence_matches}
+                        </span>
+                      </div>
+                    )}
+                    {batchResult.stats.low_confidence_matches !== undefined && (
+                      <div className="flex items-center gap-3">
+                        <span className="text-xs w-12" style={{ color: "var(--text-secondary)" }}>Low</span>
+                        <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "var(--surface)" }}>
+                          <div
+                            className="h-full rounded-full"
+                            style={{
+                              width: `${(batchResult.stats.low_confidence_matches / batchResult.stats.total) * 100}%`,
+                              background: "var(--orange, #F97316)",
+                            }}
+                          />
+                        </div>
+                        <span className="text-xs w-16 text-right" style={{ color: "var(--text-primary)" }}>
+                          {batchResult.stats.low_confidence_matches}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  {batchResult.stats.requiring_review !== undefined && batchResult.stats.requiring_review > 0 && (
+                    <p className="text-xs mt-3 pt-3" style={{ borderTop: "1px solid var(--border)", color: "var(--danger)" }}>
+                      ⚠ {batchResult.stats.requiring_review} patients require investigator review
+                    </p>
+                  )}
+                </div>
+              )}
+
               {/* Ranked table */}
               <div className="rounded-xl overflow-hidden" style={{ border: "1px solid var(--border)" }}>
                 <table className="w-full text-xs">
                   <thead>
                     <tr style={{ background: "var(--surface-2)", borderBottom: "1px solid var(--border)" }}>
-                      {["#", "Patient ID", "Score", "Eligible", "Filter", ""].map((h) => (
+                      {["#", "Patient ID", "Score", "Conf.", "Review", "Eligible", "Filter", ""].map((h) => (
                         <th key={h} className="text-left px-3 py-2 font-medium" style={{ color: "var(--text-secondary)" }}>{h}</th>
                       ))}
                     </tr>
@@ -589,6 +699,36 @@ function BatchMatchTab() {
                             >
                               {r.score}
                             </span>
+                          </td>
+                          {/* Phase II-III: Confidence Level */}
+                          <td className="px-3 py-2.5">
+                            <span
+                              className="px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase"
+                              style={{
+                                background:
+                                  r.confidence_level === "high"
+                                    ? "rgba(16,185,129,0.15)"
+                                    : r.confidence_level === "medium"
+                                    ? "rgba(245,158,11,0.15)"
+                                    : "rgba(249,115,22,0.15)",
+                                color:
+                                  r.confidence_level === "high"
+                                    ? "var(--success)"
+                                    : r.confidence_level === "medium"
+                                    ? "var(--warning)"
+                                    : "var(--orange, #F97316)",
+                              }}
+                            >
+                              {r.confidence_level?.slice(0, 3) ?? "med"}
+                            </span>
+                          </td>
+                          {/* Phase II-III: Review Required */}
+                          <td className="px-3 py-2.5">
+                            {r.requires_investigator_review ? (
+                              <span style={{ color: "var(--danger)" }} title="Requires investigator review">⚠</span>
+                            ) : (
+                              <span style={{ color: "var(--success)", opacity: 0.5 }}>—</span>
+                            )}
                           </td>
                           <td className="px-3 py-2.5">
                             <span style={{ color: r.eligible ? "var(--success)" : "var(--danger)" }}>

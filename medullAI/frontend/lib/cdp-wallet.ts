@@ -42,41 +42,73 @@ export async function x402Fetch(
   const bodyStr = JSON.stringify(body);
   const headers = { "Content-Type": "application/json" };
 
-  // First attempt — may get 402
-  const r1 = await fetch(url, { method: "POST", headers, body: bodyStr });
-
-  if (r1.status !== 402) {
-    const data = await r1.json();
-    return { data, paymentResponse: r1.headers.get("X-PAYMENT-RESPONSE"), status: r1.status };
+  async function readJsonSafe(res: Response): Promise<unknown> {
+    try {
+      return await res.json();
+    } catch {
+      return { error: `Non-JSON response (HTTP ${res.status})` };
+    }
   }
 
-  // Extract payment requirements from 402 response
-  const paymentInfo = await r1.json();
-  const accepts: unknown[] = paymentInfo.accepts ?? [];
-  if (!accepts.length) {
-    throw new Error("402 response has no payment requirements");
+  async function requestWithX402Payment(): Promise<{
+    data: unknown;
+    paymentResponse: string | null;
+    status: number;
+  }> {
+    // First attempt — may get 402
+    const r1 = await fetch(url, { method: "POST", headers, body: bodyStr });
+
+    if (r1.status !== 402) {
+      const data = await readJsonSafe(r1);
+      return { data, paymentResponse: r1.headers.get("X-PAYMENT-RESPONSE"), status: r1.status };
+    }
+
+    // Extract payment requirements from 402 response
+    const paymentInfo = (await readJsonSafe(r1)) as { accepts?: unknown[] };
+    const accepts: unknown[] = paymentInfo.accepts ?? [];
+    if (!accepts.length) {
+      throw new Error("402 response has no payment requirements");
+    }
+
+    // Select the best requirement (first one, or network-filtered)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const selected = selectPaymentRequirements(accepts as any);
+    if (!selected) throw new Error("No compatible payment requirement found");
+
+    // Build payment header signed by CDP server account
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const paymentHeader = await createPaymentHeader(account as any, 1, selected);
+
+    // Retry with payment header
+    const r2 = await fetch(url, {
+      method: "POST",
+      headers: { ...headers, "X-PAYMENT": paymentHeader },
+      body: bodyStr,
+    });
+
+    const data = await readJsonSafe(r2);
+    return {
+      data,
+      paymentResponse: r2.headers.get("X-PAYMENT-RESPONSE"),
+      status: r2.status,
+    };
   }
 
-  // Select the best requirement (first one, or network-filtered)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const selected = selectPaymentRequirements(accepts as any);
-  if (!selected) throw new Error("No compatible payment requirement found");
+  let result = await requestWithX402Payment();
+  for (let i = 0; i < 2; i += 1) {
+    const maybeError =
+      result.data && typeof result.data === "object"
+        ? (result.data as { error?: unknown }).error
+        : undefined;
+    if (
+      result.status !== 402 ||
+      typeof maybeError !== "string" ||
+      !maybeError.includes("invalid_exact_evm_payload_authorization_valid_before")
+    ) {
+      break;
+    }
+    result = await requestWithX402Payment();
+  }
 
-  // Build payment header signed by CDP server account
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const paymentHeader = await createPaymentHeader(account as any, 1, selected);
-
-  // Retry with payment header
-  const r2 = await fetch(url, {
-    method: "POST",
-    headers: { ...headers, "X-PAYMENT": paymentHeader },
-    body: bodyStr,
-  });
-
-  const data = await r2.json();
-  return {
-    data,
-    paymentResponse: r2.headers.get("X-PAYMENT-RESPONSE"),
-    status: r2.status,
-  };
+  return result;
 }
