@@ -97,7 +97,7 @@ const rawPaymentMiddleware = paymentMiddleware(
       network: 'base-sepolia',
       config: {
         description: 'Batch patient-trial ranking (TrialBridge)',
-        maxTimeoutSeconds: 7200,
+        maxTimeoutSeconds: 8700,
       },
     },
   },
