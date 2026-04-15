@@ -3,6 +3,8 @@
 import type { MatchResult } from "@/lib/types";
 import PipelineLog from "./PipelineLog";
 import X402PaymentReceipt from "./X402PaymentReceipt";
+import CriteriaBreakdown from "./CriteriaBreakdown";
+import DataQualityPanel from "./DataQualityPanel";
 
 interface Props {
   result: MatchResult;
@@ -174,84 +176,18 @@ export default function ResultPanel({ result }: Props) {
       </div>
 
       {/* Phase II-III: Criteria Breakdown */}
-      {(ai_scored_criteria.length > 0 || requires_human_review_criteria.length > 0) && (
-        <div
-          className="rounded-xl p-4"
-          style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
-        >
-          <p className="text-xs font-semibold mb-3" style={{ color: "var(--text-secondary)" }}>
-            Criteria Classification
-          </p>
-
-          {ai_scored_criteria.length > 0 && (
-            <div className="mb-3">
-              <p className="text-xs mb-1.5 flex items-center gap-1.5" style={{ color: "var(--success)" }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                </svg>
-                AI Scored ({ai_scored_criteria.length})
-              </p>
-              <ul className="space-y-0.5 ml-5">
-                {ai_scored_criteria.slice(0, 3).map((criterion, i) => (
-                  <li key={i} className="text-xs" style={{ color: "var(--text-secondary)" }}>
-                    ✓ {criterion}
-                  </li>
-                ))}
-                {ai_scored_criteria.length > 3 && (
-                  <li className="text-xs" style={{ color: "var(--text-secondary)", opacity: 0.7 }}>
-                    ...and {ai_scored_criteria.length - 3} more
-                  </li>
-                )}
-              </ul>
-            </div>
-          )}
-
-          {requires_human_review_criteria.length > 0 && (
-            <div>
-              <p className="text-xs mb-1.5 flex items-center gap-1.5" style={{ color: "var(--danger)" }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2L2 22h20L12 2zm0 3.5L18.5 20h-13L12 5.5zM11 10v6h2v-6h-2z"/>
-                </svg>
-                Requires Human Review ({requires_human_review_criteria.length})
-              </p>
-              <ul className="space-y-0.5 ml-5">
-                {requires_human_review_criteria.map((criterion, i) => (
-                  <li key={i} className="text-xs" style={{ color: "var(--text-secondary)" }}>
-                    ⚠ {criterion}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      )}
+      <CriteriaBreakdown
+        aiScored={ai_scored_criteria}
+        humanReview={requires_human_review_criteria}
+      />
 
       {/* Phase II-III: Data Quality */}
-      {data_quality_warnings.length > 0 && (
-        <div
-          className="rounded-xl p-4"
-          style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
-        >
-          <p className="text-xs font-semibold mb-2 flex items-center gap-1.5" style={{ color: "var(--warning)" }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-            </svg>
-            Data Quality Warnings
-          </p>
-          <ul className="space-y-0.5">
-            {data_quality_warnings.map((warning, i) => (
-              <li key={i} className="text-xs" style={{ color: "var(--text-secondary)" }}>
-                • {warning}
-              </li>
-            ))}
-          </ul>
-          {missing_data_impact > 0 && (
-            <p className="text-xs mt-2 pt-2" style={{ borderTop: "1px solid var(--border)", color: "var(--text-secondary)" }}>
-              Confidence impact: -{(missing_data_impact * 100).toFixed(0)}% due to missing data
-            </p>
-          )}
-        </div>
-      )}
+      <DataQualityPanel
+        completeness={1 - (data_quality_warnings.length > 0 ? 0.15 : 0)}
+        warnings={data_quality_warnings}
+        missingImpact={missing_data_impact}
+        imputedFields={[]}
+      />
 
       {/* On-chain info */}
       {onChain && (

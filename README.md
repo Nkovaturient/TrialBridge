@@ -79,6 +79,16 @@
 
 TrialBridge has been upgraded from a Phase I prototype to a **production-ready clinical decision support system** with CRO/pharma-grade capabilities:
 
+### Realtime logs:
+
+| Step | Wall time | ~Minutes |
+|------|-----------|----------|
+| **Ingest CSV** | 4.2–4.5 min | **~4.3 min** (≈ **4 min 15 s–4 min 30 s**) |
+| **Batch rank** (`/api/batch_match`) | 100 s | **~1.7 min** (≈ **1 min 40 s**) |
+
+**End-to-end** (ingest + batch): about **4.5 + 1.7 ≈ 6.2 min** (~**6 min** total).
+
+
 ### 1. Multi-EDC Format Support
 Auto-detects and parses major EDC exports with **>85% accuracy**:
 - **Medidata Rave** — Veeda, Lambda, Indian CROs
