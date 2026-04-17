@@ -8,6 +8,8 @@
 
 AI agent swarm that matches anonymised patient profiles against Indian clinical trials (CTRI registry) using a LangGraph coordinator, DeepSeek V3, and a FastAPI server.
 
+**Data posture:** Defaults assume **de-identified or synthetic** inputs — no live PII in bundled demos. Align production handling with India’s **DPDP Act 2023**; a short written data-handling summary is available on request.
+
 ---
 
 ## Architecture
@@ -112,16 +114,15 @@ Two-tier classification of eligibility criteria:
 - Data quality warnings included
 - Clear boundary: AI assists, human decides
 
-### 5. Evaluation Framework
+### 5. Evaluation framework
 
-Benchmark metrics on ground truth dataset:
-- Precision, Recall, F1-Score
-- False Positive Rate, False Negative Rate
-- Specificity
+**Initial validation:** `ground_truth.jsonl` holds **10** synthetic expert-style patient–trial pairs; `benchmark.py` replays them through the coordinator for **regression-style** precision/recall/F1/FPR/FNR (LLM-dependent when hard filters pass — not a certification claim). Pilot-scale validation needs site data + MD adjudication.
 
 **Files:**
-- `evaluation/benchmark.py` — Evaluation runner
-- `evaluation/ground_truth.jsonl` — 10 labeled test cases
+- `evaluation/benchmark.py` — harness runner
+- `evaluation/ground_truth.jsonl` — labeled pairs (n=10)
+
+Pilot validation targets and procurement-facing data posture: [TrialBridge/README.md](../../README.md).
 
 ---
 
@@ -164,7 +165,7 @@ schemas.py
 │   └── NEW: confidence_level, risk_factors[]
 │   └── NEW: ai_scored_criteria[], requires_human_review_criteria[]
 │   └── NEW: missing_data_impact, data_quality_warnings[]
-├── EvaluationMetrics       — NEW: benchmark metrics
+├── EvaluationMetrics       — NEW: classification metrics (TP/TN/FP/FN aggregates)
 │   └── precision, recall, f1_score, specificity
 ├── CoordinatorState        — TypedDict flowing through LangGraph
 └── BatchMatchStats         — batch processing statistics
@@ -344,9 +345,9 @@ agents/
 │       ├── medidata_rave.py
 │       ├── veeva_vault.py
 │       └── redcap.py
-├── evaluation/             — NEW: Benchmark framework
-│   ├── benchmark.py        — Evaluation runner
-│   └── ground_truth.jsonl  — Labeled test cases
+├── evaluation/             — NEW: JSONL harness + metrics runner
+│   ├── benchmark.py        — Harness runner
+│   └── ground_truth.jsonl  — n=10 labeled synthetic pairs
 ├── scripts/                — CTRI ingestion scripts
 ├── requirements.txt
 ├── .env.example
@@ -367,7 +368,7 @@ agents/
 | Format Detection Accuracy | >85% | Fuzzy matching on headers |
 | Deduplication Precision | >90% | Fuzzy demographic + lab matching |
 | Demo Dataset | 100 patients × 20 trials | Synthetic, realistic distribution |
-| Evaluation Cases | 10 ground truth | Precision, Recall, FPR, FNR |
+| Labeled harness | 10 synthetic pairs | `benchmark.py` output (LLM-dependent); not a regulatory claim |
 
 ---
 

@@ -60,7 +60,7 @@
 app/(dashboard)/
   match/page.tsx          # Batch confidence charts + auto-detect UI
   quality/page.tsx          # Data quality dashboard
-  evaluation/page.tsx       # Benchmark metrics display
+  evaluation/page.tsx       # Evaluation harness metrics (see agents README)
 
 app/api/evaluation/
   route.ts                  # Proxy to backbone evaluation endpoint
@@ -81,4 +81,4 @@ lib/types.ts                # MatchResult, BatchMatchStats with Phase II-III fie
 2. **Batch Match** → Confidence distribution chart rendered; rows flagged for review marked with ⚠
 3. **Single Match Result** → Confidence badge + risk factors + criteria breakdown + data quality panel
 4. **Quality Dashboard** → Full data quality report with completeness metrics
-5. **Evaluation Dashboard** → Accuracy, precision, recall, FPR/FNR metrics
+5. **Evaluation Dashboard** → Metrics from the in-repo harness (small labeled set; LLM-dependent)

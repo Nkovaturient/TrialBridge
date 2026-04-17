@@ -2,6 +2,8 @@
 
 CRO / pharma-facing dashboard for TrialBridge: submit trial + patient JSON, run batch rank over CSV, and see the **agent pipeline**, **confidence scoring**, and **EDC ingestion** — without exposing secrets in the browser.
 
+**Data posture:** Intended for **de-identified or synthetic** cohorts in pilots. Align production use with India’s **DPDP Act 2023**; a short written data-handling summary is available on request.
+
 ---
 
 ## Architecture workflow
@@ -89,4 +91,5 @@ npm run build
 
 ## Official references
 
+- India DPDP Act 2023 (MeitY): https://meity.gov.in/dpdp
 - [Coinbase CDP docs](https://docs.cdp.coinbase.com/) (x402 / Server Wallet — advanced)

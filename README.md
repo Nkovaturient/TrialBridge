@@ -9,16 +9,17 @@
 - LangGraph agent coordination, multi-EDC auto-detection (Medidata Rave, Veeva Vault, REDCap), and a clear split between **AI-scored** vs **requires human review** criteria.
 - The “Bridge” metaphor: connectivity between patients and trials, between India’s public health data patterns and CTRI listings, and between messy EDC exports and structured eligibility reasoning.
 
+> **Data posture (procurement):** Default flows use **de-identified or synthetic** cohorts only — no live PII in shipped demos. We plan handling under India’s **DPDP Act 2023**; a short written data-handling summary is available on request.
+
 ---
 
 ## 🔴 The Problem
 
-**$50B lost annually** to patient-trial mismatch. Clinical trials fail not because science is bad — but because finding the right patient takes 3+ weeks manually, costs ~$5 per match through CROs, and excludes India’s 1.4B diverse population almost entirely.
+**India (CTRI)** lists a large and growing set of open trials, but eligibility is still mostly **unstructured text** (English/Hindi mixes, site-specific wording). Coordinators still spend disproportionate time reconciling that text against **heterogeneous EDC exports** before a patient ever reaches investigator review.
 
-- **80%** of clinical trials fail to meet enrollment timelines
-- **India** is underrepresented despite being the world’s largest patient pool for diverse genomics
-- **Consent** is a paper-based, opaque process with weak auditability
-- **Coordinators** (trial sponsors, pharma) pay middlemen to recruit — with little transparency
+- **Site reality:** the same patient may appear under different IDs across uploads; labs and comorbidities are often incomplete in exports.
+- **Operational drag:** batch pre-screening does not scale on manual review alone — especially when trials and cohorts are updated frequently.
+- **Trust:** sponsors need an explicit boundary between **AI-assisted ranking** and **clinical judgment**, not a black-box “match score.”
 
 ---
 
@@ -34,7 +35,7 @@
 
 ### CRO pilot brief
 
-> We’ve built a decision-support layer for Indian CTRI trials that reads EDC exports directly (Medidata Rave, Veeva Vault, REDCap) and flags patients for coordinator review. We’ve validated the approach on synthetic data (100 patients × 20 trials) and are seeking one CRO partner with an active trial to benchmark against real protocols. 
+> We’ve built a decision-support layer for Indian CTRI trials that reads EDC exports directly (Medidata Rave, Veeva Vault, REDCap) and flags patients for coordinator review. **Initial validation:** synthetic demo at 100 patients × 20 trials plus **10 expert-style labeled** patient–trial pairs in-repo (regression harness, not a performance certificate). We are seeking one CRO partner with an active trial **plus site adjudication** to expand the labeled set on real protocols.
 - **Time ask:** about 10 minutes to share 50 anonymized patient records — we return a ranked shortlist and an accuracy report within 24 hours.
 
 ---
@@ -48,37 +49,38 @@
 └────────────────────┬────────────────────────────────┘
                      │ HTTP
         ┌────────────▼────────────┐
-        │   Backbone (Express)    │  Proxies to agents; optional on-chain
-        │   backbone/index.js     │  audit log (see X402_PAYMENTS.md)
-        └────┬────────────────┬───┘
-             │ proxy to agents │ logMatch() (single match paths)
-   ┌─────────▼────────────────────────────┐  ┌──────▼──────────────────┐
-   │  Agent Layer (FastAPI :8100)          │  │  TrialRegistry.sol       │
-   │                                       │  │  (optional audit log)    │
-   │  ┌─────────────┐  ┌───────────────┐   │  │  (optional on-chain audit) │
-   │  │LangGraph    │  │Data Quality   │   │  │  See contracts/          │
-   │  │Coordinator  │  │Engine         │   │  └──────────────────────────┘
-   │  │             │  │               │   │
-   │  │•parse_trial │  │•deduplication │   │
-   │  │•parse_patient│ │•missing data  │   │
-   │  │•score_match │  │•auto-detect   │   │
-   │  │•ambiguity   │  │•imputation    │   │
-   │  │  detection  │  │               │   │
-   │  └──────┬──────┘  └───────────────┘   │
-   │         │                             │
-   │  ┌──────▼────────┐  ┌────────────┐  │
-   │  │Multi-EDC Ingest │  │Evaluation  │  │
-   │  │                 │  │Framework   │  │
-   │  │•Medidata Rave   │  │            │  │
-   │  │•Veeva Vault     │  │•Precision  │  │
-   │  │•REDCap          │  │•Recall     │  │
-   │  │•AIKosh          │  │•FPR/FNR    │  │
-   │  │•auto-detect     │  │            │  │
-   │  └─────────────────┘  └────────────┘  │
-   └───────────────────────────────────────┘
+        │   Backbone (Express)  │
+        │   backbone/index.js   │  Proxies to agents; optional HTTP 402 / logging
+        └────────────┬──────────┘
+                     │ proxy to agents
+   ┌─────────────────▼────────────────────────────┐
+   │  Agent Layer (FastAPI :8100)                 │
+   │  ┌─────────────┐  ┌───────────────┐          │
+   │  │LangGraph    │  │Data Quality   │          │
+   │  │Coordinator  │  │Engine         │          │
+   │  │             │  │               │          │
+   │  │•parse_trial │  │•deduplication │          │
+   │  │•parse_patient│ │•missing data  │          │
+   │  │•score_match │  │•auto-detect   │          │
+   │  │•ambiguity   │  │•imputation    │          │
+   │  │  detection  │  │               │          │
+   │  └──────┬──────┘  └───────────────┘          │
+   │         │                                    │
+   │  ┌──────▼────────┐  ┌────────────────────┐   │
+   │  │Multi-EDC Ingest │  │Metrics harness   │   │
+   │  │                 │  │(n=10 JSONL)      │   │
+   │  │•Medidata Rave   │  │                  │   │
+   │  │•Veeva Vault     │  │•Precision/Recall │   │
+   │  │•REDCap          │  │•FPR/FNR          │   │
+   │  │•AIKosh-style    │  │                  │   │
+   │  │•auto-detect     │  │                  │   │
+   │  └─────────────────┘  └────────────────────┘  │
+   └────────────────────────────────────────────────┘
 ```
 
 _Default deployment uses `PAYMENT_MODE=standard` (no pay-per-call gate on the backbone). Optional usage-based billing is documented in [medullAI/backbone/X402_PAYMENTS.md](medullAI/backbone/X402_PAYMENTS.md)._
+
+**Optional on-chain audit (advanced):** `TrialRegistry.sol` in `medullAI/contracts/` can log match hashes from the backbone when explicitly enabled — same doc as optional micropayments; not part of the default CRO pre-screen path.
 
 ---
 
@@ -150,18 +152,18 @@ Match results include:
 
 ### 5. Evaluation framework
 
-Benchmarked metrics on ground truth dataset:
+**Initial validation:** **10** expert-style synthetic patient–trial pairs in `medullAI/agents/evaluation/ground_truth.jsonl`, replayed by `evaluation/benchmark.py` through the coordinator. We compute precision, recall, F1, specificity, FPR, and FNR from those labels (`score_match` uses the configured LLM when hard filters pass). Treat output as **regression checks**, not a regulatory or promotional performance claim — **n is tiny**, labels are synthetic, scores **move with the model**, and we are **seeking pilot site data + adjudication** to grow the labeled set.
 
-- **Precision, Recall, F1-Score** — standard ML metrics
-- **False Positive Rate, False Negative Rate** — clinical safety
-- **Specificity** — true negative accuracy
+**Pilot validation targets** (what we aim to demonstrate with **real** protocols and MD adjudication — not numbers asserted as achieved today):
 
-| Metric | Target | Clinical Meaning |
+| Metric | Target | Clinical meaning |
 |--------|--------|------------------|
-| Precision | >85% | Of flagged eligible, % actually eligible |
+| Precision | >85% | Of AI-flagged eligible, % actually eligible |
 | Recall | >90% | Of truly eligible patients, % identified |
-| FPR | <10% | False alarms — wasted MD review time |
-| FNR | <15% | Missed candidates — revenue/opportunity cost |
+| Specificity | >85% | True negative rate |
+| F1 score | >87% | Harmonic mean of precision and recall |
+| FPR | <15% | Unnecessary MD review burden |
+| FNR | <10% | Missed candidates |
 
 ---
 
@@ -169,13 +171,13 @@ Benchmarked metrics on ground truth dataset:
 
 ### India — AIKosh (https://aikosh.indiaai.gov.in)
 
-| Dataset | Source | Use |
-|---------|--------|-----|
-| Oral Cancer Clinical Dataset | ICMR | Disease profile matching |
-| Aadhaar demographic data | UIDAI via INDIAAI | Age/geography eligibility |
-| National Health datasets (20 sectors) | Various Ministries | Comorbidity features |
+We reference **published ICMR-linked clinical datasets** surfaced on AIKosh (e.g. health sector listings such as [sector 203](https://aikosh.indiaai.gov.in/home/datasets/203)) for **offline pattern work and agent testing** — always under each dataset’s license and registration rules, never as a shortcut around consent or site agreements.
 
-> **AIKosh is a Government of India platform** with 10,234+ datasets across 20 sectors including Healthcare (sector 203). ICMR datasets are real clinical data. Registration is free. Use these for **offline agent training/testing** — not live PII transfers without legal review.
+| Dataset type | Typical use in TrialBridge |
+|--------------|----------------------------|
+| ICMR / oral-cancer–style tabular releases | Training-style distributions, parser smoke tests |
+
+> AIKosh is a government data portal with many catalogued datasets; **we do not claim bulk access to citizen ID systems** and we do not rely on Aadhaar or UIDAI-held data in this product narrative.
 
 ### Trial registry
 
@@ -195,8 +197,8 @@ Layer          | Tool                        | Why
 ─────────────────────────────────────────────────────────────
 Agents         | LangGraph + DeepSeek API    | Multi-agent graph, medical text reasoning
 LLM            | DeepSeek-V3 (API)           | Strong medical text parsing, cost-effective
-Data           | AIKosh (ICMR) + CTRI.nic.in | Indian clinical patterns + public trial listings
-Smart Contract | Solidity + Foundry           | TrialRegistry.sol (optional audit log)
+Data           | AIKosh (ICMR listings) + CTRI | Published health datasets + public trial text
+Smart Contract | Solidity + Foundry (optional) | TrialRegistry.sol — off by default; see X402_PAYMENTS.md
 Frontend       | Next.js                      | Dashboard + API routes
 Backend        | Node.js / Express            | Agent proxy + optional payment middleware
 Storage        | IPFS (via nft.storage)       | Consent document hash (optional)
@@ -225,20 +227,11 @@ Storage        | IPFS (via nft.storage)       | Consent document hash (optional)
 | **Deduplication** | None | Fuzzy matching, 90%+ precision |
 | **Missing data** | Ignored | Imputation + confidence impact |
 | **Ambiguity detection** | None | 20+ subjective patterns flagged |
-| **Evaluation** | None | Precision, Recall, FPR, FNR benchmarked |
+| **Evaluation** | None | Initial labeled harness (n=10 synthetic JSONL); targets in §5 |
 | **Demo scale** | ~10 patients | 100+ patients, 20+ trials |
 | **Confidence scoring** | Simple score | Multi-factor (quality + ambiguity) |
 
-### Evaluation framework (ground truth)
-
-| Metric | Target | Clinical meaning |
-|--------|--------|------------------|
-| Precision | >85% | Of AI-flagged eligible, % actually eligible |
-| Recall | >90% | Of truly eligible patients, % identified |
-| Specificity | >85% | True negative rate |
-| F1 Score | >87% | Harmonic mean of precision + recall |
-| False Positive Rate | <15% | Unnecessary MD review burden |
-| False Negative Rate | <10% | Missed candidates (revenue loss) |
+Ground-truth file and runner: `medullAI/agents/evaluation/ground_truth.jsonl`, `medullAI/agents/evaluation/benchmark.py` (see agents README for env).
 
 ---
 
@@ -278,7 +271,7 @@ TrialBridge/
 │   │   ├── server.py          # FastAPI wrapper
 │   │   ├── quality/           # Data quality module
 │   │   ├── ingest/            # EDC format support
-│   │   ├── evaluation/        # Benchmark framework
+│   │   ├── evaluation/        # JSONL harness + metrics runner
 │   │   └── datasets/          # Demo datasets
 │   ├── backbone/              # Express :4020 — agent proxy (+ optional HTTP 402)
 │   │   └── X402_PAYMENTS.md   # Optional micropayment mode (advanced)
@@ -319,7 +312,7 @@ TrialBridge/
 | "Duplicates across sites" | "Fuzzy deduplication built-in" |
 | "Subjective criteria?" | "Flagged for your MDs; AI scores only objective" |
 | "Liability?" | "Decision support only — human makes the call" |
-| "Prove it works" | "Benchmarked: 90%+ recall, <15% FPR on ground truth" |
+| "Prove it works" | "Initial validation on 10 expert-style synthetic pairs in code; we want your active protocol + de-ID export to grow a pilot-labeled set with site adjudication." |
 
 ---
 

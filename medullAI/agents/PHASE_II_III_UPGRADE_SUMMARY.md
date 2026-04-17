@@ -4,6 +4,8 @@
 
 This document summarizes the comprehensive upgrades made to TrialBridge to address CRO/Pharma requisites and prepare for pilot trials. The system has been transformed from a Phase I prototype to a production-ready clinical decision support tool.
 
+**Data posture:** Pilots assume **de-identified or synthetic** site exports — no live PII in bundled demos. Production handling should follow India’s **DPDP Act 2023**; a short written data-handling summary is available on request. (Buyer-facing copy also lives in [`TrialBridge/README.md`](../../README.md).)
+
 ---
 
 ## Completed Upgrades
@@ -186,13 +188,11 @@ reports, summary = handler.analyze_batch(patients, apply_imputation=True)
 
 ---
 
-### 6. False Positive Rate Evaluation Framework ✅
+### 6. Evaluation harness (small labeled set) ✅
 
 **Solution Implemented:**
-- **Ground truth dataset** (`medullAI/agents/evaluation/ground_truth.jsonl`)
-  - 10 test cases with expert-labeled ground truth
-  - Mix of eligible/ineligible scenarios
-  - Covering 5 cancer types
+- **Labeled JSONL** (`medullAI/agents/evaluation/ground_truth.jsonl`)
+  - **10** synthetic expert-style patient–trial pairs (eligible / ineligible mix, five cancer types)
 
 - **Evaluation metrics** (enhanced `schemas.py`):
   - Precision: TP / (TP + FP)
@@ -202,11 +202,11 @@ reports, summary = handler.analyze_batch(patients, apply_imputation=True)
   - False Positive Rate
   - False Negative Rate
 
-- **Benchmark runner** (`medullAI/agents/evaluation/benchmark.py`):
-  - Runs all ground truth cases
-  - Calculates all metrics
-  - Reports by cancer type
-  - Tracks processing time
+- **Harness runner** (`medullAI/agents/evaluation/benchmark.py`):
+  - Replays all JSONL cases through the coordinator
+  - Aggregates metrics (LLM-dependent when hard filters pass)
+  - Reports by cancer type; tracks processing time  
+  - **Not** a large benchmark suite — see [`TrialBridge/README.md`](../../README.md) evaluation section for pilot targets vs. harness scope.
 
 **Usage:**
 ```python
@@ -280,7 +280,7 @@ medullAI/agents/
 │   └── missing_data.py         # Missing data handler
 ├── evaluation/
 │   ├── __init__.py
-│   ├── benchmark.py            # Evaluation framework
+│   ├── benchmark.py            # Harness runner (n=10 JSONL)
 │   └── ground_truth.jsonl      # Test cases
 ├── datasets/
 │   ├── generate_demo_patients.py
@@ -302,7 +302,7 @@ medullAI/agents/
 | **Missing Data** | Ignored | Imputation, confidence impact |
 | **Ambiguity Detection** | None | Subjective criteria flagged |
 | **Decision Support** | Implicit | Explicit flags, risk factors |
-| **Evaluation** | None | Precision, Recall, FPR, FNR |
+| **Evaluation** | None | JSONL harness (n=10 synthetic); pilot targets in repo root README |
 | **Demo Scale** | ~10 patients | 100+ patients, 20+ trials |
 | **Confidence Scoring** | Simple | Multi-factor (data quality + ambiguity) |
 
@@ -324,10 +324,10 @@ medullAI/agents/
    - "AI scores only objective criteria; flagged items need MD review"
    - "Match results separate AI-scored vs human-review criteria"
 
-4. **"We measure our accuracy"**
-   - "Precision: X%, Recall: Y%, F1: Z% on benchmark dataset"
-   - "False Positive Rate: X%, False Negative Rate: Y%"
-   - "See our evaluation framework and ground truth test cases"
+4. **"How do you measure fit?"**
+   - "We ship a **small labeled harness** (10 synthetic pairs) for regression-style checks — outputs move with the LLM."
+   - "Pilot validation targets (precision/recall/FPR/FNR) are documented for **real** protocols once we have site adjudication."
+   - "See `evaluation/benchmark.py` and the repo root README — we are not presenting n=10 as certified performance."
 
 5. **"This is decision support, not decision-making"**
    - "TrialBridge assists coordinators, never replaces clinical judgment"
@@ -355,7 +355,7 @@ medullAI/agents/
 2. **Confidence scores** (high/medium/low) for each match
 3. **Flagged criteria** requiring physician review
 4. **Data quality report** showing missing/uncertain fields
-5. **Benchmark metrics** for the pilot dataset
+5. **Metrics report** from the harness on your de-ID pilot slice (with caveats documented)
 
 ### What Makes This Low-Risk:
 
@@ -384,7 +384,7 @@ medullAI/agents/
 <!-- ## Files to Show CROs
 
 1. **Demo Dataset**: `medullAI/agents/datasets/patients_demo_100.csv`
-2. **Evaluation Framework**: `medullAI/agents/evaluation/benchmark.py`
+2. **Evaluation harness**: `medullAI/agents/evaluation/benchmark.py`
 3. **Ambiguity Detection**: `medullAI/agents/trial_agent.py` (patterns section)
 4. **Data Quality**: `medullAI/agents/quality/deduplicator.py`
 
@@ -397,7 +397,7 @@ TrialBridge has been upgraded from a Phase I prototype to a **production-ready c
 ✅ **Data Compatible**: Handles major EDC formats
 ✅ **Quality Assured**: Deduplication + missing data handling
 ✅ **Intelligent**: Flags subjective criteria for human review
-✅ **Measurable**: Benchmarked evaluation metrics
+✅ **Measurable**: Runnable evaluation harness + documented pilot targets
 ✅ **Safe**: Explicit decision support framework
 ✅ **Scalable**: 100+ patient demo proven
 
