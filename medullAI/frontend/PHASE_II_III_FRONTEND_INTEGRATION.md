@@ -1,5 +1,7 @@
 # TrialBridge Phase II-III Frontend Integration
 
+> UI defaults assume `PAYMENT_MODE=standard` / `NEXT_PUBLIC_PAYMENT_MODE=standard`. x402 mode adds `X402PaymentReceipt`, Funding nav, and chain widgets — see [medullAI/backbone/X402_PAYMENTS.md](../backbone/X402_PAYMENTS.md).
+
 ## Realtime logs:
 
 | Step | Wall time | ~Minutes |

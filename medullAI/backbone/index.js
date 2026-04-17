@@ -18,13 +18,22 @@ const {
   BASE_SEPOLIA_RPC = 'https://sepolia.base.org',
   AGENT_API_URL = 'http://localhost:8100',
   PORT = '4020',
+  FACILITATOR_URL = 'https://facilitator.xpay.sh',
 } = process.env;
 const AGENT_TIMEOUT_MS = Number.parseInt(process.env.AGENT_TIMEOUT_MS ?? '180000', 10);
 
+const PAYMENT_MODE = (process.env.PAYMENT_MODE ?? 'standard').toLowerCase();
+if (PAYMENT_MODE !== 'standard' && PAYMENT_MODE !== 'x402') {
+  throw new Error('PAYMENT_MODE must be "standard" or "x402"');
+}
+
 if (!PRIVATE_KEY)           throw new Error('PRIVATE_KEY is required');
 if (!PATIENT_HASH_SECRET)  throw new Error('PATIENT_HASH_SECRET is required');
-if (!PAY_TO_ADDRESS)        throw new Error('PAY_TO_ADDRESS is required');
 if (!TRIAL_REGISTRY_CONTRACT_ADDRESS) throw new Error('TRIAL_REGISTRY_CONTRACT_ADDR is required');
+if (PAYMENT_MODE === 'x402') {
+  if (!PAY_TO_ADDRESS) throw new Error('PAY_TO_ADDRESS is required when PAYMENT_MODE=x402');
+  if (!FACILITATOR_URL) throw new Error('FACILITATOR_URL is required when PAYMENT_MODE=x402');
+}
 
 const account = privateKeyToAccount(PRIVATE_KEY);
 const transport = http(BASE_SEPOLIA_RPC);
@@ -75,43 +84,45 @@ const app = express();
 app.use(cors({ exposedHeaders: ['X-PAYMENT-RESPONSE'] }));
 app.use(express.json());
 
-// x402 gate — POST /match ($0.10) and POST /batch_match_parsed ($2.00)
-// Add a short delay on paid retries to reduce transient facilitator timing races.
-// x402-express settles payment *after* the route handler completes.
-// EIP-3009 validBefore defaults to ~now + maxTimeoutSeconds (default 60s). Single /run_match often
-// exceeds 60s, so settlement failed with invalid_exact_evm_payload_authorization_valid_before while
-// batch_rank usually finishes under 60s. Raise the window so settle() runs before auth expires.
-const rawPaymentMiddleware = paymentMiddleware(
-  PAY_TO_ADDRESS,
-  {
-    'POST /match': {
-      price: '$0.10',
-      network: 'base-sepolia',
-      config: {
-        description: 'Patient-trial eligibility match (TrialBridge)',
-        maxTimeoutSeconds: 3600,
+if (PAYMENT_MODE === 'x402') {
+  // x402 gate — POST /match ($0.10) and POST /batch_match_parsed ($2.00)
+  // Add a short delay on paid retries to reduce transient facilitator timing races.
+  // x402-express settles payment *after* the route handler completes.
+  // EIP-3009 validBefore defaults to ~now + maxTimeoutSeconds (default 60s). Single /run_match often
+  // exceeds 60s, so settlement failed with invalid_exact_evm_payload_authorization_valid_before while
+  // batch_rank usually finishes under 60s. Raise the window so settle() runs before auth expires.
+  const rawPaymentMiddleware = paymentMiddleware(
+    PAY_TO_ADDRESS,
+    {
+      'POST /match': {
+        price: '$0.10',
+        network: 'base-sepolia',
+        config: {
+          description: 'Patient-trial eligibility match (TrialBridge)',
+          maxTimeoutSeconds: 3600,
+        },
+      },
+      'POST /batch_match_parsed': {
+        price: '$2.00',
+        network: 'base-sepolia',
+        config: {
+          description: 'Batch patient-trial ranking (TrialBridge)',
+          maxTimeoutSeconds: 8700,
+        },
       },
     },
-    'POST /batch_match_parsed': {
-      price: '$2.00',
-      network: 'base-sepolia',
-      config: {
-        description: 'Batch patient-trial ranking (TrialBridge)',
-        maxTimeoutSeconds: 8700,
-      },
-    },
-  },
-  { url: 'https://facilitator.xpay.sh' },
-);
+    { url: FACILITATOR_URL },
+  );
 
-app.use((req, res, next) => {
-  const hasPaymentHeader = Boolean(req.headers['x-payment'] || req.headers.payment);
-  if (hasPaymentHeader) {
-    setTimeout(() => rawPaymentMiddleware(req, res, next), 1200);
-    return;
-  }
-  rawPaymentMiddleware(req, res, next);
-});
+  app.use((req, res, next) => {
+    const hasPaymentHeader = Boolean(req.headers['x-payment'] || req.headers.payment);
+    if (hasPaymentHeader) {
+      setTimeout(() => rawPaymentMiddleware(req, res, next), 1200);
+      return;
+    }
+    rawPaymentMiddleware(req, res, next);
+  });
+}
 
 // ---------------------------------------------------------------------------
 // Routes
@@ -147,7 +158,7 @@ app.get('/health', async (_req, res) => {
 /**
  * POST /match
  * Full pipeline: raw CTRI trial JSON + raw AIKosh patient JSON → LLM parse → score → on-chain log.
- * Gated by x402 ($0.10 USDC on Base Sepolia).
+ * When PAYMENT_MODE=x402: gated by x402 ($0.10 USDC on Base Sepolia).
  *
  * Body: { raw_trial: object, raw_patient: object }
  * Response: MatchResult + { txHash, blockNumber, explorerUrl }
@@ -171,6 +182,11 @@ app.post('/match', async (req, res) => {
     );
     const chainMs = Date.now() - t1;
 
+    const pipeline = [
+      ...(PAYMENT_MODE === 'x402' ? [{ name: 'x402_payment', status: 'settled' }] : []),
+      { name: 'agent_run_match', ms: agentMs },
+      { name: 'onchain_logMatch', ms: chainMs, txHash },
+    ];
     res.json({
       ...matchResult,
       onChain: {
@@ -178,11 +194,7 @@ app.post('/match', async (req, res) => {
         blockNumber,
         explorerUrl: `https://sepolia.basescan.org/tx/${txHash}`,
       },
-      pipeline: [
-        { name: 'x402_payment', status: 'settled' },
-        { name: 'agent_run_match', ms: agentMs },
-        { name: 'onchain_logMatch', ms: chainMs, txHash },
-      ],
+      pipeline,
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -192,7 +204,7 @@ app.post('/match', async (req, res) => {
 /**
  * POST /batch_match_parsed
  * Batch scoring: TrialCriteria + PatientProfile[] → ranked MatchResult[].
- * Gated by x402 ($2.00 USDC on Base Sepolia). No per-row on-chain logging.
+ * When PAYMENT_MODE=x402: gated by x402 ($2.00 USDC on Base Sepolia). No per-row on-chain logging.
  *
  * Body: { trial_criteria: TrialCriteria, patient_profiles: PatientProfile[], top_k?: number }
  * Response: agent payload { trial_id, results, stats } plus pipeline (payment + agent timing).
@@ -208,12 +220,13 @@ app.post('/batch_match_parsed', async (req, res) => {
     const result = await callAgent('/batch_match_parsed', { trial_criteria, patient_profiles, top_k });
     const agentMs = Date.now() - t0;
 
+    const pipeline = [
+      ...(PAYMENT_MODE === 'x402' ? [{ name: 'x402_payment', status: 'settled' }] : []),
+      { name: 'agent_batch_match_parsed', ms: agentMs },
+    ];
     res.json({
       ...result,
-      pipeline: [
-        { name: 'x402_payment', status: 'settled' },
-        { name: 'agent_batch_match_parsed', ms: agentMs },
-      ],
+      pipeline,
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -312,6 +325,7 @@ app.get('/matches/:index', async (req, res) => {
 
 app.listen(Number(PORT), async () => {
   console.log(`TrialBridge backbone listening on port ${PORT}`);
+  console.log(`  Payment   : ${PAYMENT_MODE}`);
   console.log(`  Agent API : ${AGENT_API_URL}`);
   console.log(`  Registry  : ${TRIAL_REGISTRY_CONTRACT_ADDRESS} (Base Sepolia)`);
   console.log(`  Wallet    : ${account.address}`);

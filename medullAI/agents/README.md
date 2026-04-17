@@ -322,8 +322,6 @@ Expected: parses trial × patient via DeepSeek, prints `MatchResult` with confid
 
 Interactive docs: `http://localhost:8100/docs`
 
-**Pricing note:** x402 is enforced in the **Express backbone** (`POST /match` = $0.10, `POST /batch_match_parsed` = $2.00), not in this FastAPI process.
-
 ---
 
 ## File structure

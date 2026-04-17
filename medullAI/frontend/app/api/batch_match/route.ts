@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { x402Fetch } from "@/lib/cdp-wallet";
 import { enrichX402Payment } from "@/lib/x402-settlement";
+import { isX402 } from "@/lib/payment-mode";
 import type { BatchMatchResponse } from "@/lib/types";
 
 const TrialCriteriaSchema = z.object({
@@ -159,6 +160,19 @@ export async function POST(req: NextRequest) {
   }
 
   try {
+    if (!isX402()) {
+      const res = await fetch(`${BACKBONE_URL}/batch_match_parsed`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(parsed.data),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        return NextResponse.json(data, { status: res.status });
+      }
+      return NextResponse.json(data as BatchMatchResponse);
+    }
+
     const { data, paymentResponse, status } = await x402Fetch(
       `${BACKBONE_URL}/batch_match_parsed`,
       parsed.data,

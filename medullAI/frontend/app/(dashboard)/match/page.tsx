@@ -4,6 +4,7 @@ import { Fragment, useRef, useState } from "react";
 import ResultPanel from "@/components/ResultPanel";
 import PipelineLog from "@/components/PipelineLog";
 import X402PaymentReceipt from "@/components/X402PaymentReceipt";
+import { isX402 } from "@/lib/payment-mode";
 import type { BatchMatchResponse, BatchMatchResult, MatchResult, PipelinePhase } from "@/lib/types";
 
 
@@ -115,7 +116,7 @@ function SingleMatchTab() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   async function handleRun() {
-    setRunState("paying");
+    setRunState(isX402() ? "paying" : "running");
     setVisiblePhases([]);
     setResult(null);
     setErrorMsg(null);
@@ -130,9 +131,11 @@ function SingleMatchTab() {
       return;
     }
 
-    await delay(300);
+    if (isX402()) {
+      await delay(300);
+      setVisiblePhases([{ name: "x402_payment", status: "settled" }]);
+    }
     setRunState("running");
-    setVisiblePhases([{ name: "x402_payment", status: "settled" }]);
 
     try {
       const resp = await fetch("/api/match", {
@@ -216,10 +219,12 @@ function SingleMatchTab() {
             {isRunning ? (
               <span className="flex items-center justify-center gap-2">
                 <span className="w-3 h-3 rounded-full border-2 border-white border-t-transparent animate-spin" />
-                {runState === "paying" ? "Initiating x402 payment…" : "Agents running…"}
+                {runState === "paying"
+                  ? "Initiating x402 payment…"
+                  : "Agents running…"}
               </span>
             ) : (
-              "Run Match — $0.10 USDC"
+              isX402() ? "Run Match — $0.10 USDC" : "Run Match"
             )}
           </button>
         </div>
@@ -234,7 +239,9 @@ function SingleMatchTab() {
                   ? "Paying $0.10 USDC via x402…"
                   : runState === "running"
                     ? "Agents parsing & scoring…"
-                    : "Writing to Base Sepolia…"
+                    : isX402()
+                      ? "Writing to Base Sepolia…"
+                      : "Finalizing…"
               }
             />
           )}
@@ -263,18 +270,29 @@ function SingleMatchTab() {
                 </svg>
               </div>
               <p className="text-sm font-medium" style={{ color: "var(--text-secondary)" }}>Results will appear here</p>
-              <p className="text-xs mt-1" style={{ color: "var(--text-secondary)" }}>Pipeline logs, scores, and on-chain tx will be shown live</p>
+              <p className="text-xs mt-1" style={{ color: "var(--text-secondary)" }}>
+                {isX402()
+                  ? "Pipeline logs, scores, and on-chain tx will be shown live"
+                  : "Pipeline timings, scores, and rationale will appear here"}
+              </p>
             </div>
           )}
         </div>
       </div>
 
       <div className="mt-8 grid grid-cols-3 gap-4 text-xs" style={{ color: "var(--text-secondary)" }}>
-        {[
-          { label: "Payment", value: "$0.10 USDC via x402" },
-          { label: "Agent layer", value: "LangGraph + DeepSeek" },
-          { label: "Audit log", value: "TrialRegistry on Base Sepolia" },
-        ].map((item) => (
+        {(isX402()
+          ? [
+              { label: "Payment", value: "$0.10 USDC via x402" },
+              { label: "Agent layer", value: "LangGraph + DeepSeek" },
+              { label: "Audit log", value: "TrialRegistry on Base Sepolia" },
+            ]
+          : [
+              { label: "Mode", value: "Decision-support pre-screening" },
+              { label: "Agent layer", value: "LangGraph + DeepSeek" },
+              { label: "Data", value: "CTRI + EDC exports (auto-detect)" },
+            ]
+        ).map((item) => (
           <div key={item.label} className="rounded-xl px-4 py-3" style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
             <p style={{ color: "var(--text-secondary)" }}>{item.label}</p>
             <p className="font-medium mt-0.5" style={{ color: "var(--text-primary)" }}>{item.value}</p>
@@ -538,7 +556,7 @@ function BatchMatchTab() {
                   Scoring…
                 </span>
               ) : (
-                "2. Run Batch Rank — $2.00 USDC"
+                isX402() ? "2. Run Batch Rank — $2.00 USDC" : "2. Run Batch Rank"
               )}
             </button>
           </div>
@@ -583,7 +601,7 @@ function BatchMatchTab() {
                   <PipelineLog phases={batchResult.pipeline} running={false} />
                 </div>
               )}
-              {batchResult.payment?.settled && (
+              {isX402() && batchResult.payment?.settled && (
                 <div className="mb-4">
                   <X402PaymentReceipt payment={batchResult.payment} />
                 </div>

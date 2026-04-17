@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { isX402 } from "@/lib/payment-mode";
 
 const NAV = [
   {
@@ -14,16 +15,16 @@ const NAV = [
       </svg>
     ),
   },
-  {
-    href: "/quality",
-    label: "Quality",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M8 1L2 4v4c0 4.42 3.58 8 8 8s8-3.58 8-8V4l-6-3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-  },
+  // {
+  //   href: "/quality",
+  //   label: "Quality",
+  //   icon: (
+  //     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+  //       <path d="M8 1L2 4v4c0 4.42 3.58 8 8 8s8-3.58 8-8V4l-6-3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+  //       <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  //     </svg>
+  //   ),
+  // },
   {
     href: "/evaluation",
     label: "Evaluation",
@@ -57,6 +58,7 @@ const NAV = [
 
 export default function Sidebar() {
   const path = usePathname();
+  const navItems = isX402() ? NAV : NAV.filter((item) => item.href !== "/funding");
 
   return (
     <aside className="w-16 sm:w-56 shrink-0 flex flex-col border-r" style={{ background: "var(--surface)", borderColor: "var(--border)" }}>
@@ -80,19 +82,19 @@ export default function Sidebar() {
         </p>
       </div>
 
-      {/* Network badge */}
+      {/* Network / status badge */}
       <div className="px-3 sm:px-5 py-3 border-b" style={{ borderColor: "var(--border)" }}>
         <div className="flex items-center justify-center sm:justify-start gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full pulse-dot" style={{ background: "var(--success)" }} />
           <span className="hidden sm:inline text-xs" style={{ color: "var(--text-secondary)" }}>
-            Base Sepolia · x402
+            {isX402() ? "Base Sepolia · x402" : "Decision-support mode"}
           </span>
         </div>
       </div>
 
       {/* Nav */}
       <nav className="flex-1 px-3 py-4 space-y-0.5">
-        {NAV.map((item) => {
+        {navItems.map((item) => {
           const active = path === item.href || path.startsWith(item.href + "/");
           return (
             <Link
@@ -114,13 +116,21 @@ export default function Sidebar() {
 
       {/* Footer */}
       <div className="hidden sm:block px-5 py-4 border-t" style={{ borderColor: "var(--border)" }}>
-        <p className="text-xs leading-snug" style={{ color: "var(--text-secondary)" }}>
-          Payments via{" "}
-          <span style={{ color: "var(--accent)" }}>x402</span> + CDP Server Wallet
-        </p>
-        <p className="text-xs mt-0.5" style={{ color: "var(--text-secondary)" }}>
-          Logs on Base Sepolia
-        </p>
+        {isX402() ? (
+          <>
+            <p className="text-xs leading-snug" style={{ color: "var(--text-secondary)" }}>
+              Payments via{" "}
+              <span style={{ color: "var(--accent)" }}>x402</span> + CDP Server Wallet
+            </p>
+            <p className="text-xs mt-0.5" style={{ color: "var(--text-secondary)" }}>
+              Logs on Base Sepolia
+            </p>
+          </>
+        ) : (
+          <p className="text-xs leading-snug" style={{ color: "var(--text-secondary)" }}>
+            Decision-support for clinical trial pre-screening
+          </p>
+        )}
       </div>
     </aside>
   );

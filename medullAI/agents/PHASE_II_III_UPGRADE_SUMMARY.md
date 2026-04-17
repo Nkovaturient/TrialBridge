@@ -402,3 +402,5 @@ TrialBridge has been upgraded from a Phase I prototype to a **production-ready c
 ✅ **Scalable**: 100+ patient demo proven
 
 **Ready for CRO pilot trials.**
+
+> Payment integration is mode-gated; see [medullAI/backbone/X402_PAYMENTS.md](../backbone/X402_PAYMENTS.md).

@@ -1,6 +1,7 @@
 "use client";
 
 import type { PipelinePhase } from "@/lib/types";
+import { isX402 } from "@/lib/payment-mode";
 
 const PHASE_META: Record<string, { label: string; icon: string }> = {
   x402_payment:         { label: "x402 Payment",          icon: "💳" },
@@ -46,17 +47,22 @@ export default function PipelineLog({ phases, running, runningLabel }: Props) {
                   settled
                 </span>
               )}
-              {phase.txHash && (
-                <a
-                  href={`https://sepolia.basescan.org/tx/${phase.txHash}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ml-2 underline"
-                  style={{ color: "var(--accent)" }}
-                >
-                  {phase.txHash.slice(0, 10)}…
-                </a>
-              )}
+              {phase.txHash &&
+                (isX402() ? (
+                  <a
+                    href={`https://sepolia.basescan.org/tx/${phase.txHash}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-2 underline"
+                    style={{ color: "var(--accent)" }}
+                  >
+                    {phase.txHash.slice(0, 10)}…
+                  </a>
+                ) : (
+                  <span className="ml-2" style={{ color: "var(--text-secondary)" }}>
+                    recorded
+                  </span>
+                ))}
             </div>
           </div>
         );

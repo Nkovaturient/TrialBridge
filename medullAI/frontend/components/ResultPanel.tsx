@@ -1,6 +1,7 @@
 "use client";
 
 import type { MatchResult } from "@/lib/types";
+import { isX402 } from "@/lib/payment-mode";
 import PipelineLog from "./PipelineLog";
 import X402PaymentReceipt from "./X402PaymentReceipt";
 import CriteriaBreakdown from "./CriteriaBreakdown";
@@ -189,8 +190,8 @@ export default function ResultPanel({ result }: Props) {
         imputedFields={[]}
       />
 
-      {/* On-chain info */}
-      {onChain && (
+      {/* On-chain info (x402 mode only — CRO standard mode hides chain surface) */}
+      {onChain && isX402() && (
         <div
           className="rounded-xl p-4 space-y-2"
           style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
@@ -226,7 +227,7 @@ export default function ResultPanel({ result }: Props) {
         </div>
       )}
 
-      {payment?.settled && <X402PaymentReceipt payment={payment} />}
+      {isX402() && payment?.settled && <X402PaymentReceipt payment={payment} />}
 
       {/* Pipeline trace */}
       {pipeline?.length > 0 && (
@@ -247,10 +248,12 @@ export default function ResultPanel({ result }: Props) {
         This is an AI-assisted recommendation, not a clinical determination. Final eligibility
         assessment requires qualified clinical judgment. Subjective criteria flagged above should be
         reviewed by a physician before any enrollment decision.
-        <div className="mt-2 pt-2" style={{ borderTop: "1px solid var(--border)" }}>
-          <span className="font-medium">Audit note:</span> SHA-256 patient hash and eligibility score are immutably
-          logged via <code style={{ color: "var(--accent)" }}>TrialRegistry.logMatch()</code> on Base Sepolia.
-        </div>
+        {isX402() && (
+          <div className="mt-2 pt-2" style={{ borderTop: "1px solid var(--border)" }}>
+            <span className="font-medium">Audit note:</span> SHA-256 patient hash and eligibility score are immutably
+            logged via <code style={{ color: "var(--accent)" }}>TrialRegistry.logMatch()</code> on Base Sepolia.
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { notFound } from "next/navigation";
+import { isX402 } from "@/lib/payment-mode";
 
 interface PayerInfo {
   payerAddress: string;
@@ -24,6 +26,8 @@ export default function FundingPage() {
       .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
+
+  if (!isX402()) notFound();
 
   async function handleOnramp() {
     setOnrampLoading(true);

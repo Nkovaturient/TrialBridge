@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { x402Fetch } from "@/lib/cdp-wallet";
 import { enrichX402Payment } from "@/lib/x402-settlement";
+import { isX402 } from "@/lib/payment-mode";
 import type { MatchResult } from "@/lib/types";
 
 const MatchRequestSchema = z.object({
@@ -28,6 +29,19 @@ export async function POST(req: NextRequest) {
   }
 
   try {
+    if (!isX402()) {
+      const res = await fetch(`${BACKBONE_URL}/match`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(parsed.data),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        return NextResponse.json(data, { status: res.status });
+      }
+      return NextResponse.json(data as MatchResult);
+    }
+
     const { data, paymentResponse, status } = await x402Fetch(
       `${BACKBONE_URL}/match`,
       parsed.data,
@@ -39,7 +53,6 @@ export async function POST(req: NextRequest) {
 
     const result = data as MatchResult;
 
-    // Augment with sanitized payment metadata for the UI
     const x402 = enrichX402Payment(paymentResponse);
     const { settlementNetwork, ...x402Rest } = x402;
     const response = {
