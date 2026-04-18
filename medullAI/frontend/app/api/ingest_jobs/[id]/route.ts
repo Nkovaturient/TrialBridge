@@ -4,7 +4,7 @@ const AGENT_API_URL = process.env.AGENT_API_URL ?? "http://localhost:8100";
 
 export async function GET(
   _req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
   try {

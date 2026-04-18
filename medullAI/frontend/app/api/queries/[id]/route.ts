@@ -4,7 +4,7 @@ const AGENT_API_URL = process.env.AGENT_API_URL ?? "http://localhost:8100";
 
 export async function GET(
   _req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
   const res = await fetch(`${AGENT_API_URL}/queries/${encodeURIComponent(id)}`, {
@@ -15,7 +15,7 @@ export async function GET(
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
   const url = new URL(req.url);
