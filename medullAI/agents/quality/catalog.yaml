@@ -1,0 +1,209 @@
+# TrialBridge field catalog — CDASH-like canonical variable definitions
+# Version 1.0
+#
+# Each entry:
+#   field_id:    Internal canonical key (used by mappers, DQ checks, lineage traces)
+#   cdash:       CDASH domain + variable name where applicable (CDASHIG v2.4)
+#   sdtm:        SDTM domain + variable (informational, not enforced)
+#   label:       Human-readable label shown in Quality UI
+#   type:        string | number | boolean | list | dict
+#   critical:    True = missing value degrades match eligibility score
+#   imputable:   True = rule-based or group-mean imputation is valid
+#   required:    True = absence = hard error for any upload
+#   source:      PatientProfile field (or lab_values sub-key)
+#   note:        Optional context
+
+version: "1.0"
+
+fields:
+  # ── Identifiers ─────────────────────────────────────────────────────────
+  - field_id: patient_id
+    cdash: DM.USUBJID
+    sdtm: DM.USUBJID
+    label: Subject ID
+    type: string
+    critical: true
+    imputable: false
+    required: true
+    source: patient_id
+
+  # ── Demographics ─────────────────────────────────────────────────────────
+  - field_id: age_months
+    cdash: DM.AGE
+    sdtm: DM.AGE
+    label: Age (months)
+    type: number
+    critical: true
+    imputable: false
+    required: true
+    source: age_months
+
+  - field_id: gender
+    cdash: DM.SEX
+    sdtm: DM.SEX
+    label: Biological sex
+    type: string
+    critical: true
+    imputable: false
+    required: true
+    source: gender
+
+  - field_id: location_state
+    cdash: DM.COUNTRY
+    sdtm: DM.COUNTRY
+    label: State / region
+    type: string
+    critical: false
+    imputable: false
+    required: false
+    source: location_state
+
+  # ── Diagnosis ─────────────────────────────────────────────────────────────
+  - field_id: conditions
+    cdash: DX.DXTERM
+    sdtm: DX.DXDECOD
+    label: Primary conditions
+    type: list
+    critical: true
+    imputable: false
+    required: true
+    source: conditions
+
+  - field_id: stage
+    cdash: TU.TUTSTDTL
+    sdtm: TU.TUORRES
+    label: Disease stage
+    type: string
+    critical: false
+    imputable: false
+    required: false
+    source: stage
+
+  - field_id: comorbidities
+    cdash: CM.CMTERM
+    sdtm: CM.CMDECOD
+    label: Comorbidities
+    type: list
+    critical: false
+    imputable: true
+    required: false
+    source: comorbidities
+
+  - field_id: prior_treatment
+    cdash: CM.CMTRT
+    sdtm: CM.CMTRT
+    label: Prior treatment
+    type: list
+    critical: false
+    imputable: true
+    required: false
+    source: prior_treatment
+
+  - field_id: smoking_history
+    cdash: SU.SUOCCUR
+    sdtm: SU.SUDOSFRQ
+    label: Smoking history
+    type: boolean
+    critical: false
+    imputable: true
+    required: false
+    source: smoking_history
+
+  # ── Lab values ────────────────────────────────────────────────────────────
+  - field_id: lab.hemoglobin
+    cdash: LB.LBORRES
+    sdtm: LB.LBORRES
+    label: Hemoglobin (g/dL)
+    type: number
+    critical: true
+    imputable: true
+    required: false
+    source: lab_values.hemoglobin_g_dl
+    aliases: [lab_values.hb, lab_values.hemoglobin]
+
+  - field_id: lab.wbc_count
+    cdash: LB.LBORRES
+    sdtm: LB.LBORRES
+    label: WBC count (/µL)
+    type: number
+    critical: true
+    imputable: true
+    required: false
+    source: lab_values.wbc_count_per_ul
+    aliases: [lab_values.wbc_count, lab_values.wbc]
+
+  - field_id: lab.platelet_count
+    cdash: LB.LBORRES
+    sdtm: LB.LBORRES
+    label: Platelet count (/µL)
+    type: number
+    critical: true
+    imputable: true
+    required: false
+    source: lab_values.platelet_count_per_ul
+    aliases: [lab_values.platelet_count, lab_values.platelets]
+
+  - field_id: lab.serum_creatinine
+    cdash: LB.LBORRES
+    sdtm: LB.LBORRES
+    label: Serum creatinine (mg/dL)
+    type: number
+    critical: true
+    imputable: true
+    required: false
+    source: lab_values.serum_creatinine_mg_dl
+    aliases: [lab_values.creatinine, lab_values.serum_creatinine]
+
+  - field_id: lab.alt
+    cdash: LB.LBORRES
+    sdtm: LB.LBORRES
+    label: ALT (U/L)
+    type: number
+    critical: true
+    imputable: true
+    required: false
+    source: lab_values.alt_u_l
+    aliases: [lab_values.alt]
+
+  - field_id: lab.hba1c
+    cdash: LB.LBORRES
+    sdtm: LB.LBORRES
+    label: HbA1c (%)
+    type: number
+    critical: false
+    imputable: true
+    required: false
+    source: lab_values.hba1c_percent
+    aliases: [lab_values.hba1c]
+
+  - field_id: lab.fasting_glucose
+    cdash: LB.LBORRES
+    sdtm: LB.LBORRES
+    label: Fasting glucose (mg/dL)
+    type: number
+    critical: false
+    imputable: true
+    required: false
+    source: lab_values.fasting_glucose_mg_dl
+    aliases: [lab_values.fasting_glucose]
+
+  - field_id: lab.egfr
+    cdash: LB.LBORRES
+    sdtm: LB.LBORRES
+    label: eGFR (mL/min)
+    type: number
+    critical: true
+    imputable: true
+    required: false
+    source: lab_values.egfr_ml_min
+    aliases: [lab_values.egfr]
+
+  - field_id: ecog_ps
+    cdash: PE.PEORRES
+    sdtm: PE.PEORRES
+    label: ECOG Performance Status
+    type: number
+    critical: true
+    imputable: true
+    required: false
+    source: ecog_ps

@@ -80,6 +80,27 @@ def _extract_numeric(value: Any) -> float | None:
 # EDC-aware mapper with auto-detection
 # ---------------------------------------------------------------------------
 
+def _extract_visit(row: dict[str, Any]) -> dict[str, Any] | None:
+    """Extract visit/form context from a row if EDC columns are present."""
+    _VISIT_CANDIDATES: dict[str, list[str]] = {
+        "visit_id":        ["visit", "visitnam", "visit_name", "visitid", "visit_id"],
+        "visit_num":       ["visitnum", "visit_num", "visitn"],
+        "form_id":         ["form", "formid", "form_id", "domain"],
+        "form_repeat_key": ["formrepeatkey", "form_repeat_key", "itemgroupdataseq"],
+        "collected_date":  ["datecollected", "collected_date", "visitdat", "date_collected"],
+    }
+    visit_data: dict[str, Any] = {}
+    norm_map = {k.lower().replace(" ", "_"): k for k in row}
+    for vkey, candidates in _VISIT_CANDIDATES.items():
+        for col in candidates:
+            if col in norm_map:
+                val = row[norm_map[col]]
+                if val is not None:
+                    visit_data[vkey] = val
+                    break
+    return visit_data if visit_data else None
+
+
 def _apply_edc_mapper(row: dict[str, Any], format_name: str | None = None) -> dict[str, Any]:
     """
     Apply EDC-aware mapping to a row.
@@ -165,6 +186,10 @@ def _apply_edc_mapper(row: dict[str, Any], format_name: str | None = None) -> di
     out.setdefault("prior_treatment", [])
     out.setdefault("lab_values", {})
 
+    visit = _extract_visit(row)
+    if visit:
+        out["_visit"] = visit
+
     # Add data quality flags
     out["_data_quality"] = {
         "mapped_fields": len([k for k in out.keys() if not k.startswith("_")]),
@@ -244,6 +269,10 @@ def _apply_aikosh(row: dict[str, Any]) -> dict[str, Any]:
     out.setdefault("comorbidities", [])
     out.setdefault("prior_treatment", [])
 
+    visit = _extract_visit(row)
+    if visit:
+        out["_visit"] = visit
+
     # Add data quality flags
     out["_data_quality"] = {
         "mapped_fields": len([k for k in out.keys() if not k.startswith("_")]),
@@ -283,6 +312,10 @@ def _apply_generic(row: dict[str, Any]) -> dict[str, Any]:
     out.setdefault("comorbidities", [])
     out.setdefault("prior_treatment", [])
     out["lab_values"] = {}
+
+    visit = _extract_visit(row)
+    if visit:
+        out["_visit"] = visit
 
     # Add data quality flags
     out["_data_quality"] = {

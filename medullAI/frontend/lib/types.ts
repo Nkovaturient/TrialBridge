@@ -70,21 +70,50 @@ export interface BatchMatchResult extends Omit<MatchResult, "onChain" | "pipelin
   pipeline?: PipelinePhase[];
 }
 
+export interface IngestDeduplication {
+  input_count: number;
+  duplicates_found: number;
+  unique_count: number;
+  /** Pairs flagged for review: [patient_id_1, patient_id_2, confidence] */
+  candidates?: Array<{ patient_id_1: string; patient_id_2: string; confidence: number; recommendation: string }>;
+}
+
+export interface IngestDataQuality {
+  average_completeness: number;
+  patients_with_missing_data: number;
+  missing_by_field: Record<string, number>;
+  imputation_applied: number;
+  critical_missing_count: number;
+}
+
+export interface ImputationTrace {
+  field_id: string;
+  method: "rule" | "llm" | "manual" | "group_mean";
+  rule_id?: string;
+  source_value?: string;
+  confidence?: number;
+  model_version?: string;
+}
+
+export interface VisitRecord {
+  visit_id?: string;
+  visit_num?: number;
+  form_id?: string;
+  form_repeat_key?: string;
+  collected_date?: string;
+}
+
 export interface IngestResponse {
   patients: unknown[];
+  total_rows: number;
   parsed_rows: number;
+  mapper_used: string;
+  /** Set by the proxy when a fallback mapper was used */
+  requested_mapper?: string;
   detected_format?: string;
   format_confidence?: number;
-  deduplication?: {
-    input_count: number;
-    duplicates_found: number;
-    unique_count: number;
-  };
-  data_quality?: {
-    completeness: number;
-    imputed_fields: string[];
-    warnings: string[];
-  };
+  deduplication?: IngestDeduplication;
+  data_quality?: IngestDataQuality;
   warnings: string[];
 }
 

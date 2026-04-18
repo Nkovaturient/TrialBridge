@@ -58,6 +58,25 @@ class TrialCriteria(BaseModel):
     )
 
 
+class VisitRecord(BaseModel):
+    """Minimal visit/form context captured from EDC export when available."""
+    visit_id: str | None = Field(default=None, description="Visit label or ID from EDC (e.g. 'SCREEN', 'V1')")
+    visit_num: int | None = Field(default=None, description="Numeric visit sequence")
+    form_id: str | None = Field(default=None, description="CRF form identifier (e.g. 'DEMO', 'LB')")
+    form_repeat_key: str | None = Field(default=None, description="Repeat key for multi-instance forms")
+    collected_date: str | None = Field(default=None, description="Collection date as ISO-8601 string")
+
+
+class ImputationTrace(BaseModel):
+    """Provenance record for a single imputed or LLM-filled value."""
+    field_id: str = Field(description="Catalog field_id of the affected variable")
+    method: Literal["rule", "llm", "manual", "group_mean"] = Field(description="How the value was derived")
+    rule_id: str | None = Field(default=None, description="Rule identifier if method='rule'")
+    source_value: str | None = Field(default=None, description="Raw source string before transform")
+    confidence: float | None = Field(default=None, description="0-1 confidence where applicable")
+    model_version: str | None = Field(default=None, description="LLM model id/version if method='llm'")
+
+
 class PatientProfile(BaseModel):
     """Normalised patient profile derived from AIKosh-shaped health record."""
 
@@ -83,6 +102,16 @@ class PatientProfile(BaseModel):
     data_quality_flags: list[str] = Field(
         default_factory=list,
         description="Warnings about data quality",
+    )
+    # Visit / form context (populated by EDC mappers when available)
+    visit: VisitRecord | None = Field(
+        default=None,
+        description="Visit/form context if the source EDC export includes it",
+    )
+    # Imputation lineage
+    imputation_trace: list[ImputationTrace] = Field(
+        default_factory=list,
+        description="Provenance for any field values derived by rule, LLM, or imputation",
     )
 
 

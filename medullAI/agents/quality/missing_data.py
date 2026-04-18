@@ -1,5 +1,6 @@
 """
 Missing data handling and imputation for clinical trial patient data.
+Field configuration is now driven by quality/catalog.yaml via field_catalog.py.
 """
 from __future__ import annotations
 
@@ -8,74 +9,70 @@ from typing import Any
 
 from pydantic import BaseModel
 
+from .field_catalog import catalog_by_id
+
 
 class MissingDataReport(BaseModel):
     """Report of missing data for a single patient."""
     patient_id: str
     missing_fields: list[str]
     missing_percentage: float
-    critical_missing: list[str]  # Fields that are critical for matching
-    imputed_fields: dict[str, Any]  # Fields that were imputed
-    confidence_impact: float  # 0-1 reduction in confidence
+    critical_missing: list[str]
+    imputed_fields: dict[str, Any]
+    confidence_impact: float
 
 
 class DataQualityReport(BaseModel):
     """Overall data quality report for a batch of patients."""
     total_patients: int
     patients_with_missing_data: int
-    missing_by_field: dict[str, int]  # Field -> count missing
+    missing_by_field: dict[str, int]
     imputation_applied: int
     critical_missing_count: int
-    average_completeness: float  # 0-1
+    average_completeness: float
 
 
 @dataclass
 class FieldConfig:
-    """Configuration for a field's importance and imputation strategy."""
+    """Runtime config derived from FieldSpec for backward compat."""
     name: str
-    critical: bool  # Is this field critical for matching?
-    imputable: bool  # Can we impute this field?
-    imputation_strategy: str  # "mean", "median", "mode", "group_mean"
+    critical: bool
+    imputable: bool
+    imputation_strategy: str
     default_value: Any = None
 
 
-# Define field configurations for clinical trial matching
-FIELD_CONFIGS = {
-    "age_months": FieldConfig("age_months", True, False, "none"),
-    "gender": FieldConfig("gender", True, False, "none"),
-    "primary_diagnosis": FieldConfig("primary_diagnosis", True, False, "none"),
-    "location_state": FieldConfig("location_state", False, False, "none"),
-    "icd_code": FieldConfig("icd_code", True, False, "none"),
-    "stage": FieldConfig("stage", False, False, "none"),
-    "comorbidities": FieldConfig("comorbidities", False, True, "empty_list", []),
-    "prior_treatment": FieldConfig("prior_treatment", False, True, "empty_list", []),
-    "smoking_history": FieldConfig("smoking_history", False, True, "false", False),
-    "ecog_ps": FieldConfig("ecog_ps", True, True, "median", None),
-    "hemoglobin": FieldConfig("hemoglobin", True, True, "group_mean", None),
-    "wbc_count": FieldConfig("wbc_count", True, True, "group_mean", None),
-    "platelet_count": FieldConfig("platelet_count", True, True, "group_mean", None),
-    "serum_creatinine": FieldConfig("serum_creatinine", True, True, "group_mean", None),
-    "alt": FieldConfig("alt", True, True, "group_mean", None),
-    "hba1c": FieldConfig("hba1c", True, True, "group_mean", None),
-    "fasting_glucose": FieldConfig("fasting_glucose", True, True, "group_mean", None),
-    "egfr": FieldConfig("egfr", True, True, "group_mean", None),
-}
+def _build_field_configs() -> dict[str, FieldConfig]:
+    """Build FieldConfig dict from catalog, replacing the old static FIELD_CONFIGS."""
+    configs: dict[str, FieldConfig] = {}
+    for spec in catalog_by_id().values():
+        # Choose imputation strategy based on type
+        if not spec.imputable:
+            strategy = "none"
+        elif spec.type == "list":
+            strategy = "empty_list"
+        elif spec.type == "boolean":
+            strategy = "false"
+        else:
+            strategy = "group_mean"
+        configs[spec.field_id] = FieldConfig(
+            name=spec.field_id,
+            critical=spec.critical,
+            imputable=spec.imputable,
+            imputation_strategy=strategy,
+        )
+    return configs
 
 
 class MissingDataHandler:
     """
     Handles missing data in patient records.
-
-    Features:
-    - Identifies missing critical vs non-critical fields
-    - Imputes missing values using group statistics
-    - Calculates confidence impact of missing data
-    - Provides detailed reports
+    Field definitions come from quality/catalog.yaml via _build_field_configs().
     """
 
     def __init__(self):
-        self.field_configs = FIELD_CONFIGS
-        self.group_stats: dict[str, dict[str, float]] = {}  # diagnosis -> field -> mean
+        self.field_configs = _build_field_configs()
+        self.group_stats: dict[str, dict[str, float]] = {}
 
     def _build_group_stats(self, patients: list[dict[str, Any]]) -> None:
         """Build group statistics for imputation by diagnosis."""
@@ -144,8 +141,7 @@ class MissingDataHandler:
             MissingDataReport
         """
         patient_id = patient.get("patient_id", "unknown")
-        diagnosis = self._normalize_diagnosis(patient.get("primary_diagnosis"))
-        labs = patient.get("lab_values", {})
+        diagnosis = self._normalize_diagnosis(patient.get("primary_diagnosis") or patient.get("conditions", [None])[0])
 
         missing_fields = []
         critical_missing = []
@@ -156,24 +152,40 @@ class MissingDataHandler:
         missing_count = 0
 
         for field, config in self.field_configs.items():
-            if field in ["hemoglobin", "wbc_count", "platelet_count", "serum_creatinine", "alt", "hba1c", "fasting_glucose", "egfr"]:
-                # Lab value
+            if field.startswith("lab."):
+                lab_key = field[len("lab."):]
+                # Also check common alias keys
                 total_fields += 1
-                if field not in labs or labs[field] is None:
+                lab_dict = patient.get("lab_values") or {}
+                # Try exact key and common variants
+                present = (
+                    lab_dict.get(lab_key) is not None
+                    or lab_dict.get(f"{lab_key}_g_dl") is not None
+                    or lab_dict.get(f"{lab_key}_per_ul") is not None
+                    or lab_dict.get(f"{lab_key}_u_l") is not None
+                    or lab_dict.get(f"{lab_key}_ml_min") is not None
+                    or lab_dict.get(f"{lab_key}_percent") is not None
+                )
+                if not present:
                     missing_count += 1
-                    missing_fields.append(f"lab.{field}")
+                    missing_fields.append(field)
                     if config.critical:
-                        critical_missing.append(f"lab.{field}")
+                        critical_missing.append(field)
 
                     if apply_imputation and config.imputable:
-                        imputed_value = self._impute_field(field, diagnosis, config.imputation_strategy)
+                        imputed_value = self._impute_field(lab_key, diagnosis, config.imputation_strategy)
                         if imputed_value is not None:
-                            labs[field] = imputed_value
-                            imputed_fields[f"lab.{field}"] = imputed_value
+                            lab_dict[lab_key] = imputed_value
+                            imputed_fields[field] = imputed_value
             else:
-                # Regular field
                 total_fields += 1
-                if field not in patient or patient[field] is None:
+                val = patient.get(field)
+                is_missing = (
+                    val is None
+                    or (isinstance(val, list) and len(val) == 0 and config.imputable)
+                    or (isinstance(val, str) and val.strip() in ("", "Unknown"))
+                )
+                if is_missing:
                     missing_count += 1
                     missing_fields.append(field)
                     if config.critical:

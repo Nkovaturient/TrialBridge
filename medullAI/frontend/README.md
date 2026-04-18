@@ -1,52 +1,37 @@
 # TrialBridge — CRO / pharma dashboard
 
-CRO / pharma-facing dashboard for TrialBridge: submit trial + patient JSON, run batch rank over CSV, and see the **agent pipeline**, **confidence scoring**, and **EDC ingestion** — without exposing secrets in the browser.
+CRO / pharma-facing dashboard: submit trial + patient data, run batch matching, and review a full **data-quality report** — deduplication, per-field missingness, imputation lineage, visit context, and a DM query workflow.
 
-**Data posture:** Intended for **de-identified or synthetic** cohorts in pilots. Align production use with India’s **DPDP Act 2023**; a short written data-handling summary is available on request.
-
----
-
-## Architecture workflow
-
-```mermaid
-sequenceDiagram
-  participant User as CRO_Browser
-  participant Next as Nextjs_App
-  participant BB as Backbone_Express
-  participant Ag as Agent_FastAPI
-
-  User->>Next: Submit raw_trial and raw_patient
-  Next->>Next: Validate body (Zod)
-  Next->>BB: POST /match (or /batch_match_parsed)
-  BB->>Ag: POST /run_match or /batch_match_parsed
-  Ag-->>BB: MatchResult or batch payload
-  BB-->>Next: JSON + pipeline timings
-  Next-->>User: Match results + confidence UI
-```
-
-**Batch rank (`/match` tab):** upload patient CSV → `POST /api/ingest_csv` (agents) → pick trial JSON → `POST /api/batch_match` → backbone `POST /batch_match_parsed`. Response includes **`pipeline`** timings.
-
-**Core principle:** integration secrets for third-party services belong only in **Next.js Route Handlers** (`app/api/*`). The browser never receives private keys or server-only API secrets.
+**Data posture:** Intended for **de-identified or synthetic** cohorts in pilots. Align production use with India's **DPDP Act 2023**.
 
 ---
 
-## Features and integrations
+## Pages
 
-| Area | What it does |
-|------|----------------|
-| **`/match`** | Single: JSON editors → **`POST /api/match`**. Batch: CSV upload → **`POST /api/ingest_csv`** → ranked table via **`POST /api/batch_match`**. Pipeline timings, rationale toggle, Phase II-III confidence UI. |
-| **`/activity`** | Proxied backbone health (`/api/health`). Optional on-chain widgets when payment mode exposes them — see [X402_PAYMENTS.md](../backbone/X402_PAYMENTS.md). |
-| **`/funding`** | Only when **`NEXT_PUBLIC_PAYMENT_MODE=x402`** (USDC / CDP funding UI). |
-| **`lib/types.ts`** | `MatchResult`, `BatchMatchStats` with Phase II-III fields |
-| **`app/api/match/route.ts`** | Zod → backbone `/match` |
-| **`app/api/ingest_csv/route.ts`** | Proxies multipart CSV to agents **`/ingest_patients_csv`**. |
-| **`app/api/batch_match/route.ts`** | Normalises CTRI corpus JSON to **`TrialCriteria`** → backbone **`/batch_match_parsed`**. |
-| **`next.config.ts`** | CORS for `/api/*` via `ALLOWED_ORIGIN`; `serverExternalPackages` includes `@coinbase/cdp-sdk` when used. |
+| Route | Description |
+|-------|-------------|
+| `/match` | Single and batch eligibility matching. CSV upload → ingest → rank. |
+| `/quality` | EDC upload → async ingest job (polls `/api/ingest_jobs/:id`) → upload summary, deduplication, per-field missingness table, cohort completeness, quality flags. |
+| `/queries` | DM query queue — raise / answer / close / void queries against subject + field + visit. |
+| `/evaluation` | Benchmark results from `ground_truth.jsonl`. |
+| `/activity` | Backbone health + optional x402 payment surface. |
+| `/funding` | Only when `NEXT_PUBLIC_PAYMENT_MODE=x402`. |
 
-Payment-mode-only modules (`lib/cdp-wallet.ts`, `lib/x402-settlement.ts`, `X402PaymentReceipt`, `/api/onramp/*`) are documented in [medullAI/backbone/X402_PAYMENTS.md](../backbone/X402_PAYMENTS.md).
+## Route handlers
 
-**Packages:** `@coinbase/cdp-sdk`, `x402`, `viem`, `zod` (see `package.json`) — CDP/x402 used only when `NEXT_PUBLIC_PAYMENT_MODE=x402`.
+| Path | Proxies to |
+|------|-----------|
+| `POST /api/ingest_csv` | `/ingest_patients_csv` (synchronous, 10 min timeout) |
+| `POST /api/ingest_async` | `/ingest_async` (returns `job_id`) |
+| `GET /api/ingest_jobs/[id]` | `/ingest_jobs/:id` (poll) |
+| `GET/POST /api/queries` | `/queries` CRUD |
+| `POST /api/queries/[id]` | `/queries/:id/{answer,close,void}` |
+| `POST /api/match` | Backbone `/match` |
+| `POST /api/batch_match` | Backbone `/batch_match_parsed` |
 
+**Expected ingest latency:** ~10–15 s per 10 rows (LLM-bound). The quality page uses the async endpoint and polls every 3 s.
+
+**Core principle:** integration secrets belong only in Next.js Route Handlers. The browser never receives private keys or server-only API secrets.
 ---
 
 ## Environment variables

@@ -15,16 +15,29 @@ const NAV = [
       </svg>
     ),
   },
-  // {
-  //   href: "/quality",
-  //   label: "Quality",
-  //   icon: (
-  //     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-  //       <path d="M8 1L2 4v4c0 4.42 3.58 8 8 8s8-3.58 8-8V4l-6-3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-  //       <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-  //     </svg>
-  //   ),
-  // },
+  {
+    href: "/quality",
+    label: "Quality",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M8 1L2 4v4c0 4.42 3.58 8 8 8s8-3.58 8-8V4l-6-3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+  },
+  {
+    href: "/queries",
+    label: "Queries",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <rect x="2" y="2" width="12" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M5 5h6M5 8h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="12" cy="12" r="3" fill="var(--background)" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M12 11v1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="12" cy="13.5" r="0.5" fill="currentColor"/>
+      </svg>
+    ),
+  },
   {
     href: "/evaluation",
     label: "Evaluation",

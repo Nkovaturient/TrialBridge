@@ -6,9 +6,9 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi&logoColor=white)
 ![Data](https://img.shields.io/badge/Data-AIKosh%20%2B%20CTRI-orange)
 
-AI agent swarm that matches anonymised patient profiles against Indian clinical trials (CTRI registry) using a LangGraph coordinator, DeepSeek V3, and a FastAPI server.
+AI agent layer that matches anonymised patient profiles against Indian clinical trials (CTRI registry) using a LangGraph coordinator, DeepSeek V3, and a FastAPI server. Includes a CRO-aligned DM quality pipeline: EDC mapping, deduplication, catalog-driven missingness, imputation lineage, visit/form context, and a query workflow.
 
-**Data posture:** Defaults assume **de-identified or synthetic** inputs — no live PII in bundled demos. Align production handling with India’s **DPDP Act 2023**; a short written data-handling summary is available on request.
+**Data posture:** Defaults assume **de-identified or synthetic** inputs — no live PII in bundled demos. Align production handling with India’s **DPDP Act 2023**.
 
 ---
 

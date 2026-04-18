@@ -4,10 +4,12 @@
 
 <img width="1785" height="964" alt="banner-TB (1)" src="https://github.com/user-attachments/assets/6680947c-dd22-4aa4-aba0-d4870617ec5f" />
 
-> Coordinator-first workflow: AI assists; qualified staff decide.
+> The “Bridge” metaphor: connectivity between patients and trials, between India’s public health data patterns and CTRI listings, and between messy EDC exports and structured eligibility reasoning.
+
 
 - LangGraph agent coordination, multi-EDC auto-detection (Medidata Rave, Veeva Vault, REDCap), and a clear split between **AI-scored** vs **requires human review** criteria.
-- The “Bridge” metaphor: connectivity between patients and trials, between India’s public health data patterns and CTRI listings, and between messy EDC exports and structured eligibility reasoning.
+
+- **CRO-aligned data management (DM):** versioned field catalog (CDASH-like), visit/form context on ingest, **async** CSV ingest with polling (no long blocking HTTP), deduplication + cohort missingness on the **Data Quality** dashboard, optional **query** workflow for clarifications, and **imputation lineage** (group-mean + LLM-inferred fields) on `PatientProfile`.
 
 > **Data posture (procurement):** Default flows use **de-identified or synthetic** cohorts only — no live PII in shipped demos. We plan handling under India’s **DPDP Act 2023**; a short written data-handling summary is available on request.
 
@@ -59,11 +61,11 @@
    │  │LangGraph    │  │Data Quality   │          │
    │  │Coordinator  │  │Engine         │          │
    │  │             │  │               │          │
-   │  │•parse_trial │  │•deduplication │          │
-   │  │•parse_patient│ │•missing data  │          │
-   │  │•score_match │  │•auto-detect   │          │
-   │  │•ambiguity   │  │•imputation    │          │
-   │  │  detection  │  │               │          │
+   │  │•parse_trial │  │•field catalog │          │
+   │  │•parse_patient│ │•dedup + DQ   │          │
+   │  │•score_match │  │•async ingest  │          │
+   │  │•ambiguity   │  │•queries +     │          │
+   │  │  detection  │  │ lineage      │          │
    │  └──────┬──────┘  └───────────────┘          │
    │         │                                    │
    │  ┌──────▼────────┐  ┌────────────────────┐   │
@@ -84,6 +86,15 @@ _Default deployment uses `PAYMENT_MODE=standard` (no pay-per-call gate on the ba
 
 ---
 
+## Primary Track Submission: Track 1 + Track 3
+
+"TrialBridge: Multi-Agent Workflow Automation for Clinical Trial Operations Infrastructure"
+
+- I have combined Track 1's **Autonomous dApp Challenge**  focus (batch EDC processing, automated pre-screening pipelines) with Track 3's **Multi-Agent Coordination & System Automation** (LangGraph-based dual-agent architecture for trial-to-Patient match and Data quality agentic engine) + optional x402 payment mode for CRO/pharma companies feasibility (CRO licensing model, pay-per-call x402 API).
+
+
+---
+
 ## Phase II-III production upgrades
 
 TrialBridge has been upgraded from a Phase I prototype to a **production-oriented clinical decision support system** with CRO/pharma-grade capabilities:
@@ -92,7 +103,7 @@ TrialBridge has been upgraded from a Phase I prototype to a **production-oriente
 
 | Step | Wall time | ~Minutes |
 |------|-----------|----------|
-| **Ingest CSV** | 4.2–4.5 min | **~4.3 min** (≈ **4 min 15 s–4 min 30 s**) |
+| **Ingest CSV** | 4.2–4.5 min (sync path) | **~4.3 min** — use **async ingest + poll** for long jobs; expect ~10–15 s per 10 rows with default LLM concurrency |
 | **Batch rank** (`/api/batch_match`) | 100 s | **~1.7 min** (≈ **1 min 40 s**) |
 
 **End-to-end** (ingest + batch): about **4.5 + 1.7 ≈ 6.2 min** (~**6 min** total).
@@ -114,17 +125,21 @@ mapped_row, format_name, confidence = detect_and_map(raw_row)
 
 ### 2. Data quality engine
 
+**Field spec & ingest:** A versioned **field catalog** (`medullAI/agents/quality/catalog.yaml`) drives missingness and imputation rules consistently. **Async ingest** (`/ingest_async` + job polling) avoids browser timeouts on LLM-heavy rows; the dashboard shows upload summary, mapper/format confidence, and per-field missingness.
+
 **Deduplication (OVIS-like):**
 
 - Fuzzy matching on demographics + labs
 - 85% threshold, `merge`/`review`/`keep_separate` recommendations
-- Prevents inflated patient counts across site databases
+- Prevents inflated patient counts across site databases; ingest responses include **input_count** and duplicate **candidates** when available
 
 **Missing data handling:**
 
 - Critical field imputation by diagnosis group (e.g., average Hb for oral cancer)
 - Confidence impact scoring (-0.3 per critical missing field)
-- Transparent reporting of imputed values
+- Transparent reporting of imputed values; **imputation traces** record group-mean vs LLM-inferred fields on each profile
+
+**Visit / form & queries:** Mappers extract **visit/form** context when EDC columns are present. A lightweight **query** API and **Queries** UI support raise/answer/close/void for data clarification (in-memory store in the agent MVP).
 
 ### 3. Ambiguity detection & clinical judgment
 
@@ -225,6 +240,7 @@ Storage        | IPFS (via nft.storage)       | Consent document hash (optional)
 | **Data formats** | AIKosh CSV only | Medidata, Veeva, REDCap + auto-detect |
 | **Format detection** | Manual mapping | >85% auto-detect accuracy |
 | **Deduplication** | None | Fuzzy matching, 90%+ precision |
+| **DM quality UI** | Single aggregate | Field catalog, per-field missingness, async ingest, queries, lineage |
 | **Missing data** | Ignored | Imputation + confidence impact |
 | **Ambiguity detection** | None | 20+ subjective patterns flagged |
 | **Evaluation** | None | Initial labeled harness (n=10 synthetic JSONL); targets in §5 |
@@ -269,14 +285,14 @@ TrialBridge/
 │   │   ├── patient_agent.py   # Patient normaliser
 │   │   ├── coordinator.py     # LangGraph with data quality checks
 │   │   ├── server.py          # FastAPI wrapper
-│   │   ├── quality/           # Data quality module
-│   │   ├── ingest/            # EDC format support
+│   │   ├── quality/           # Catalog, missing data, dedup, queries (DM MVP)
+│   │   ├── ingest/            # EDC format support + visit extraction
 │   │   ├── evaluation/        # JSONL harness + metrics runner
 │   │   └── datasets/          # Demo datasets
 │   ├── backbone/              # Express :4020 — agent proxy (+ optional HTTP 402)
 │   │   └── X402_PAYMENTS.md   # Optional micropayment mode (advanced)
 │   ├── contracts/             # TrialRegistry.sol (Foundry)
-│   └── frontend/              # Next.js — see medullAI/frontend/README.md
+│   └── frontend/              # Next.js — /quality (DQ report), /queries; see medullAI/frontend/README.md
 └── README.md
 ```
 
@@ -292,7 +308,7 @@ TrialBridge/
 1. **Direct EDC Ingestion** — Upload Medidata Rave, Veeva Vault, or REDCap exports directly
 2. **Confidence Scoring** — Each match rated high/medium/low with documented risk factors
 3. **Flagged Subjective Criteria** — Items requiring MD review clearly marked (e.g., "adequate renal function per investigator judgment")
-4. **Data Quality Report** — Missing fields, imputed values, deduplication summary
+4. **Data Quality Report** — Rows vs parsed, mapper/format confidence, dedup summary, per-field missingness, cohort completeness, imputation traces; **Queries** page for clarification workflow
 5. **Ranked Shortlist** — Patients sorted by eligibility score, with hard-filtered patients indicated
 
 ### What Makes This Low-Risk
