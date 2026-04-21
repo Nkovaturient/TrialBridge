@@ -10,26 +10,27 @@ import type { BatchMatchResponse, BatchMatchResult, MatchResult, PipelinePhase }
 
 const DEFAULT_TRIAL = JSON.stringify(
   {
-    ctri_number: "CTRI/2023/11/059302",
-    title: "Efficacy of Topical Curcumin Gel in Oral Potentially Malignant Disorders",
-    condition: "Leukoplakia or Oral Submucous Fibrosis (OSMF)",
-    intervention: "Topical Curcumin 2% Gel vs Placebo",
-    phase: "Phase 2",
-    status: "Recruiting",
+    ctri_number: "CTRI/2024/02/02000",
+    title: "Clinical Trial 2: Immunotherapy in Cancer",
+    condition: "Non-Small Cell Lung Cancer",
+    intervention: "Bevacizumab",
     inclusion_criteria: [
-      "Diagnosed with oral leukoplakia or OSMF",
-      "Age 18–65 years",
-      "Willing to provide written informed consent",
+      "Age 18-75 years",
+      "Histologically confirmed malignancy",
+      "ECOG performance status 0-2",
+      "Adequate organ function per investigator judgment",
     ],
     exclusion_criteria: [
-      "Prior or current malignancy of any site",
-      "Established diagnosis of diabetes mellitus or on anti-diabetic medication",
+      "Prior immunotherapy for this cancer",
+      "Active autoimmune disease requiring steroids",
       "Pregnant or lactating women",
+      "Significant cardiac disease per investigator",
     ],
-    min_age_years: 18,
-    max_age_years: 65,
-    gender: "both",
-    principal_investigator: "Dr. A. Sharma",
+    min_age: "24.00 Year(s)",
+    max_age: "79.00 Year(s)",
+    gender: "Female",
+    phase: "Phase 3",
+    recruitment_status: "Recruiting",
   },
   null,
   2,
@@ -37,16 +38,29 @@ const DEFAULT_TRIAL = JSON.stringify(
 
 const DEFAULT_PATIENT = JSON.stringify(
   {
-    patient_id: "PID_anon_001",
-    age_years: 58,
-    gender: "male",
-    primary_conditions: ["Oral Squamous Cell Carcinoma"],
-    comorbidities: ["Type 2 Diabetes Mellitus"],
-    location_state: "Maharashtra",
-    lab_values: { hba1c: 7.4 },
-    prior_treatment: ["Surgical resection"],
-    smoking_history: true,
-    stage: "Stage II",
+    patient_id: "PID_BR10_H2",
+    age_years: 41,
+    gender: "female",
+    state: "Maharashtra",
+    primary_diagnosis: "Oral submucous fibrosis with dysplasia",
+    icd_code: "K13.79",
+    stage: "OPMD",
+    comorbidities: ["Iron deficiency anaemia"],
+    prior_treatment: "None",
+    smoking_history: false,
+    tobacco_use: "Areca nut chewing 7 years",
+    alcohol_use: false,
+    ecog_ps: 0,
+    labs: {
+      hemoglobin_g_dl: 11.4,
+      wbc_count_per_ul: 6400,
+      platelet_count_per_ul: 208000,
+      serum_creatinine_mg_dl: 0.7,
+      alt_u_l: 20,
+      hba1c_percent: 5.2,
+      fasting_glucose_mg_dl: 88,
+      egfr_ml_min: 112,
+    },
   },
   null,
   2,
@@ -168,7 +182,7 @@ function SingleMatchTab() {
         <div className="space-y-4">
           <div>
             <label className="block text-xs font-medium mb-1.5" style={{ color: "var(--text-secondary)" }}>
-              Trial Record (CTRI JSON)
+              Trial Record (JSON Format)
             </label>
             <textarea
               value={trialJson}
@@ -188,7 +202,7 @@ function SingleMatchTab() {
 
           <div>
             <label className="block text-xs font-medium mb-1.5" style={{ color: "var(--text-secondary)" }}>
-              Patient Profile (AIKosh JSON)
+              Patient Profile (JSON Format)
             </label>
             <textarea
               value={patientJson}
@@ -415,7 +429,7 @@ function BatchMatchTab() {
         <div className="space-y-4">
           <div>
             <label className="block text-xs font-medium mb-1.5" style={{ color: "var(--text-secondary)" }}>
-              Trial Criteria (CTRI JSON)
+              Trial Criteria (JSON Format)
             </label>
             <textarea
               value={trialJson}
@@ -488,7 +502,7 @@ function BatchMatchTab() {
                 <div>
                   <p className="text-xs" style={{ color: "var(--text-secondary)" }}>Click to upload CSV or XLSX</p>
                   <p className="text-xs mt-1" style={{ color: "var(--text-secondary)", opacity: 0.6 }}>
-                    AIKosh oral cancer or generic patient export
+                    Generic patient export
                   </p>
                 </div>
               )}
