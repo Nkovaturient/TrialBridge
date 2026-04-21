@@ -42,6 +42,141 @@
 
 ---
 
+## 🧪 Quick test guide
+
+[![Website](https://img.shields.io/badge/Live%20App-trial--bridge--mauve.vercel.app-7c3aed?style=for-the-badge)](https://trial-bridge-mauve.vercel.app/) [![Demo Video](https://img.shields.io/badge/Watch%20Demo-YouTube-ff0000?style=for-the-badge)](https://youtu.be/HEByFhlgCcs) [![LinkedIn](https://img.shields.io/badge/LinkedIn-TrialBridge%20AI-0a66c2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/company/trialbridge-ain) [![X](https://img.shields.io/badge/X-@TrialBridge__-000000?style=for-the-badge&logo=x)](https://x.com/TrialBridge_) [![Medium Blog](https://img.shields.io/badge/Read%20Blog-Medium-12100e?style=for-the-badge&logo=medium)](https://medium.com/@nk8981398/trialbridge-ai-assisted-clinical-trial-pre-screening-for-india-00b7c43cc2dc) [![Builder](https://img.shields.io/badge/Built%20By-@Nkovaturient-2563eb?style=for-the-badge)](https://github.com/Nkovaturient)
+
+
+## Use this flow to evaluate TrialBridge end-to-end in under 15 minutes.
+
+### 1) Single match (`/match` tab: Single)
+
+- Paste one anonymized patient JSON (bring your own, or use the sample below).
+- Paste one trial JSON (from `medullAI/agents/datasets/trials_demo_20.json` or your own).
+- Run single match and validate:
+  - `decision_support_only: true`
+  - `confidence_level` and risk factors
+  - objective vs `requires_human_review_criteria`
+
+Sample patient JSON:
+
+```json
+{
+  "patient_id": "PID_BR10_H2",
+  "age_years": 41,
+  "gender": "female",
+  "state": "Maharashtra",
+  "primary_diagnosis": "Oral submucous fibrosis with dysplasia",
+  "icd_code": "K13.79",
+  "stage": "OPMD",
+  "comorbidities": ["Iron deficiency anaemia"],
+  "prior_treatment": "None",
+  "smoking_history": false,
+  "tobacco_use": "Areca nut chewing 7 years",
+  "alcohol_use": false,
+  "ecog_ps": 0,
+  "labs": {
+    "hemoglobin_g_dl": 11.4,
+    "wbc_count_per_ul": 6400,
+    "platelet_count_per_ul": 208000,
+    "serum_creatinine_mg_dl": 0.7,
+    "alt_u_l": 20,
+    "hba1c_percent": 5.2,
+    "fasting_glucose_mg_dl": 88,
+    "egfr_ml_min": 112
+  }
+}
+```
+
+### 2) Batch match (`/match` tab: Batch)
+
+- Upload patient batch payloads and run ranking mode.
+- For rigorous checks, use:
+  - `medullAI/agents/datasets/patients_demo_100.csv`
+  - `medullAI/agents/datasets/patient_batch_rank_sample_5.csv`
+  - `medullAI/agents/datasets/patient_batch_rank_sample_10_split_4_3_3.csv`
+- Confirm output quality:
+  - ranked shortlist order
+  - hard-filtered vs potentially eligible splits
+  - score + confidence consistency across rows
+
+### 3) Data quality validation (`/quality`)
+
+- Open `medullAI/frontend/app/(dashboard)/quality/page.tsx`.
+- Ingest the same CSV used in batch mode and inspect:
+  - rows parsed vs uploaded
+  - mapper/format confidence
+  - duplicate candidates and merge suggestions
+  - missingness/completeness by field
+  - imputation visibility and lineage
+
+### 4) Query workflow validation (`/queries`)
+
+- Create clarification queries for missing/ambiguous fields.
+- Validate raise -> answer -> close/void lifecycle for CRO DM operations.
+
+### Recommended test assets
+
+- Trial corpus: `medullAI/agents/datasets/trials_demo_20.json`
+- Patient profile sample set:
+
+```json
+[
+  {
+    "patient_id": "PID_BR10_H1",
+    "age_years": 34,
+    "gender": "male",
+    "state": "Tamil Nadu",
+    "primary_diagnosis": "Oral leukoplakia",
+    "icd_code": "K13.21",
+    "stage": "OPMD",
+    "comorbidities": ["Hypertension"],
+    "prior_treatment": "Biopsy;Oral prophylaxis",
+    "smoking_history": true,
+    "tobacco_use": "Smokeless tobacco 8 years",
+    "alcohol_use": false,
+    "ecog_ps": 0,
+    "labs": {
+      "hemoglobin_g_dl": 12.9,
+      "wbc_count_per_ul": 6900,
+      "platelet_count_per_ul": 225000,
+      "serum_creatinine_mg_dl": 0.8,
+      "alt_u_l": 21,
+      "hba1c_percent": 5.4,
+      "fasting_glucose_mg_dl": 92,
+      "egfr_ml_min": 106
+    }
+  },
+  {
+    "patient_id": "PID_BR10_H2",
+    "age_years": 41,
+    "gender": "female",
+    "state": "Maharashtra",
+    "primary_diagnosis": "Oral submucous fibrosis with dysplasia",
+    "icd_code": "K13.79",
+    "stage": "OPMD",
+    "comorbidities": ["Iron deficiency anaemia"],
+    "prior_treatment": "None",
+    "smoking_history": false,
+    "tobacco_use": "Areca nut chewing 7 years",
+    "alcohol_use": false,
+    "ecog_ps": 0,
+    "labs": {
+      "hemoglobin_g_dl": 11.4,
+      "wbc_count_per_ul": 6400,
+      "platelet_count_per_ul": 208000,
+      "serum_creatinine_mg_dl": 0.7,
+      "alt_u_l": 20,
+      "hba1c_percent": 5.2,
+      "fasting_glucose_mg_dl": 88,
+      "egfr_ml_min": 112
+    }
+  }
+]
+```
+
+---
+
 ## Architecture workflow
 
 ```
